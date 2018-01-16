@@ -1,0 +1,31 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>相邻同胞选择器(E+F)</title>
+<style>
+body {
+    background: #fff;
+}
+#wrapper {
+	width: 406px;
+	margin: 100px auto;
+	border: 0px solid #ccc;
+}
+p {margin: 0;
+   font-size: 14px;
+   letter-spacing: .1em;
+   font-family: Arial;
+   line-height: 1.6em;
+} 
+p::first-line { 
+    color: red;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+<p>E::first-line伪选择器用于设置E元素中第一行文本的样式。这里的第一行是指在浏览器中显示的第一行文本，如果调整浏览器窗口，第一行的内容会跟着变化。</p>
+</div>
+</body>
+</html>

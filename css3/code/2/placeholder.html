@@ -1,0 +1,29 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>伪元素选择器</title>
+<style>	
+div { margin:10px auto; width:286px; padding:4px 10px; font-size:14px; border:0px solid #ccc;}
+input[type = text] {
+   width:274px;
+}
+input::-webkit-input-placeholder { 
+	color: #f00;
+	border: 1px solid #00f;
+}
+input::-ms-input-placeholder {  
+	color: #999;
+	border: 1px solid #999;
+}
+input::-moz-placeholder {  
+	color: #999;
+	border: 1px solid #999;
+}
+</style>
+</head>
+<body>
+<div>
+<input placeholder="文本占位符" />
+</div>
+</html>

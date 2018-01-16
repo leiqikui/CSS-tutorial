@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>相邻同胞选择器(E+F)</title>
+<style>
+body {
+    background: #fff;
+}
+#wrapper {
+	width: 406px;
+	margin: 100px auto;
+	border: 0px solid #ccc;
+}
+p {margin: 0;
+   padding: 10px;
+   font-size: 14px;
+   letter-spacing: .1em;
+   font-family: Arial;
+   line-height: 1.6em;
+} 
+p:last-child {
+    text-indent: 2em;
+}
+p:first-child::first-letter { 
+    float: left;
+	font-size: 3em;
+	margin-top: .26em;
+	margin-right: .2em;
+	margin-bottom: .2em;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+<p>许多报刊或杂志的文章中，开篇第一个字都很大，通过来来吸引读者的眼球。而这个首字放大的效果，就可以使用E::first-letter伪选择器来实现。 </p>
+<p>这里首先使用 p:first-child 选择第一个段落，这样的话，只有第一个段落中的第一个字是正常字体的3倍，以免所有段落的第一个字都被放大。 </p>
+</div>
+</body>
+</html>
