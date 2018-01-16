@@ -6,7 +6,7 @@
 
 作者特意创建了一个网站 [http://www.waibo.wang/](http://www.waibo.wang/)，你可以在线阅读本教程。有关本教程的任何问题，请发送邮件到 376601179@qq.com, 我将尽力提供最满意的答案。如果你想跟我互动，也可以扫下面的二维码，关注我的微信。  
 
-<div style="text-align:center"><img src="./img/weixin.png" title="微信" alt="微信" width="180"></div>  
+<div align=center><img src="./img/weixin.png" title="微信" alt="微信" width="180"></div>  
 
 ## 版权声明
 本教程采用[创意共享4.0](https://creativecommons.org/licenses/by-nc/4.0/)许可证。  
