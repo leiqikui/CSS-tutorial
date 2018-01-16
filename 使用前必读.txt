@@ -1,0 +1,6 @@
+
+第一步：在本地创建一个文件夹，可以是任意名称，假设名称为 css-tutorial。
+
+第二步：在本地创建一个虚拟网站，名称为 waibo，物理路径指向 css-tutorial 文件夹。
+
+第三步：在浏览器地址栏输入 http://localhost/waibo/ ，或直接双击 css-tutorial 目录下的 index.html，开始学习。
