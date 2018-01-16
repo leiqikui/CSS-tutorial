@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS浮动_CSS float属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 浮动,CSS浮动,float,float属性" />
+ <meta name="description" content="CSS中，通过 float 属性，任何元素都可以浮动，取值 left 让一个元素向左浮动，取值 right 则向右浮动" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("50301");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">5.3.1 浮动</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h2 class="hide-text">普通流</h2>
+<h2 class="hide-text">定位</h2>
+<h2 class="hide-text">浮动</h2>
+<h3>浮动</h3>
+<p>CSS中，通过 float属性，任何元素都可以浮动，取值 left 让一个元素向左浮动，取值 right 则向右浮动。</p>
+<p>浮动会影响包含块中的布局，如果一个包含块中存在浮动框，则先让所有的框按照普通流中的位置摆放，再将浮动框从文档流中取出来，并让浮动框从包含块的顶部开始，根据浮动方向一个接一个地水平排列。</p>
+<p>浮动元素的包含块，是它最近的块级祖先元素（或表格单元格、或行内块祖先元素）的内容边界。向左浮动的元素，尽可能向左移动，直到碰到包含块的左边界。向右浮动的元素，尽可能向右移动，直到碰到包含块的右边界。</p>
+<p>假设在一个容器中，有两个子元素，一个向左浮动，一个向右浮动：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class = "wrapper"&gt;
+   &lt;div class = "floatL"&gt;box1 &lt;/div&gt;
+   &lt;div class = "floatR"&gt;box2 &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>现在，为容器设置 10px 的内边距，为了便于观察，为容器和子元素设置了边框，并为向左和向右浮动元素添加指示箭头：</p>
+<pre class="prettyprint linenums">
+<code>.wrapper {
+    width: 320px;
+    padding: 10px;
+    overflow: hidden;
+    border: 2px dashed #ccc;
+}
+.wrapper div {
+    width: 80px;
+    height: 60px;
+    border: 1px dashed #444;
+}
+.floatL {
+    float: left;
+    background: url(img/fl.png) 50% 36% no-repeat;
+}
+.floatR {
+    float: right;
+    background: url(img/fr.png) 50% 36% no-repeat;
+}</code></pre>
+<p>上述代码的运行结果如图 5‑21 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/clear1.png' title='框可以向左或向右浮动' alt='框可以向左或向右浮动'><figcaption>图5-21  框可以向左或向右浮动</figcaption></figure>
+<p>从上图可以看出，无论向左浮动，还是向右浮动，浮动元素左右边界，都不会超过包含块内容区的左右边界。并且，浮动元素的上边界，也不会超过包含块内容区的上边界。</p>
+<p>一个浮动元素，无论它是块级元素，还是行内级元素，都会生成一个块级框，并可以为它指定宽度和高度。如果没有显式设置宽度和高度，它的宽度和高度由其内容决定，但不超过包含块的宽度和高度。</p>
+<p>假设在一个段落中，有两个 span 子元素，一个向左浮动，一个向右浮动。向左浮动的元素设置了宽度和高度，而向右浮动的元素没有设置宽度和高度：</p>
+<pre class="prettyprint linenums">
+<code>&lt;p&gt;
+   &lt;span class = "floatL"&gt;float left&lt;/span&gt;
+   &lt;span class = "floatR"&gt;float right&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+<pre class="prettyprint linenums">
+<code>p {
+    border: 1px solid #ccc;
+}
+span {
+    border: 1px dashed #ccc;
+}
+.floatL {
+    float: left;
+    width: 200px;
+    height: 40px;
+}
+.floatR {
+    float: right;
+}</code></pre>
+<p>上述代码的运行结果如图 5‑22 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float2.png' title='浮动元素的宽度和高度' alt='浮动元素的宽度和高度'><figcaption>图5-22  浮动元素的宽度和高度</figcaption></figure>
+<p>从上图可以看出，未设置宽度和高度的元素，其尺寸由其内容决定，而设置宽度和高度元素则使用设置的尺寸。由于包含块的高度为 auto，其高度被向左浮动的元素撑开。</p>
+<p>虽然浮动元素生成的也是块级框，但跟块级元素生成的块级框不同的是，浮动框的旁边允许放置其他的框。也就是说，浮动框可以跟块级框、或行内级框、或浮动框在同一行内水平显示。</p>
+<p>由于浮动框已经脱离文档流，当浮动框和块级框并列时，同一行中的块级框会无视浮动框的存在，并占满一整行。这种情况下，块级框会处在浮动框的下层，也无法通过 z-index 属性改变它们的堆叠顺序。但是，块级框中的文本会环绕着浮动框，不会被浮动框覆盖，其效果跟印刷排版中的文本环绕相似。</p>
+<p>假设有一个容器中，有一幅图像和一个段落，图像向左浮动。为了便于观察，为段落添加背景：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div&gt;
+   &lt;img src = "img/img.gif" style = "float:left;" /&gt;
+   &lt;p&gt;无论是块级元素，…，浮动元素的旁边允许放置其他元素。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<pre class="prettyprint linenums">
+<code>div {
+   width: 300px;
+   border: 1px dashed #ccc;
+}
+p {
+   font-size: 13px;
+   line-height: 2;
+   background:  #ddd;
+}
+img {
+   float: left; 
+}</code></pre>
+<p>上述代码的运行结果如图 5‑23 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float3.png' title='浮动框与块级框并列' alt='浮动框与块级框并列'><figcaption>图5-23  浮动框与块级框并列</figcaption></figure>
+<p>从上图可以看出，图像会生成一个浮动框，并且，浮动框和段落都紧贴包含块的左内边界，导致段落被浮动框覆盖，而段落中的文本所形成的行框却向右移动，并水平变窄来给浮动框腾出空间。随着文本的增加，后面的文本又会紧贴包含块的左内边界，因为它不再受浮动框的影响，无需再向右移动了。</p>
+<p>如果浮动框和行内级框并列，浮动框将被置于包含块和行框的外边界之间，使行框的水平可用空间减少，导致行框的宽度变窄。</p>
+<p>假设在一个段落中，有四个 span 子元素，一个向左浮动，一个向右浮动，其余两种不进行浮动：</p>
+<pre class="prettyprint linenums">
+<code>&lt;p&gt;
+   &lt;span&gt;inline element 1&lt;/span&gt;
+   &lt;span class = "floatL"&gt;float left&lt;/span&gt;
+   &lt;span class = "floatR"&gt;float right&lt;/span&gt;
+   &lt;span&gt;inline element 2&lt;/span&gt;
+&lt;/p&gt;
+</code></pre>
+<p>为了便于观察，为 span 元素添加了 1px 的虚线边框：</p>
+<pre class="prettyprint linenums">
+<code>p {
+    border: 1px solid #ccc;
+}
+span {
+   border: 1px dashed #ccc;
+}
+.floatL {
+   float: left;
+}
+.floatR {
+   float: right;
+}</code></pre>
+<p>上述代码的运行结果如图 5‑24 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float4.png' title='浮动框与行内级框并列' alt='浮动框与行内级框并列'><figcaption>图5-24  浮动框与行内级框并列</figcaption></figure>
+<p>从上图可以看出，由于浮动框的存在，行框的宽度变窄，当行框的水平空间不足时，行内级框会自动换行。由于受浮动框高度的影响，行内级框被浮动框卡住。</p>
+<p>如果多个浮动框并列时，它们会按在HTML中的定义顺序，一个接一个，依次水平排列，每个框按照各自的方向浮动。</p>
+<p>假设所有的三个框都向左浮动，则框 1 向左浮动，直到碰到包含块内容区域的边界，另外两个框向左浮动，直到碰到前一个浮动框。如图 5‑25 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float5.png' title='所有三个框都向左浮动' alt='所有三个框都向左浮动'><figcaption>图5-25  所有三个框都向左浮动</figcaption></figure>
+<p>假设所有的三个框都向右浮动，情况与全部向左浮动类似。在HTML代码中，框 1 最先被定义，所以排在最右边，框 3 最后被定义，所以排在最左边。如图 5‑26 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float6.png' title='所有三个框都向右浮动' alt='所有三个框都向右浮动'><figcaption>图5-26  所有三个框都向右浮动</figcaption></figure>
+<p>如果在一行内无法容纳所有的浮动框，则后面的框会向下移动，直到有足够的空间。如果浮动框的高度不同，在向下移动时，可能被其它浮动框“卡住”。如图 5‑27 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float7.png' title='浮动框下移到有足够空间的地方' alt='浮动框下移到有足够空间的地方'><figcaption>图5-27  浮动框下移到有足够空间的地方</figcaption></figure>
+<p>如果多个框的浮动方向不尽相同，情况会怎样呢？假设有六个浮动框，按从小到大的顺序依次定义，框 1、2、5向左浮动，框 3、4、6向右浮动。运行结果如图 5‑28 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/float8.png' title='不同方向浮动的框' alt='不同方向浮动的框'><figcaption>图5-28  不同方向浮动的框</figcaption></figure>
+<p>从上图可以看出，当框的浮动方向不尽相同时，会按照在HTML中定义的顺序，摆放每一个框，如果一行内空间不足，后面的框会自动下移，形成多行，在每一行中，每个框按照各自的方向浮动。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/5/5.2.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/5/5.3.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

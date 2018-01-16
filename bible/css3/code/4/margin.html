@@ -1,0 +1,29 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>内嵌样式</title>
+<style>
+div {width:300px;font-size:13px;
+   margin: 20px auto;
+   box-sizing: border-box;
+   border: 1px dashed #ccc;
+}
+div p {
+   border: 1px dashed #ccc;
+}
+div p:nth-child(1) {
+   margin: 10px;
+}
+div p:nth-child(2) {
+   margin: 10px -30px;
+}
+</style>
+</head>
+<body>
+<div>
+<p>这个段落的外边距为正值</p>
+<p>这个段落的外边距为负值</p>
+</div>
+</body>
+</html>

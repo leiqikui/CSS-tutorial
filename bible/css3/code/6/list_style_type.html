@@ -1,0 +1,54 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>list-style-position 属性</title>
+<style>
+div {
+  margin: 20px auto;  padding:0 10px; font-size:14px;
+  width: 450px;border: 1px solid #444; 
+}
+
+ul,ol {
+   margin: 10px 30px;padding:0;	
+}
+li {
+   padding:4px;
+}
+.disc {
+   list-style-type: disc;
+}
+.circle {
+   list-style-type: circle;
+}
+.decimal-leading-zero {
+   list-style-type: decimal-leading-zero;
+}
+.lower-alpha {
+   list-style-type: lower-alpha;
+}
+.upper-roman {
+   list-style-type: upper-roman;
+}
+</style>
+</head>
+<body>
+<div>
+<ul>
+<li class="disc">disc：默认值，实心圆</li>
+<li class="circle">circle：空心圆</li>
+<li class="decimal-leading-zero">decimal-leading-zero：以0打头的数字 01、02、03、04、05</li>
+<li class="lower-alpha">lower-alpha：小写英文字母a、b、c、d、e</li>
+<li class="upper-roman">upper-roman：大写罗马数字Ⅰ、Ⅱ、Ⅲ、Ⅳ、Ⅴ</li>
+</ul>
+</div>
+
+<div>
+<ol>
+<li>List Item 1</li>
+<li style = "list-style-type: none;">List Item 2</li>
+<li>List Item 3</li>
+</ol>
+</div>
+</body>
+</html>

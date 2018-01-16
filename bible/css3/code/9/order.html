@@ -1,0 +1,37 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>order</title>
+<style>	
+div {border:0px solid #ccc;font: bold 36px/36px monaco;color:#fff;text-align:center;}
+
+.father {margin:50px auto;
+	width: 600px;
+	display: flex; border:1px solid #ef39d5;
+}
+.father > div {
+	width: 100px;
+}	
+.box1 {
+  order: 2;	
+	background: rgb(127, 63, 253);
+}
+.box2 {		 
+  order: 1;
+	background: rgb(239, 57, 213);
+}
+.box3 {
+  order: -1;	
+	background: rgb(27, 185, 241);
+}
+</style>
+</head>
+<body>
+<div class='father'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</div>
+</body>
+</html>

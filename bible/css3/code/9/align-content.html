@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>align-content</title>
+<style>	
+div {font: bold 26px/40px monaco;color:#fff;text-align:center;}
+table {margin:60px auto;}
+td{font: 14px Arial;text-align:center;letter-spacing:1px;border:2px solid #fff}
+
+.father {
+    width:120px;  /* 增加宽度，方便看清水平方向上的剩余空间 */
+	height:160px;  /* 增加高度，方便看清垂直方向上的剩余空间 */
+	border:1px solid #ef39d5;  /* 增加边框，方便看清父元素边界 */
+	display: flex;	
+	flex-wrap: wrap;
+}
+.father > div {
+	width: 60px; 
+}	
+.flex-start {
+    align-content: flex-start;
+}	
+.flex-end {
+    align-content: flex-end;
+}
+.center  {
+    align-content: center ;
+}	
+.space-between {
+    align-content: space-between;
+}
+.space-around {
+    align-content: space-around;
+}	
+.box1 {
+	background: #7f3ffd;
+}
+.box2 {		 
+	background: #ef39d5;
+}
+.box3 {
+	background: #1bb9f1;
+}
+</style>
+</head>
+<body>
+<table>
+<tr><td>flex-start</td><td>flex-end</td><td>center </td><td>space-between</td><td>space-around</td><td>stretch</td></tr>
+<tr>
+<td>
+<div class='father flex-start'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box1">4</div>
+    <div class="box1">5</div>
+</div>
+</td>
+<td>
+<div class='father flex-end'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box1">4</div>
+    <div class="box1">5</div>
+</div>
+</td>
+<td>
+<div class='father center'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box1">4</div>
+    <div class="box1">5</div>
+</div>
+</td>
+<td>
+<div class='father space-between'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box1">4</div>
+    <div class="box1">5</div>
+</div>
+</td>
+<td>
+<div class='father space-around'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box1">4</div>
+    <div class="box1">5</div>
+</div>
+</td>
+<td>
+<div class='father'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box1">4</div>
+    <div class="box1">5</div>
+</div>
+</td>
+</tr>
+</body>
+</html>

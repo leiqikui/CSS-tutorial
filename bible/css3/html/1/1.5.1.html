@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS使用<link>标签和@import指令导入外部样式表-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 样式表,外部样式表,link,<link>标签,@import指令" />
+ <meta name="description" content="CSS中的外部样式表，是指在网页外部的样式表文件中定义的样式。由于这些样式并不是HTML文档的一部分，而是在HTML文档的外部独立存在，故称外部样式表。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("10501");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">1.5.1 创建外部样式表</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h2 class="hide-text">CSS简介</h2>
+<h2 class="hide-text">CSS开发环境</h2>
+<h2 class="hide-text">CSS语法</h2>
+<h2 class="hide-text">CSS属性的值</h2>
+<h2>创建样式表</h2>
+<p>样式表的作用是控制网页样式，只有创建样式表，并把它应用到网页中，才能发挥样式表的作用。</p><h3>创建外部样式表</h3><p>外部样式表，是在网页外部的样式表文件中定义的样式。由于这些样式并不是HTML文档的一部分，而是在HTML文档的外部独立存在，故称外部样式表。</p><p>样式表文件是纯文本文件，可以使用任何文本编辑器来编辑，这里使用Windows自带的记事本，来创建外部样式表。步骤如下：</p><p>1）在Windows系统中，点击开始 → 所有程序 → 附件 → 记事本，打开记事本。并在记事本中编写CSS代码，可以根据需要在CSS代码添加注释。如图 1‑7 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/1/css.png' title='使用记事本创建样式表' alt='使用记事本创建样式表'><figcaption>图1-7  使用记事本创建样式表</figcaption></figure><p>2）点击菜单栏中的 文件 → 保存 命令，或直接在键盘上按Ctrl + s，来保存文件。</p><p>保存文件时，保存类型选择“所有文件”；编码，选UTF-8；文件名可以随意填写，但文件的后缀名必须是 .css，表明这一个层叠样式表。再选择保存位置，建议为网站创建 css 目录，来专门存放样式表文件。如图 1‑8 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/1/css_save.png' title='保存样式表文件' alt='保存样式表文件'><figcaption>图1-8  保存样式表文件</figcaption></figure><section><p class="note"> 说明：</p><p>可以使用你喜欢的任何名称为样式表文件命名，如果网站只有一个样式表文件，通常会命名为 style.css 或 styles.css。</p><p>更大的网站通常会拥有多个样式表文件，reset.css、base.css、global.css 和main.css 是常见的样式表名称，它们通常包含应用于网站大多数页面的样式规则。</p><p>网站制作者通常会为某些区块创建特有的 CSS 文件，来作为对基本样式的补充。如，对于一个商业网站，products.css可能是为产品相关页面准备的样式表。</p><p>创建了样式表之后，需要将它加载到HTML页面中，从而为内容应用这些样式规则。可以使用链接或导入的方式，来为HTML页面加载外部样式表。</p></section><h4>链接外部样式表</h4><p>在HTML文档头部，使用 link 元素来链接外部的CSS文件。link 元素为空元素，它只有开始标签，没有结束标签，要在开始标签的结尾处加上 / 来结束该元素。</p><p>在 link 元素中，通过rel 属性来定义本HTML文档与被链接文档之间的关系，rel = "stylesheet" 表明引入的文件是样式表；通过 href 属性定义样式表文件的URL，可以使用相对路径，也可以使用相对路径，相对路径是相对于本HTML文档而言的。如：</p><pre class="prettyprint linenums"><code>&lt;!DOCTYPE HTML>&lt;html>&lt;head>&lt;meta charset="utf-8">&lt;title>链接样式</title>&lt;link rel="stylesheet" href="style.css" />&lt;/head>&lt;body>&lt;/body>&lt;/html></code></pre><p>上述代码表示，为本文档引入文件名称为 style.css 的外部样式表，该样式表文件与本HTML文档位于相同目录下。</p><p>一个页面可以包含多个 link 元素，浏览器会加载多个样式表，合并它们的规则，将其全部应用于页面。但是，加载样式表会影响页面的加载速度。</p><h4>导入外部样式表</h4><p>也可以在HTML文档头部的 style 元素中，使用 @import 指令导入一个外部样式表文件。如：</p><pre class="prettyprint linenums"><code>&lt;!DOCTYPE HTML>&lt;html>&lt;head>&lt;meta charset="utf-8">&lt;title>导入样式</title>&lt;style>@import url(style.css);&lt;/style>&lt;/head>&lt;body>&lt;/body>&lt;/html></code></pre><p>这种方式是通过 @import 指令，把外部样式导入到当前页面。一个文档中，也可以包含多个，来导入多个样式表。</p><p>由于 @import 指令效率低下，不但会增加额外的请求次数，还会导致不可预料的问题，故不推荐使用。因此，对于大多数情况，还是推荐使用链接外部样式表的方式。</p><p>外部样式表非常适合给网站上的大多数页面或者所有页面设置一致的外观。可以在一个外部样式表中定义全部样式，并让网站上的每个页面都加载这个外部样式表，来确保每个页面都有相同的设置。</p><p>对于有很多页面的网站，外部样式表能够做到CSS代码最大限度的重用。日后，如果要改变页面的外观，只需编辑CSS文件，而无需修改HTML文件，真正实现表现和内容的分离。</p><p>使用外部样式表的另一个好处是，一旦浏览器在某个页面加载了它，在随后浏览引用它的页面时，通常无需再向Web 服务器请求该文件。浏览器会将它保存到缓存中，也就是保存到用户的计算机里，并使用这个版本的文件。这样做可以提供页面的加载速度。</p><p>如果随后对样式表作了修改，再将它传到Web 服务器，浏览器就会下载更新后的文件，而不是使用缓存的文件。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/1/1.4.7.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/1/1.5.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

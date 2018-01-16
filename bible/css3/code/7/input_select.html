@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Hello, world! </title> 
+<script src="script.js"></script>
+<style>
+body {
+   background: #fff/*4899E0*/;
+}
+.wrapper {
+   width: 480px;
+   margin: 20px auto;
+   border: 0px dashed #ccc;
+}
+.select {  
+    width: 240px;
+    height: 34px;
+    overflow: hidden;
+    background: #fff url(img/arrow_down.png) no-repeat 220px center;
+}
+.select select {  
+    width: 100%;
+    height: 100%;
+    padding: 5px;   
+    font-size: 14px;     
+    background: transparent; 
+	*background: #fff;
+    border: 1px solid #94B6ED; 
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+}
+.selected {
+   background-image: url(img/arrow_up.png);
+}
+</style>
+<script>
+function changArrow(){
+    $('.select').addClass("selected");
+}
+function removeArrow(){
+    $('.select').removeClass("selected");
+}
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div class="select" onclick="changArrow()" onmouseout="removeArrow()">
+<select>
+    <option value="1">北京</option>
+    <option value="2">上海</option>
+    <option value="3">天津</option>
+</select>
+</div>
+</body>
+</html>

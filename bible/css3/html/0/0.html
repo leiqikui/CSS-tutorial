@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>前言-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 探究CSS3" />
+ <meta name="description" content="《探究CSS3》是一本开源的CSS教程，全面介绍 CSS2.1 以及 CSS3  新引入的特性" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("0");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">0 前言</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<p class="h1">前 言</p>
+<p class="h2">为什么要写这个教程</p>
+<p>当我刚开始接触Web开发时，CSS2刚发布不久，CSS技术还没有深入人心，人们还习惯于使用表格进行网页布局，CSS只是用来修改文本颜色、或为元素添加边框、或调整元素的间距等。那时候，人们对CSS认识还远远不够，市面上CSS相关的书籍是少之又少。</p>
+<p>随着时间的推移，CSS相关的书籍在慢慢增加，但要找到一本真正想要的CSS教程，也不是一件容易的事情。当时，我也买了不少CSS书籍，给人的总体感觉是，很多书籍是废话连篇、代码堆砌，你很想了解的CSS技术，它们往往是一笔带过，或者戛然而止，让人失望至极。</p>
+<p>时下，CSS相关的书籍已经铺天盖地而来，人们可能已经有了选择恐惧症，这么多图书，到底选那一本呢？加之CSS3的出现，市面上又涌现出很多CSS3相关的书籍，人们更加恐惧，更加无从下手。真是成也萧何，败也萧何！</p>
+<p>虽然现在的书籍很多，但我发现，所有这些书籍之中，CSS3之前的老书，没有包含CSS3的内容，当然也不可能包含CSS3的内容；而CSS3之后的新书，却只介绍CSS3的新增特性，而没有包含包含CSS2.1的内容。</p>
+<p>事实上，CSS是一个完整的体系，浑然一体，CSS3和CSS2.1少了谁都不行，岂能割裂。</p>
+<p>于是，我就萌生了一个念头，试图将我多年来的CSS学习笔记，以及开发经验整理成一个完整的教程，并将整个CSS体系作为一个有机的整体，而不是将CSS2.1和CSS3孤立开来，让一个没有任何CSS基础的初学者，能够完全了解整个CSS体系，而不是一些孤零零的CSS技术点。</p>
+<p>这个教程，就这样诞生了，也算是我的学习和经验总结吧，希望对你有所帮助。</p>
+<p class="h2">本教程所面向的读者</p>
+<p>本教程总是假设你对CSS一无所知，各项技术都是从0开始介绍，因此非常适合没有任何CSS基础的初学者。而对每项技术，本教程却讲解得非常有深度，所以它也同样适合具有丰富开发和设计经验的前端工作者。你也可以把本教程作为速查手册放在身边，来提高你的开发效率。</p>
+<p class="h2">本教程的特色</p>
+<p>本教程始终是将整个CSS体系作为一个有机整体进行介绍，内容编排上，则是由浅入深，从基础讲起，逐步深入。本教程具有以下重要特色：</p>
+<p>1. 内容全面，讲解深入</p>
+<p>讲解了CSS的所有特性，全面涵盖从CSS1直到CSS3的所有特性。在讲解过程中，总是由浅入深，从基础讲起，直到将它完全剖析清楚。</p>
+<p>2. 图文并茂，一目了然</p>
+<p>在描述每个CSS特性时，几乎都配有实例和运行效果展示，读者可以直观的了解到特性的实际效果，可以加深理解，并且印象深刻。</p>
+<p>3. 案例丰富，实战性强</p>
+<p>每个CSS特性都配有实例，通过实战演练来加强动手能力，更好地掌握每个知识点，并帮助读者在实战演练过程中加深理解，将理论知识融会贯通。</p>
+<p class="h2">致谢</p>
+<p>在动手之前，我一直认为整理这个教程是一件非常容易的事情。然而事实并非如此，在写作过程中，感觉非常煎熬，多次出现打消的念头。</p>
+<p>这个教程从2014年10月动手，直到2016年9月才完成初稿。每当我想退缩的时候，我的妻子李朝霞都在身旁为我加油鼓劲，使我能够坚持到最后。感谢妻子为我的付出，也感谢我 4 岁的儿子为我带来快乐，让我不知疲倦的工作。</p>
+<p>在整理这个教程时，参考了大量的书籍和网络文章，还要感谢这些书籍和网络文章的作者。我是站在巨人的肩膀上，才能完成这个教程，感谢你们的辛勤付出。</p>
+<p>最后，感谢你阅读这个教程，希望它能够帮助你提升CSS技能。我们的共同进步，是我写作的最大动力。</p>
+<p class="h2">勘误和支持</p>
+<p>由于作者的水平有限，教程中难免出现一些错误或不准确的地方，恳请广大读者批评指正，并提出宝贵意见。</p>
+<p>作者特意创建了一个网站 <a href="http://www.waibo.wang/bible/css3/">http://www.waibo.wang/</a> ，你可以在线阅读本教程。有关本教程的任何问题，请发送邮件到 <a href="mailto:376601179@qq.com" style="color:blue; text-decoration:underline">376601179@qq.com</a>, 我将尽力提供最满意的答案。如果你想跟我互动，也可以扫下面的二维码，关注我的微信。</p>
+<p><img src="http://localhost/waibo//img/weixin.png" width="160"></p> <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/11/11.4.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/0/0.0.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

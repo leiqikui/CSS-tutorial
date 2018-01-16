@@ -1,0 +1,30 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>flex-shrink</title>
+<style>	
+div {font: bold 26px/40px monaco;color:#fff;text-align:center;}
+
+.father {margin:50px auto;border:0px solid #ccc;
+	width: 600px;
+	display: flex; border:1px solid #ef39d5;
+}
+.box1 {
+	width: 400px; 
+	flex-shrink: 3; 
+    background: #7f3ffd; 
+}
+.box2 {	
+	width: 400px;	 
+    background: #ef39d5;
+}
+</style>
+</head>
+<body>
+<div class='father'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+</div>
+</body>
+</html>

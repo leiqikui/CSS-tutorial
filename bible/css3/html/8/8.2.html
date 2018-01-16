@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3过渡_CSS3 transition属性_CSS3 transition-property属性_CSS3 transition-duration属性_CSS3 transition-delay属性_CSS3 transition-timing-function属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS3过渡,transition,transition属性,transition-property属性,transition-duration属性,transition-delay属性,transition-timing-function属性" />
+ <meta name="description" content="CSS3中，使用 transition 属性来定义元素样式变换时的过渡效果。transition是一个复合属性，可分解为transition-property、transition-duration、transition-delay和transition-timing-function这4个独立的属性" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("802");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">8.2 过渡</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h2 class="hide-text">变换</h2>
+<h2>过渡</h2>
+<p>在给超链接设置样式时，一般都会设置一个悬停状态（hover）的效果，这种方法能明显提醒用户他的鼠标指向的是一个超链接。此时，悬停状态就相当于一个开关，在鼠标悬停时，会立即从默认状态切换到另一种状态。</p>
+<p>但很多时候，人们并不希望元素立即从一种状态切换到另一种状态，而是希望以动画方式，从一种状态平滑过渡到另一种状态。此时，就可以使用CSS3的过渡（transition），来实现状态的平滑过渡。</p>
+<p>W3C标准中，对 transition 的描述是&ldquo;CSS的 transition 允许CSS的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并平滑地以动画效果改变CSS的属性值。&rdquo;</p>
+<p>CSS3中，使用 transition属性来定义元素样式变换时的过渡效果。语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>transition：[transition-property] ||
+            [transition-duration] ||
+            [transition-timing-function] ||
+            [transition-delay]
+</code></pre>
+<p>也就是说，transition 是一个复合属性，可分解为 transition-property、transition-duration、transition-delay 和 transition-timing-function 这 4 个独立的属性，下面分别进行介绍。</p>
+<h4>transition-property</h4>
+<p>transition-property属性指定当元素的哪些属性的值发生改变时，会以过渡的形式呈现。其值可以是 none | all | IDENT，默认值是 all。</p>
+<p>none 表示没有任何属性；all 表示所有可过渡的属性；IDENT 表示指定CSS属性名称列表，列表以逗号分隔，只有出现在列表中的属性，才允许以过渡形式呈现。如：</p>
+<pre class="prettyprint linenums">
+<code>transition-property: width, background-color, transform</code></pre>
+<p>表示当 width, background-color, transform 这 3 个属性中，任意一个属性的值发生改变时，会以过渡的形式呈现。</p>
+<h4>transition-duration</h4>
+<p>transition-duration属性规定一个过渡从开始到结束所持续的时间，默认值为 0s。接受秒或毫秒的值，如 2s、.3s、300ms。如果省略该属性，则定义的 transition-* 属性均无效，不会产生过渡效果。</p>
+<p>transition-duration属性可用于任何元素，包括 :before 和 :after 伪元素。当一个元素的 transition-property属性指定多个过渡属性时，transition-duration属性也可以指定多个值，值之间用逗号分隔。并且，多个属性不必步调一致，即多个过渡属性的持续时间不必相同。如：</p>
+<pre class="prettyprint linenums">
+<code>.transition  {
+    ......
+    transition-property: border, color, text-shadow;
+    transition-duration: 2s, 3s, 8s;
+}</code></pre>
+<p>此处，通过 transition-property属性指定只过渡 border、color、text-shadow 这 3 个属性，然后在 transition-duration属性中，设定边框过渡效果应该在 2 秒内完成，文本颜色 3 秒内完成，文本阴影 8 秒内完成。</p>
+<p>如果同时设置多个过渡属性时，如果这些过渡属性的持续时间相同，就没有必要为每个属性设置一个过渡持续时间，只需给transition-duration属性设置一个值，这个值将用于所有的过渡属性。</p>
+<h4>transition-delay</h4>
+<p>transition-delay属性规定在过渡开始之前的等待时间，默认值为0s，表示不需要等待。接受秒或毫秒的值。如果不需要等待，可以省略该属性。</p>
+<h4>transition-timing-function</h4>
+<p><a href="http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_all.html" target="_blank">transition-timing-function属性</a>用来规定过渡期间的速度如何变化，其值是 cubic-bezier 函数、或 steps 函数、或预定义关键字。</p>
+<p>1）cubic-bezier函数</p>
+<p>cubic-bezier 表示三次方贝赛尔曲线，它由 4 个控制点 P0、P1、P2、P3 来控制曲线的形状。每个控制点由坐标 (x, y) 来确定。P0&nbsp;总是 (0, 0)，P3&nbsp;总是 (1.0, 1.0)，P1和P2点则由 cubic-bezier 函数的四个参数来定义。如图 8‑14 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/cubic-bezier.png' title='三次方贝塞尔曲线' alt='三次方贝塞尔曲线'><figcaption>图8-14  三次方贝塞尔曲线</figcaption></figure>
+<p>cubic-bezier (x1, y1, x2, y2) 函数中，(x1, y1) 代表P1点，(x2, y2) 代表P2点，x1, y1, x2, y2 的值都必须在 [0, 1.0] 区间内，否则无效。</p>
+<p>2） steps函数</p>
+<p>steps 函数用来实现分步过渡的动画效果，即阶梯式过渡，而非平滑过渡。其格式如下：</p>
+<p>steps(n, [ <a href="http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_steps-4-start.html" target="_blank">start</a> | <a href="http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_steps-4-start.html" target="_blank">end</a> ] ]?)</p>
+<p>其中，第一个参数 n 是一个自然数，意思是把一个动画的持续时间划分为 n 个相同的间隔，并在固定的间隔播放动画，直到走完整个动画；第二个参数可选，接受 start 和 end 两个值，指定在每个计时周期的起点或是终点发生跃变，默认值为 end。其原理如图 8‑15 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/step.png' title='steps函数原理' alt='steps函数原理'><figcaption>图8-15  steps函数原理</figcaption></figure>
+<p>当指定的跃变点为 start 时，动画在每个计时周期的起点发生跃变（即图中空心圆变为实心圆&nbsp;）；当指定的跃变点为 end，动画在每个计时周期的终点发生跃变。</p>
+<p>假如一个过渡的 transition-duration属性被设置为 2s，则它的计时周期就是 2 秒。以鼠标悬停为例，在 steps(1, start) 时，跃变点为 start，鼠标悬停会立即触发样式的变化；在 steps(1, end) 时，跃变点为 end，鼠标悬停后，还要等待 2 秒，才会触发样式的变化。</p>
+<p>3） 预定义关键字</p>
+<p>预定义关键字有 <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_ease.html' title='transition-timing-function:ease效果演示' target='_blank'>ease</a> | <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_linear.html' title='transition-timing-function:linear效果演示' target='_blank'>linear</a> | <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_ease-in.html' title='transition-timing-function:ease-in效果演示' target='_blank'>ease-in</a> | <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_ease-out.html' title='transition-timing-function:ease-out效果演示' target='_blank'>ease-out</a> | <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_ease-in-out.html' title='transition-timing-function:ease-in-out效果演示' target='_blank'>ease-in-out</a> | <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_step-start.html' title='transition-timing-function:step-start效果演示' target='_blank'>step-start</a> | <a href='http://www.waibo.wang/bible/css3/demo/8/transition-timing-function_step-end.html' title='transition-timing-function:step-end效果演示' target='_blank'>step-end</a>，默认值为 ease。各关键字的含义见表 8‑1：</p>
+<table summary="transition-timing-function属性预定义关键及含义">
+	<caption>表 8-1 transition-timing-function属性预定义关键及含义</caption>
+	<thead>
+		<tr>
+			<th>关键字</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr><td>ease</td><td>逐渐变慢，相当于cubic-bezier(0.25, 0.1, 0.25, 1)</td></tr>
+<tr><td>linear</td><td>匀速过渡，相当于cubic-bezier(0, 0, 1, 1)</td></tr>
+<tr><td>ease-in</td><td>由慢到快，相当于cubic-bezier(0.42, 0, 1, 1)</td></tr>
+<tr><td>ease-out</td><td>由快到慢，相当于cubic-bezier(0, 0, 0.58, 1)</td></tr>
+<tr><td>ease-in-out</td><td>由慢到快再到慢，相当于cubic-bezier(0.42, 0, 0.58, 1)</td></tr>
+<tr><td>step-start</td><td>相当于steps(1, start)</td></tr>
+<tr><td>step-end</td><td>相当于steps(1, end)</td></tr>
+	</tbody>
+</table>
+<p>实现过渡效果时，要在过渡效果开始的选择器中定义 transition-* 属性和初始样式，在触发过渡的选择器中定义目标样式。这样，当 transition-property属性中定义的任意属性的属性值发生改变时，就会触发 transition 效果。</p>
+<p>下面通过一个简单实例，来说明 transition属性的使用方法。如，有一个100 px * 100px的盒子，当鼠标悬停到该盒子时，要求盒子在 2 秒内旋转360&deg;，动画由慢到快再到慢。CSS代码如下：</p>
+<pre class="prettyprint linenums">
+<code>.transition  {
+   width: 100px;
+   height: 100px;
+   background: #92b901;
+   transition-duration: 2s;
+   transition-property: transform;
+   transition-timing-function: ease-in-out;
+}
+.transition:hover  {
+   transform: rotate(360deg);
+}</code></pre>
+<p>上述代码中，在过渡效果开始的选择器 .transition 定义过渡相关的属性和初始样式，在触发过渡的选择器 .transition:hover 中定义目标样式。由于初始样式中未定义 transform 属性，故使用默认值 none，当鼠标悬停到元素时，元素的 transform 属性的值发生改变，由初始的 none 变为最终的 rotate(360deg)。所以，元素的 transform 属性就触发了 transition 效果。</p>
+<p>需要注意的是，只有当CSS属性的&ldquo;属性值&rdquo;发生改变时，才会触发过渡效果，而&ldquo;元素外观&rdquo;的改变，是不会触发过渡效果的。如，设定元素的宽度为百分比，在改变浏览器大小，元素大小改变时，并不会触发过渡效果。</p>
+<section>
+<p class="note">说明：</p>
+<p>如果transition-property属性为CSS属性列表，则定义 transition-duration、transition-delay、transition-timing-function属性时，就需要提供多个值，以逗号分隔，每个值与 transition-property属性中的每个值按顺序对应。如：</p>
+<pre class="prettyprint linenums">
+<code>transition-property: background-color width;
+transition-duration: 1.5s 2s;</code></pre>
+<p>上述代码表示，background-color属性动画的持续时间为1.5秒，width属性动画的持续时间为2秒。</p>
+</section>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/8/8.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/8/8.3.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

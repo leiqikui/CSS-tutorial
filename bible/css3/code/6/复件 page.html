@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>面包屑导航</title>
+<script>
+
+</script>
+<style>
+body{
+    background: #fff; 
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap {
+	width:49%;
+	margin:120px auto;
+}
+.page {border: 0px solid #ccc;
+	height: 32px;
+	line-height: 32px;
+}
+.page a { padding: 0 12px;
+    border: solid 1px #e5e5e5; 
+    color: #3e3e3e;
+	font-size: 14px;
+    font-family: tahoma,simsun; 
+    text-decoration: none;
+	display: inline-block;
+}
+.page a:hover {
+    color: #f40;
+    border-color: #f40; 
+}
+.page .active,
+.page .active:hover {
+    color: #fff;
+    background: #f40; 
+    border: solid 1px #f40; 
+}
+.page form {
+    display: inline;
+}
+.page form span {
+    color: #999;
+	font-size: 13px;
+}
+.page form .text {
+    width: 35px;
+    height: 21px;
+	outline: none;
+}
+.page form .button {
+    width: 46px;
+    height: 24px;
+    cursor: pointer;
+}
+.page form .text,
+.page form .button {
+    text-align: center; 
+    border-radius: 2px;
+    border: 1px solid #e5e5e5;
+	background:#fff;
+}
+.page form .text:hover,
+.page form .button:hover {
+    color: #f40;
+    border-color: #f40;
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<div class="page">
+    <a href="#">&lt; 上一页</a>
+	<a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a> ...
+	<a href="#">下一页 &gt;</a>
+	<form>
+        <span>共80页，到第</span>
+        <input class="text" type="number" value="2" min="1" max="100" />
+        <span>页</span>
+        <input class="button" type="submit" value="确定" />
+    </form>
+</div>
+
+</div>
+</body>
+</html>

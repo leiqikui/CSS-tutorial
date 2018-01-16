@@ -1,0 +1,39 @@
+﻿<html>
+  <head><title>BFC</title>
+  <style>
+html {
+   margin: 0px;
+   padding: 0px;
+   border: 0px solid red;
+}
+.wrapper { margin: 30px auto;padding: 00px;
+   width: 300px;
+   border: 0px solid #ccc;
+}
+div, p, h1 {
+   margin: 10px;
+   border: 1px dashed gray;
+}
+ol {
+   border: 1px solid #ccc;
+}
+li {
+   border: 1px dashed gray;
+}
+  </style>
+  </head>
+<body>
+<div class = "wrapper">
+    <div>div</div>
+    <p style = "width: 100px;">p</p>
+    <h1 style = "width: 100px;">h1</h1>
+</div>
+<div class = "wrapper">
+<ol>
+   <li>列表项1</li>
+   <li>列表项2</li>
+   <li>列表项3</li>
+</ol>
+</div>
+</body>
+</html>

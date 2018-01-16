@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>什么是hasLayout_IE hasLayout详解_IE 拥有布局-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, hasLayout,IE hasLayout,拥有布局" />
+ <meta name="description" content="IE 浏览器的渲染引擎使用了一个私有属性 hasLayout，它是一个布尔型变量，取值为 true 或 false。 当一个元素的 hasLayout 属性取值为 true 时，就说这个元素“拥有布局”" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("1003");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">10.3 IE的hasLayout</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h1 class="hide-text">解决跨浏览器问题</h1>
+<h2 class="hide-text">渐进增强与优雅降级</h2>
+<h2 class="hide-text">兼容浏览器的方法</h2>
+<h2>IE的hasLayout</h2>
+<p>在 IE 浏览器中，一个元素要么自己对自身的内容进行组织和计算尺寸，要么依赖于包含块来组织内容和计算尺寸。</p>
+<p>为了协调这两种方式的矛盾，IE 浏览器的渲染引擎使用了一个私有属性 hasLayout，它是一个布尔型变量，取值为 true 或 false。 当一个元素的 hasLayout 属性取值为 true 时，就说这个元素&ldquo;拥有布局&rdquo;。</p>
+<p>hasLayout是一个只读属性，无法通过 Javascript 进行设置，但可以通过 Javascript 读取它的值。如：</p>
+<pre class="prettyprint linenums">
+<code>object.currentStyle.hasLayout；</code>
+</pre>
+<p>在IE中，使用 hasLayout 来控制元素的尺寸和定位：当一个元素拥有布局时，由它自己来控制自身及后代元素的定位和尺寸；否则，将由最近拥有布局的祖先元素来控制。</p>
+<p>由于浏览器要花费更多的代价来处理拥有布局的元素，为了提高性能，IE 设计者只让一部分元素默认拥有布局。这些元素包括：</p>
+<ul>
+    <li>html、body</li>
+    <li>table、tr、td</li>
+    <li>img</li>
+    <li>hr</li>
+    <li>input、select、teatarea、button、fieldset</li>
+    <li>iframe、embed、object、applet</li>
+    <li>marquee</li>
+</ul>
+<p>除了 IE 默认拥有布局的元素外，Web 开发者还可以使用特定的 CSS 属性使元素拥有布局，也被称作&ldquo;使元素触发布局&rdquo;。设置以下任一CSS属性，会自动使元素拥有布局：</p>
+<ul>
+    <li>position: absolute</li>
+    <li>float: left或right</li>
+    <li>display: inline-block</li>
+    <li>width: 除auto外的任何值</li>
+    <li>height: 除auto外的任何值</li>
+    <li>zoom: 除normal外的任何值（Microsoft属性，不能通过检测）</li>
+    <li>writing-mode: tb-rl（Microsoft属性，不能通过检测）</li>
+</ul>
+<p>另外，在IE7中，设置以下任一CSS属性，也会使元素触发布局：</p>
+<ul>
+    <li>position: fixed</li>
+    <li>overflow: hidden或scroll或auto</li>
+    <li>min-width: 任何值</li>
+    <li>max-width: 除 none 外的任何值</li>
+    <li>min-height: 任何值</li>
+    <li>max-height: 除 none 外的任何值</li>
+</ul>
+<p>特别注意的是，IE 8 使用全新的渲染引擎，并抛弃 hasLayout。因此，在实际开发中，只需针对 IE 8 以下的版本，为某些元素触发 hasLayout。</p>
+<p>有经验的CSS开发人员都知道，hasLayout 可能是许多IE 问题的根源。一个典型例子，就是当一个元素内只包含浮动或绝对定的位元素时，会导致父元素的高度塌陷。在IE6或IE7中，为元素添加 zoom：1 就触发了haslayout，就可以修复高度塌陷的问题。</p>
+<p>虽然 hasLayout 也会像 BFC 那样影响元素的尺寸和定位，但它却不是一套完整的标准。并且，默认情况下，只有部分元素拥有布局，这导致了 IE 下的诸多 Bug，触发布局的更大意义在于解决IE 下的一些Bug，而不是利用它的一些&ldquo;副作用&rdquo;来达到某些效果。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/10/10.2.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/10/10.4.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

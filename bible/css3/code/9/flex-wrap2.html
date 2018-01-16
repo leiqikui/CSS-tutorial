@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>flex-wrap</title>
+<style>	
+div {font: bold 26px/40px monaco;color:#fff;text-align:center;}
+table {margin:60px auto;}
+td{font: 14px Arial;text-align:center;letter-spacing:1px;padding:0 10px;vertical-align:top;border:2px solid #fff}
+
+.father {
+	width: 140px;
+	display: flex;	
+}
+.father > div {
+	width: 70px;
+}	
+.wrap {
+    flex-wrap: wrap;
+}
+.wrap-reverse {
+    flex-wrap: wrap-reverse;
+}	
+.box1 {
+	background: #7f3ffd;
+}
+.box2 {		 
+	background: #ef39d5;
+}
+.box3 {
+	background: #1bb9f1;
+}
+</style>
+</head>
+<body>
+<table>
+<tr><td>nowrap</td><td>wrap</td><td>wrap-reverse</td></tr>
+<tr>
+<td>
+<div class='father'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</div>
+</td>
+<td>
+<div class='father wrap'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</div>
+</td>
+<td>
+<div class='father wrap-reverse'>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</div>
+</td>
+</tr>
+</body>
+</html>

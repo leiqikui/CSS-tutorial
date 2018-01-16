@@ -1,0 +1,38 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>background-origin属性</title>
+<style>	
+body {padding:20px;text-align:center;
+}
+div { 
+    display: inline-block;
+	    margin: 6px; 
+	    width: 120px; 
+	    height: 90px;
+    	padding: 20px;
+    	border: 10px dashed #888;
+    	background-color: yellow;
+    	background-repeat: no-repeat;
+	    background-image: url(img/bg.gif);
+}
+.border {
+	    background-origin: border-box;
+}
+.padding {
+	    background-origin: padding-box;
+}
+.content {
+	    background-origin: content-box;
+}
+p {
+  margin-top:122px;text-align:center;font:18px Arial;
+}
+</style>
+</head>
+<body>
+<div class="border"><p>border-box</p></div>
+<div class="padding"><p>padding-box</p></div>
+<div class="content"><p>content-box</p></div>
+</html>

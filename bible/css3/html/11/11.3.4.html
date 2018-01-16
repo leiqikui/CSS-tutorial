@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>word中的表格_table-layout属性_border-collapse属性_text-align属性_vertical-align属性_line-height属性_border-radius属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, table-layout,border-collapse,text-align,vertical-align,line-height,border-radius,table-layout属性,border-collapse属性,text-align属性,vertical-align属性,line-height属性,border-radius属性" />
+ <meta name="description" content="在word中，表格是一项很常用的功能，并且表格的样式变化多端，用户可以使用table-layout属性,border-collapse属性,text-align属性,vertical-align属性,line-height属性,border-radius属性设计自己喜欢的样式。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("110304");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">11.3.4 表格</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h1 class="hide-text">解决跨浏览器问题</h1>
+<h1 class="hide-text">构建网页版WORD</h1>
+<h2 class="hide-text">布局设计</h2>
+<h2 class="hide-text">目录树设计</h2>
+<h2 class="hide-text">正文设计</h2>
+<h3 class="hide-text">列表</h3>
+<h3 class="hide-text">段落</h3>
+<h3 class="hide-text">正文设计</h3>
+<h3>表格</h3>
+<p>在word中，表格是一项很常用的功能，并且表格的样式变化多端，用户可以根据需要选择自己喜欢的样式。那么，各式各样的表格到底是怎么实现的呢？</p>
+<p>本节，通过一个简单的表格，来揭开word表格的神秘面纱。表格的HTML代码如下：</p>
+<pre class="prettyprint linenums">
+<code>&lt;table&gt;
+&lt;caption&gt;表3-2 关系选择器&lt;/caption&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+       &lt;th&gt;选择器&lt;/th&gt;
+       &lt;th&gt;语法&lt;/th&gt;
+       &lt;th&gt;功能描述&lt;/th&gt;
+       &lt;th&gt;版本&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+    &lt;tr&gt;
+       &lt;td&gt;后代选择器&lt;/td&gt;
+       &lt;td&gt;E F&lt;/td&gt;
+       &lt;td&gt;选择E元素的所有后代F元素，E和F之间用空格分隔&lt;/td&gt;
+       &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;子选择器&lt;/td&gt;
+       &lt;td&gt;E &gt; F&lt;/td&gt;
+       &lt;td&gt;选择E元素的所有子元素F&lt;/td&gt;
+       &lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;相邻同胞选择器&lt;/td&gt;
+       &lt;td&gt;E + F&lt;/td&gt;
+       &lt;td&gt;选择紧接在E元素之后的第一个兄弟元素F&lt;/td&gt;
+       &lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+       &lt;td&gt;同胞选择器&lt;/td&gt;
+       &lt;td&gt;E ~ F&lt;/td&gt;
+       &lt;td&gt;选择E元素之后的所有兄弟元素F&lt;/td&gt;
+       &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<p>对于一个表格来说，如果没有显式设置宽度，则所有单元格的宽度刚好足够容纳其内容，表格的宽度单元格的宽度决定。因此，一般建议为表格设置固定宽度。</p>
+<p>另外，大多数人习惯于让表格本身居中显示，因为这样比较美观。从前面介绍可知，table 本身会形成一个块级框。在CSS中，要使一个块级框居中显示，只需设置 margin: 0 auto 即可。由于左右两侧的外边距设置为 auto，浏览器会为两侧分配相同的外边距，框就自动居中显示了。</p>
+<pre class="prettyprint linenums">
+<code>table {
+   width: 600px;
+   margin: 0 auto;   /* 表格居中显示 */
+}</code></pre>
+<p>表格的自动布局非常方便，无需做任何调整，就可以由浏览器完美布局。当然，如果你不喜欢自动布局，或出于效率考虑，可以把 table 元素的 table-layout属性设置为 fixed，来采用固定布局。</p>
+<p>表格默认没有外边框，可以使用 table 元素的 border属性为表格添加线条边框，或者使用 border-image 为表格添加图像边框。单元格默认具有独立边框，可以使用单元格 td 元素的 border属性或 border-image属性，为单元格添加线条边框或图像边框。为单元格添加边框后，默认情况下，单元格的边框独立，会在相邻单元格之间留下一条明显可见的间隙，影响美观。可以通过 table 元素的 border-collapse属性，来合并相邻单元格的边框，消除这个间隙。</p>
+<pre class="prettyprint linenums">
+<code>table {
+   width: 600px;
+   margin: 0 auto;                 /* 表格居中显示 */
+   border-top: 2px solid #444;     /* 表格的上边框 */
+   border-bottom: 2px solid #444;  /* 表格的下边框 */
+   border-collapse: collapse;      /* 合并单元格边框 */
+}</code></pre>
+<p>在 word 中，默认情况下，表格的标题在表格的上方、居中显示，并与表格之间保持一定距离，字体为黑体、加粗显示。这里与 word 保持一致。</p>
+<pre class="prettyprint linenums">
+<code>caption {
+    margin: .5em auto;
+    font: bold 14px 黑体;
+}</code></pre>
+<p>可以通过 table 元素的 background、color 等属性设置整张表的背景色和文字颜色等，也可以通过 th 元素的background、color等属性改变表头的背景色和文字颜色，来突显表头。</p>
+<pre class="prettyprint linenums">
+<code>th {
+   background: #ddd;
+   border-bottom: 1px solid #666 ;
+}</code></pre>
+<p>表头单元格和普通单元格的默认格式稍有不同，表头 th 中的文本默认加粗显示、水平居中，普通单元格 td 中的文本常规显示、水平居左。表头单元格和普通单元格的内容，默认都是垂直居中对齐。</p>
+<p>如果需要，可以使用 vertical-align属性调整垂直对齐方式，通过 text-align属性调整水平对齐方式。text-align属性可以被继承，而vertical-align属性不能被继承。</p>
+<p>因此，可以通过 table 元素的 text-align属性，来设置整个表格中所有单元格中内容的水平对齐方式，也可以通过 th 和 td 元素的 text-align属性来设置某些单元格的水平对齐方式。但是，只能通过 th 和 td 元素的 vertical-align属性来设置单元格的垂直对齐方式。</p>
+<p>如果只想设置某行或某列中内容的对齐方式，可以使用 :nth-child 伪类选择器实现。如，让第 4 列的所有单元格中的内容水平居中：</p>
+<pre class="prettyprint linenums">
+<code>td:nth-child(4) {
+   text-align: center;
+}</code></pre>
+<p>表头的单元格和普通单元格中的内边距均为 0，内容过于紧凑，影响美观。可以通过 padding属性，来调整单元格的内边距，也可以通过 line-height属性调整单元格内容的行距。</p>
+<pre class="prettyprint linenums">
+<code>th, td {
+  padding: .5em 1em;
+}</code></pre>
+<p>对于行数较多的表格，如果每一行都使用相同的背景色，阅读起来会很困难，容易产生视疲劳。如果采用隔行变色，使奇数行和偶数行使用不同的背景色，则数据行会一目了然，比传统网格状表格更便于阅读，同时也增加了表格的美感。使用 :nth-child 伪类选择器，也可以轻松实现隔行换色功能。</p>
+<pre class="prettyprint linenums">
+<code>tr:nth-child(even) {
+     background: #eaeaea;
+}</code></pre>
+<p>对于行数较多的表格，即便是隔行变色，长时间越读，依然会感到疲劳。如果在鼠标悬停到某行或某单元格时，动态改变背景色和文本颜色，可以大大缓解用户的视疲劳，并使页面充满生机，也是很人性化的设计。为 tr 元素使用 :hover 伪类选择器，可以改变某行的背景色和文本颜色。因为不希望表头的背景随着变化，需要限定 tr 的范围，只让 tbody 中的行动态改变背景色。</p>
+<pre class="prettyprint linenums">
+<code>tbody tr:hover {
+     color: #fff;
+     background: #09f;
+}</code></pre>
+<p>经过上述处理后，表格在浏览器中渲染的结果如图 11‑14 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/11/table1.png' title='HTML表格' alt='HTML表格'><figcaption>图11-14  HTML表格</figcaption></figure>
+<p>上面实现的是一个常规的表格，但人们常常会觉得，没有边框的表格就没有那么多的条条框框，便不会有被束缚的感觉。如果再配上圆角，看上去可能会更美。</p>
+<p>提到圆角表格，一般想到的方法，就是通过 table 元素的 border-radius属性来实现。可事实上， table 元素并不支持 border-radius属性。条条大路通罗马，只要肯动脑，办法总是有的。如果为表格四个角上的单元格应用圆角，就间接实现了圆角表格。</p>
+<pre class="prettyprint linenums">
+<code>thead th:first-child {
+   border-top-left-radius: 6px;
+}
+thead th:last-child {
+   border-top-right-radius: 6px;
+}
+tbody tr:last-child td:first-child {
+   border-bottom-left-radius: 6px;
+}
+tbody tr:last-child td:last-child {
+   border-bottom-right-radius: 6px;
+}</code></pre>
+<p>去掉表格的边框，并应用圆角后，上述表格在浏览器中的渲染效果如图 11‑15 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/11/table2.png' title='HTML圆角表格' alt='HTML圆角表格'><figcaption>图11-15  HTML圆角表格</figcaption></figure>
+<p>本节基本上都使用元素选择器来定义表格的样式，这会导致页面上的所有表格都使用相同的风格。如果不希望所有表格都千篇一律，就可以定义多个类，并为不同的表格应用不同的类，这样既可以让表格的样式变化多端，又增加了灵活性。</p>
+<p>当然，本节只是抛砖引玉，简要介绍了CSS美化HTML表格的一般步骤。在实际应用中，通过变幻表格的相关样式属性，就可以制作出任意风格、美轮美奂的表格，而方法基本不变。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/11/11.3.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/11/11.3.5.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

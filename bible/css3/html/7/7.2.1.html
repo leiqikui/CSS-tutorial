@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>label元素_input元素_textarea元素_select元素_datalist元素_keygen元素_progress元素_meter元素_output元素-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, label,input,textarea,select,datalist,keygen,progress,meter,output,text,password,radio,checkbod,file,submit,reset,search,tel,url,email,number,range,color" />
+ <meta name="description" content="表单元素主要包括 label、input、textarea、select、datalist、keygen、progress、meter、output等，以及对表单元素进行分组的 fieldset 和 legend 元素。 根据功能的不同，input 元素又包括 text、password、radio、checkbod、file、submit、reset、search、tel、url、email、n" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("70201");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">7.2.1 表单元素的样式</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h2 class="hide-text">表格</h2>
+<h2 class="hide-text">表单</h2>
+<h3>表单元素的样式</h3>
+<p>表单元素主要包括 label、input、textarea、select、datalist、keygen、progress、meter、output等，以及对表单元素进行分组的 fieldset 和 legend 元素。</p>
+<p>根据功能的不同，input 元素又包括 text、password、radio、checkbod、file、submit、reset、search、tel、url、email、number、range、color、Date Pickers等类型。</p>
+<p>由于规范只规定了表单元素的功能，并未规定它们的外观。因此，在不同浏览器下，表单元素的外观各不相同。</p>
+<p>为了获得更好的用户体验，在所有浏览器下保持统一的风格，通常需要重新定义表单元素的外观，来覆盖浏览器的默认外观。</p>
+<p>自定义外观时，元素类型不同，需要重新定义的内容也不尽相同。接下来，针对不同的表单元素，进行分别介绍。</p>
+<h4>input元素</h4>
+<p>在input 元素中，单行文本输入框、文件选择框、单选框和复选框、表单按钮在各浏览器下的外观差别较大，需要专门定义外观，来统一风格。</p>
+<p>1）单行文本输入框</p>
+<p>单行文本输入框，包括text、password、search、tel、url、email、number、Date Pickers，它们的作用是纯粹接受文本，这些文本信息或者由用户手工输入，或者在浏览器的弹出框中选择输入。</p>
+<p>假设在一个用户登录界面上，包含一个 type=&quot;text&quot; 和一个 type=&quot;password&quot; 的文本输入框，分别用来输入用户名的密码：</p>
+<pre class="prettyprint linenums">
+<code>&lt;form id="layer" action="" method="post"&gt;
+&lt;p&gt;&lt;label&gt;用户名: &lt;/label&gt;&lt;input type="text" name="username" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label&gt;密&amp;nbsp;&amp;nbsp;码: &lt;/label&gt;&lt;input type="password" name="password" /&gt;
+&lt;/form&gt;</code></pre>
+<p>在外观上，单行文本输入框就是一个添加了边框的矩形区域，而不同浏览器下的默认尺寸、边框、背景等都不尽相同。如，在Google Chrome下的外观如图 7‑4 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_text1.png' title='在chrome下的默认外观' alt='在chrome下的默认外观'><figcaption>图7-4  在chrome下的默认外观</figcaption></figure>
+<p>在IE8下的外观如图 7‑5 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_text2.png' title='在IE 8下的默认外观' alt='在IE 8下的默认外观'><figcaption>图7-5  在IE 8下的默认外观</figcaption></figure>
+<p>可以看出，不同浏览器下的差别很大，即便是相同浏览器的不同版本（如IE6、IE8），也可能有很大差别。因此，为了能够在所有浏览器下表现相同，需要重新定义框的宽度、高度、字体、文本、边框、背景等，来覆盖浏览器的默认外观。如：</p>
+<pre class="prettyprint linenums">
+<code>input[type="text"] ,
+input[type="password"]  {
+    width: 240px;
+    height: 28px;
+    color: #333;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #cbcbcb;
+}</code></pre>
+<p>有时候，为了突显该文本输入框的作用，比如用户登录表单中，在用户名和密码的输入框中，通过背景图像来添加一个小图标，显得更人性化。设置背景图像后，需要为文本框设置相应的左内边距，来为图像腾出空间。</p>
+<pre class="prettyprint linenums">
+<code>input[type=&quot;text&quot;],
+input[type="password"] {
+    padding-left: 34px;
+}
+input[type="text"] {
+    background: #fff url(user.gif) 10px center no-repeat;
+}
+input[type="password"] {
+    background: #fff url(pass.gif) 10px center no-repeat;
+}</code></pre>
+<p>运行结果如图 7‑6 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_text3.png' title='添加图标' alt='添加图标'><figcaption>图7-6  添加图标</figcaption></figure>
+<p>在现代浏览器中，可以通过圆角和内部盒阴影，对文本输入框进行渐进式增强，使它看上去更美观，还能增加一点不错的立体效果。</p>
+<pre class="prettyprint linenums">
+<code>input[type="text"],
+input[type="password"] {
+    border-radius: 4px;
+    box-shadow: inset 2px 2px 4px #d9d9d9;
+}</code></pre>
+<p>运行结果如图 7‑7 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_text4.png' title='添加圆角和内部盒阴影' alt='添加圆角和内部盒阴影'><figcaption>图7-7  添加圆角和内部盒阴影</figcaption></figure>
+<p>如果在文本输入框获得焦点时，通过改变边框颜色，并在文本框的外面，添加一个淡淡的盒阴影，这样既能向用户作出反馈，又能增强用户体验。</p>
+<p>由于大多数现代浏览器中，在文本输入框获得焦点时，都是通过改变文本框的轮廓颜色，来向用户作出反馈。如果不希望如此，可以把 outline 属性设置为 none，关闭此功能。</p>
+<pre class="prettyprint linenums">
+<code>input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border: 1px solid #bbb;
+    box-shadow: 2px 2px 8px #b8b7b7;
+}</code></pre>
+<p>运行结果如图 7‑8 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_text5.png' title='添加外部盒阴影' alt='添加外部盒阴影'><figcaption>图7-8  添加外部盒阴影</figcaption></figure>
+<p>2）文件选择框</p>
+<p>文件选择框与单行文本输入框不同，它有一个按钮，供用户选择文件。在不同的浏览器下，文件选择框的外观差别很大，情况稍微有点复杂。</p>
+<p>在IE下，文件选择框表现为一个文本输入框和一个&ldquo;浏览&hellip;&rdquo;按钮。在用户未选择文件时，文本输入框的内容为空，用户选择文件后，文本输入框的内容为文件的绝对路径。如，在IE8下的默认外观如图 7‑9 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file1.png' title='文件选择框在IE下效果' alt='文件选择框在IE下效果'><figcaption>图7-9  文件选择框在IE下效果</figcaption></figure>
+<p>并且，在IE的不同版本下，文件选择框的外观还稍有差别，IE6和IE7下，文本输入框是灰色背景，而IE8下是白色背景。因此，要在IE下获得一致的表现，就必须设置背景和边框的样式。</p>
+<p>在Google Chrome浏览器下，它只有一个&ldquo;选择文件&rdquo;的按钮，而没有文本输入框。在用户未选择文件时，显示&ldquo;未选择任何文件&rdquo;字样，用户选择文件后，在按钮的右侧显示文件的名称。如图 7‑10 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file2.png' title='文件选择框在Chrome下效果' alt='文件选择框在Chrome下效果'><figcaption>图7-10  文件选择框在Chrome下效果</figcaption></figure>
+<p>为了在所有浏览器下保持统一的风格，常常需要为一个表单中的文本输入框定义宽度、背景和边框：</p>
+<pre class="prettyprint linenums">
+<code>input {
+    width: 320px;
+    background: #fff;
+    border: 1px solid #94B6ED;
+}
+</code></pre>
+<p>当然，上述定义对所有的文本输入框均有效，包括文件选择框。然而，不同的浏览器，对文件选择框应用边框的方式却又不同。</p>
+<p>IE浏览器，会为文本输入框和&ldquo;浏览&hellip;&rdquo;按钮应用相同的边框样式，互不影响。如图 7‑11 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file3.png' title='应用边框后在IE下效果' alt='应用边框后在IE下效果'><figcaption>图7-11  应用边框后在IE下效果</figcaption></figure>
+<p>Google Chrome浏览器，会为&ldquo;选择文件&rdquo;按钮和右侧文本同时应用边框，边框出现在&ldquo;选择文件&rdquo;按钮和右侧文本的周围。如图 7‑12 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file4.png' title='应用边框后在Chrome下效果' alt='应用边框后在Chrome下效果'><figcaption>图7-12  应用边框后在Chrome下效果</figcaption></figure>
+<p>当然，这个并不是真正想要的效果，我们希望Google Chrome下，仅仅在&ldquo;选择文件&rdquo;按钮周围出现边框。</p>
+<p>此时，就可以借助CSS Hack技术中的 &#39;\9&#39;，让边框只对IE有效。并使用 webkit 内核专有的 ::-webkit-file-upload-button 伪元素，来设置&ldquo;选择文件&rdquo;按钮的样式，使IE和Chrome的按钮风格保持一致：</p>
+<pre class="prettyprint linenums">
+<code>input {
+    width: 320px;
+    background: #fff;
+    border: 1px solid #7F9DB9\9;
+}
+::-webkit-file-upload-button {
+    padding: 4px 14px;
+    background: #ECE9D8;
+    border: 1px solid #7F9DB9;
+}</code></pre>
+<p>经过上述处理后，在Google Chrome浏览器中的运行结果如图 7‑13 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file5.png' title='应用边框后在Chrome下效果' alt='应用边框后在Chrome下效果'><figcaption>图7-13  应用边框后在Chrome下效果</figcaption></figure>
+<p>当然，这里只是提供了一种处理问题的思路，并不代表它就是最佳解决方案，显然这种处理方案只对 webkit 内核的浏览器有效，具有很大的局限性。</p>
+<p>既然上述解决方案有很大的局限性，能否换一种思路，设计一个文件选择框，让它在任何浏览器下的表现完全一致呢？</p>
+<p>答案是肯定的。既然大家已经习惯了IE的文件选择框，就可以在表单上包含一个文本框、一个 &quot;浏览...&quot; 按钮和一个文件框，通过文本框和 &quot;浏览...&quot; 按钮，来模拟文件框的外观，而文件框的功能保持不变，只是被隐藏起来了：</p>
+<pre class="prettyprint linenums">
+<code>&lt;form action="" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="text" id="text" /&gt;
+    &lt;input type="button" value="浏览..." /&gt;
+    &lt;input type="file" id="file" /&gt;
+&lt;/form&gt;</code></pre>
+<p>首先，设置文本框和按钮的样式，来模仿文件框的外观，主要是设置其宽度和高度。为了兼容IE6和IE7，还需要设置背景和边框样式：</p>
+<pre class="prettyprint linenums">
+<code>input[type="text"]{
+    width: 180px;
+    height: 24px;
+    line-height: 24px;
+    background: #fff;
+    border: 1px solid #94B6ED;
+}
+input[type="button"]{
+    width: 70px;
+    height: 26px;
+    background: #ECE9D8;
+    border: 1px solid #94B6ED;
+}</code></pre>
+<p>然后，让文件选择框使用绝对定位（先要把 form 设置为相对定位），并控制它的尺寸，让它正好覆盖文本框和按钮，还要保证按两个钮正好对齐。再通过透明度，来隐藏文件选择框。这样，用户点击按钮或文本框（现代浏览器下），就等价于点击文件选择框，可以做到以假乱真了。</p>
+<pre class="prettyprint linenums">
+<code>form {
+    position: relative;
+}
+input[type="file"]{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 260px;
+    height: 26px;
+    filter: alpha(opacity:0);
+    opacity: 0;
+}</code></pre>
+<p>使用这种技术设计出来的文件选择框，在任何浏览器下的外观都完全一致。如图 7‑14 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file6.png' title='应用边框后在Chrome下效果' alt='应用边框后在Chrome下效果'><figcaption>图7-14  应用边框后在Chrome下效果</figcaption></figure>
+<p>不过，由于文件框被隐藏，在用户选择文件后，就不能清楚看到自己的选择。其实这也不难，只需少量的 Javascript 代码就可以实现。</p>
+<p>当用户选择文件后，就会触发文件选择框的 onchange 事件，只需在该事件的处理函数中进行相应的处理即可。</p>
+<p>如果是单文件选择框，就非常简单，由于它只能选择一个文件，只需根据 id 获取文件框的值，并将它显示在文本框中即可：</p>
+<pre class="prettyprint linenums">
+<code>&lt;input type="file" onChange="text.value = this.value" /&gt;</code></pre>
+<p>在HTML5中，为文件选择框新增了 multiple 属性，支持选择多文件。如果是多文件选择框，可以通过一个函数，来遍历文件框的值，并显示在文本框中：</p>
+<pre class="prettyprint linenums">
+<code>&lt;input type="file" onChange="text.value = getFiles(this.files)" multiple /&gt;</code></pre>
+<p>对于多文件选择框，当用户选择文件后，会将文件保存在 FileList 对象中，它是一个文件的列表，通过遍历该列表，就可以得到每个文件的信息。</p>
+<pre class="prettyprint linenums">
+<code>function getFiles(files) {
+    var strText = "";
+    for(var i = 0; i &lt; files.length; i++) {
+        strText += files[i].name + ", ";
+    }
+    return strText;
+}</code></pre>
+<p>上述函数中，通过遍历 FileList 对象，通过 name 属性得到每个文件的名称，并把它们用逗号连接起来。于是，用户选择文件后，文本框中就会显示用户所选择的文件列表。如图 7‑15 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_file7.png' title='显示选择的文件列表' alt='显示选择的文件列表'><figcaption>图7-15  显示选择的文件列表</figcaption></figure>
+<p>如果需要，还可以获取文件的大小（size）、类型（type）、最后修改日期（lastModifiedDate）等信息。</p>
+<p>3）单选框和复选框</p>
+<p>单选框和复选框本身很简单，但有一个问题，就是默认情况下，在所有的浏览器中，单选框和复选框都无法与旁边的文本对齐。如图 7‑16 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_radio-checkbox1.png' title='单选框和复选框与文本未对齐' alt='单选框和复选框与文本未对齐'><figcaption>图7-16  单选框和复选框与文本未对齐</figcaption></figure>
+<p>导致这个问题的原因很复杂，限于篇幅，这里不进行深究，只给出解决方案。其实，这个问题的解决方案也很多，一个比较简单的解决方案，就是让单选框和复选框垂直居中对齐，再设置 -2px 的上外边距和 1px 的下外边距：</p>
+<pre class="prettyprint linenums">
+<code>input[type="radio"],
+input[type="checkbox"]  {
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-bottom: 1px;
+}</code></pre>
+<p>经过上述处理之后，选择框与文本已经对齐，并且，在所有的浏览器中的表现基本相同。在IE下运行结果如图 7‑17 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_radio-checkbox2.png' title='单选框和复选框与文本对齐' alt='单选框和复选框与文本对齐'><figcaption>图7-17  单选框和复选框与文本对齐</figcaption></figure>
+<h4>select元素</h4>
+<p>在表单元素中，下拉列表是最令人头疼的一个元素，因为它的外观非常丑陋，而许多样式对它又不生效。如，字体、文本颜色、边框、背景颜色等，都很容易进行美化处理。但是，任凭怎么美化，默认的下拉箭头始终保持不变，无法直接进行处理。</p>
+<p>这个问题有多种解决方案，相对简单的解决方案是，用一个容器来包裹 select 元素。再为容器应用样式，来模拟下拉列表的样式。</p>
+<p>在实际应用中，可以根据上下文需要来选择包裹 select 元素的容器。如果希望 select 元素独占一行，就用块级容器进行包裹；否则，就用行内级容器来包裹。这里以块级容器 div 为例进行说明：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class="select"&gt;
+&lt;select&gt;
+    &lt;option value="1"&gt;北京&lt;/option&gt;
+    &lt;option value="2"&gt;上海&lt;/option&gt;
+&lt;/select&gt;
+&lt;/div&gt;</code></pre>
+<p>首先，设置容器的尺寸，再指定一个自定义的下拉箭头，作为容器的背景，并让它出现在预想的位置，以便能够遮盖 select 元素的默认下拉箭头。如果希望 select 元素在行内显示，还需要设置 display 属性。</p>
+<pre class="prettyprint linenums">
+<code>.select {
+    width: 240px;
+    height: 34px;
+    overflow: hidden;
+    background: #fff url(arrow_down.png) 220px center no-repeat;
+}</code></pre>
+<p>然后，通过 appearance 属性清除 select 元素的默认样式，并让背景透明，这是本方案的核心，也是最关键的一步。</p>
+<p>再根据需要，设置 select 元素的尺寸、内边界、字体、背景、边框等属性。使用百分比设置尺寸的好处是，在修改容器尺寸时，不必修改 select 元素的样式，让布局更灵活、更独立，可以提高代码的可维护性。</p>
+<pre class="prettyprint linenums">
+<code>.select  select {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid #94B6ED;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}</code></pre>
+<p>经过上述处理后，下拉列表的运行效果如图 7‑18 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_select1.png' title='下拉列表箭头效果' alt='下拉列表箭头效果'><figcaption>图7-18  下拉列表箭头效果</figcaption></figure>
+<p>当然，可以更进一步美化，当用户执行点击操作后，将向下的箭头动态改变为向上的箭头，使下拉列表更加人性化。这个功能只需简单的jQuery即可实现。</p>
+<p>首先，定义一个类，它让容器使用向上的箭头作为背景图像。</p>
+<pre class="prettyprint linenums">
+<code>.selected {
+   background-image: url(arrow_up.png);
+}</code></pre>
+<p>然后，当jQuery检测到用户执行点击操作后，为容器添加 .selected 类，来改变箭头的方向。点击操作既可以由容器触发，也可以由下拉列表触发，根据实际情况进行选择。</p>
+<pre class="prettyprint linenums">
+<code>$(function() {
+    $(".select").click(function() {
+       $(".select").addClass("selected");
+    });
+});</code></pre>
+<p>上述这种直接书写代码的方式确实很方便，但它不利于代码的重用。如果把这个点击操作封装为一个函数，再为容器绑定单击事件的处理函数 onclick=&quot;changArrow()&quot; ，可以大大提高代码的重用性。</p>
+<pre class="prettyprint linenums">
+<code>function changArrow() {
+    $(".select").addClass("selected");
+}</code></pre>
+<p>而当鼠标移出容器时，需要删除 .selected 类，来恢复箭头的方向。同理，需要为容器绑定鼠标移出事件的处理函数</p>
+<pre class="prettyprint linenums">
+<code>onmouseout="removeArrow()"：
+function removeArrow() {
+    $(".select").removeClass("selected");
+}</code></pre>
+<p>现在，下拉列表趋于完美了，用户点击后，会自动把向下的箭头改为向上的箭头，当鼠标移出时，再恢复箭头的方向。运行结果如图 7‑19 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_select2.png' title='改变下拉列表箭头' alt='改变下拉列表箭头'><figcaption>图7-19  改变下拉列表箭头</figcaption></figure>
+<h4>表单按钮</h4>
+<p>默认的按钮非常丑陋，并且不同浏览器下的外观又不尽相同。如果使用图像按钮，还需要向服务器请求图像，会增加服务器的额外负担。因此，使用原生的表单按钮，再使用纯CSS进行美化，才是最佳的选择。</p>
+<p>HTML中，共有三类表单按钮，分别是提交按钮、重置按钮和普通按钮，无论哪种按钮，美化方法完全相同。</p>
+<p>其实非常简单，首先设置按钮文本的颜色、字体，在通过 padding 属性文本在按钮中的位置，再根据上下文的风格，设置按钮的背景颜色。为了让按钮有一点立体感，可以增加一个边框，让边框跟背景使用相同色系，但颜色稍深一点：</p>
+<pre class="prettyprint linenums">
+<code>input[type="submit"] { 
+    color: #fef4e9;
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+    padding: .4em 2em .45em;
+    background: #f78d1d;
+    border: 1px solid #da7c0c;
+}</code></pre>
+<p>当鼠标悬停到按钮上时，通过改变背景颜色，来提醒用户：</p>
+<pre class="prettyprint linenums">
+<code>input[type="submit"]:hover {
+    background: #f47c20;
+}</code></pre>
+<p>上述按钮可以适应于所有的浏览器，并在所有浏览器下的表现完全相同。为了在现代浏览器下表现得更好，可以通过圆角、文本阴影，对按钮进行渐进式增强，并通过盒阴影和渐变背景，让按钮的立体感更加逼真：</p>
+<pre class="prettyprint linenums">
+<code>input[type="submit"] { 
+    …
+    border-radius: 4px;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(180deg, #faa51a, #f47a20);
+}</code></pre>
+<p>在Chrome浏览器下的运行效果如图 7‑20 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/input_button.png' title='表单按钮' alt='表单按钮'><figcaption>图7-20  表单按钮</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/7/7.1.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/7/7.2.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

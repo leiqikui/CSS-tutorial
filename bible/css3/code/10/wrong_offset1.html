@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>li元素的阶梯Bug</title>
+<script>
+</script>
+<style>
+body {
+  background: #fff;
+}
+#wrapper { 
+	width: 600px;  
+	overflow: hidden;
+	margin: 10px auto; 
+	border: 0px solid #ccc; 
+}
+div { 
+    border: 1px solid #ccc; 
+}
+#outter {
+    width: 205px;/*这里宽度为奇数，bug就出现了！！改成偶数就OK了*/
+    height: 80px;
+    position: relative;
+}
+#inner {
+    width: 100px;
+    height: 60px;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+<div id="outter">
+    <div id="inner"></div>
+</div>
+</div>
+</body>
+
+</html>

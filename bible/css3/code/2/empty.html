@@ -1,0 +1,21 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>目标伪类选择器</title>
+<style>	
+div { margin:200px auto; width:200px;font-size:13px;}
+p:empty {
+	height: 25px;
+	border: 1px solid #f90;
+	background: #eee;
+}
+</style>
+</head>
+<body>
+<div>
+	<p>我包含文本节点，我不是空元素！</p>
+	<p></p>
+</div>
+</body>
+</html>

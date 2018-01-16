@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>cursor 属性</title>
+<style>
+div {
+   width:900px;
+   margin: 20px auto; 
+}
+table { 
+   width: 600px;
+   margin: 10px auto; 
+   letter-spacing: 1px;
+   table-layout: auto;
+   caption-side: left; 
+   border-spacing: 0;
+   border-top: 2px solid #444;
+   border-bottom: 2px solid #444; 
+   box-shadow: 6px 6px 6px 2px rgba(0,0,0,0.2);
+}
+caption {
+   margin: 8px auto;
+   font: bold 14px Arial;  
+}
+th { 
+   background: #ddd; 
+   padding: 0.66em 1em;  
+   border-bottom: 1px solid #666;
+}
+td {   
+   border-bottom: 1px dashed #ccc;
+   padding: 0.4em 1em;
+}
+th,td {
+   font-size: 14px;
+   font-family: Arial;
+}
+td:nth-child(3) {
+   text-align: center;
+}
+</style>
+</head>
+<body>
+<div>
+<script>
+ var cursor = ["auto","default","none","context-menu","help","pointer","progress","wait","cell","crosshair","text","vertical-text","alias","copy","move","no-drop","not-allowed","grab","grabbing","e-resize","n-resize","ne-resize","nw-resize","s-resize","se-resize","sw-resize","w-resize","ew-resize","ns-resize","nesw-resize","nwse-resize","col-resize","row-resize","all-scroll","zoom-in","zoom-out"];
+ for(var i = 0; i < cursor.length; i++) {
+    //document.write('<tr style="cursor:' + cursor[i] + '"><td>' + cursor[i] + '</td><td></td><td><img src="img/cursor_' + cursor[i] + '.png" title="' + cursor[i] + '"/></td></tr><br>');
+ }  
+</script>
+<table>
+<caption>表2-1  CSS3的cursor属性的取值、含义及图例</caption>
+<tr><th>属性值</th><th>含义</th><th>图例</th></tr>
+<tr style="cursor:auto"><td>auto</td><td>浏览器根据当前上下文，自动确定最适合的光标类型</td><td><img src="img/cursor_auto.png" title="auto"></td></tr>
+<tr style="cursor:default"><td>default</td><td>使用客户端操作系统的默认光标</td><td><img src="img/cursor_default.png" title="default"></td></tr>
+<tr style="cursor:none"><td>none</td><td>无光标</td><td><img src="img/cursor_none.png" title="none"></td></tr>
+<tr style="cursor:context-menu"><td>context-menu</td><td>标示对象是上下文菜单</td><td><img src="img/cursor_context-menu.png" title="context-menu"></td></tr>
+<tr style="cursor:help"><td>help</td><td>标示有帮助信息存在</td><td><img src="img/cursor_help.png" title="help"></td></tr>
+<tr style="cursor:pointer"><td>pointer</td><td>竖起一只手指的手形光标</td><td><img src="img/cursor_pointer.png" title="pointer"></td></tr>
+<tr style="cursor:progress"><td>progress</td><td>标示程序忙，但用户仍然可以与程序交互</td><td><img src="img/cursor_progress.png" title="progress"></td></tr>
+<tr style="cursor:wait"><td>wait</td><td>标示程序忙，用户需要等待直到程序不忙为止</td><td><img src="img/cursor_wait.png" title="wait"></td></tr>
+<tr style="cursor:cell"><td>cell</td><td>标示对象是单元格</td><td><img src="img/cursor_cell.png" title="cell"></td></tr>
+<tr style="cursor:crosshair"><td>crosshair</td><td>简单的十字线光标</td><td><img src="img/cursor_crosshair.png" title="crosshair"></td></tr>
+<tr style="cursor:text"><td>text</td><td>标示可编辑的水平文本</td><td><img src="img/cursor_text.png" title="text"></td></tr>
+<tr style="cursor:vertical-text"><td>vertical-text</td><td>标示可编辑的垂直文本</td><td><img src="img/cursor_vertical-text.png" title="vertical-text"></td></tr>
+<tr style="cursor:alias"><td>alias</td><td>标示对象的别名</td><td><img src="img/cursor_alias.png" title="alias"></td></tr>
+<tr style="cursor:copy"><td>copy</td><td>标示对象可拷贝</td><td><img src="img/cursor_copy.png" title="copy"></td></tr>
+<tr style="cursor:move"><td>move</td><td>标示对象可被移动</td><td><img src="img/cursor_move.png" title="move"></td></tr>
+<tr style="cursor:no-drop"><td>no-drop</td><td>标示被拖起的对象不允许在光标的当前位置被放下</td><td><img src="img/cursor_no-drop.png" title="no-drop"></td></tr>
+<tr style="cursor:not-allowed"><td>not-allowed</td><td>标示请求的操作不允许被执行</td><td><img src="img/cursor_not-allowed.png" title="not-allowed"></td></tr>
+<tr style="cursor:grab"><td>grab</td><td>标示对象可以被抓取</td><td><img src="img/cursor_grab.png" title="grab"></td></tr>
+<tr style="cursor:grabbing"><td>grabbing</td><td>标示对象正在被抓取</td><td><img src="img/cursor_grabbing.png" title="grabbing"></td></tr>
+<tr style="cursor:e-resize"><td>e-resize</td><td>标示对象可以向东改变尺寸</td><td><img src="img/cursor_e-resize.png" title="e-resize"></td></tr>
+<tr style="cursor:n-resize"><td>n-resize</td><td>标示对象可以向北改变尺寸</td><td><img src="img/cursor_n-resize.png" title="n-resize"></td></tr>
+<tr style="cursor:ne-resize"><td>ne-resize</td><td>标示对象可以在东北方向改变尺寸</td><td><img src="img/cursor_ne-resize.png" title="ne-resize"></td></tr>
+<tr style="cursor:nw-resize"><td>nw-resize</td><td>标示对象可以在西北方向改变尺寸</td><td><img src="img/cursor_nw-resize.png" title="nw-resize"></td></tr>
+<tr style="cursor:s-resize"><td>s-resize</td><td>标示对象可以向南改变尺寸</td><td><img src="img/cursor_s-resize.png" title="s-resize"></td></tr>
+<tr style="cursor:se-resize"><td>se-resize</td><td>标示对象可以在东南方向改变尺寸</td><td><img src="img/cursor_se-resize.png" title="se-resize"></td></tr>
+<tr style="cursor:sw-resize"><td>sw-resize</td><td>标示对象可以在西北方向改变尺寸</td><td><img src="img/cursor_sw-resize.png" title="sw-resize"></td></tr>
+<tr style="cursor:w-resize"><td>w-resize</td><td>标示对象可以被向西改变尺寸</td><td><img src="img/cursor_w-resize.png" title="w-resize"></td></tr>
+<tr style="cursor:ew-resize"><td>ew-resize</td><td>标示对象可以被水平改变尺寸</td><td><img src="img/cursor_ew-resize.png" title="ew-resize"></td></tr>
+<tr style="cursor:ns-resize"><td>ns-resize</td><td>标示对象可以被垂直改变尺寸</td><td><img src="img/cursor_ns-resize.png" title="ns-resize"></td></tr>
+<tr style="cursor:nesw-resize"><td>nesw-resize</td><td>标示对象可以在东北和西南方向改变尺寸</td><td><img src="img/cursor_nesw-resize.png" title="nesw-resize"></td></tr>
+<tr style="cursor:nwse-resize"><td>nwse-resize</td><td>标示对象可以在西北和东南方向改变尺寸</td><td><img src="img/cursor_nwse-resize.png" title="nwse-resize"></td></tr>
+<tr style="cursor:col-resize"><td>col-resize</td><td>标示对象可以被水平改变尺寸</td><td><img src="img/cursor_col-resize.png" title="col-resize"></td></tr>
+<tr style="cursor:row-resize"><td>row-resize</td><td>标示对象可以被垂直改变尺寸</td><td><img src="img/cursor_row-resize.png" title="row-resize"></td></tr>
+<tr style="cursor:all-scroll"><td>all-scroll</td><td>标示对象允许向四个方向滚动</td><td><img src="img/cursor_all-scroll.png" title="all-scroll"></td></tr>
+<tr style="cursor:zoom-in"><td>zoom-in</td><td>标示对象可以被放大</td><td><img src="img/cursor_zoom-in.png" title="zoom-in"></td></tr>
+<tr style="cursor:zoom-out"><td>zoom-out</td><td>标示对象可以被缩小</td><td><img src="img/cursor_zoom-out.png" title="zoom-out"></td></tr>
+</table>
+</div>
+</body>
+</html>

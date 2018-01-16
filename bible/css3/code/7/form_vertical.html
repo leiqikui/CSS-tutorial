@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title> form </title> 
+<script src="script.js"></script>
+<style>
+body {
+   background: #fff/*4899E0*/;
+}
+p {
+   margin:0;padding:0;
+}
+.wrapper {font-size: 14px;
+   width: 680px;
+   margin: 20px auto;
+   border: 0px dashed #ccc;
+}
+.center {
+    text-align: center;
+}
+form  {width: 460px;
+   margin: 10px auto;
+   border-radius: 6px;
+   background: #eeew;
+   border: 0px solid #51B6D4;
+}
+form p {
+   margin: 10px 0;
+}
+input,select {
+   outline: none;
+}
+label, input, span {
+   vertical-align: middle;
+}
+label {
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 13px;
+    display: inline-block;
+}
+input[type="text"], textarea {
+    width: 240px; 
+    height: 24px;
+    color: #333;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #cbcbcb;
+}
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto; 
+    vertical-align: middle;
+	margin-top: -2px; 
+	margin-bottom: 1px; 
+}
+select {
+    width: 242px; 
+    height: 30px;
+    background: #fff;
+    border: 1px solid #cbcbcb;
+}
+textarea {
+    width: 236px; 
+    height: 60px;
+    color: #333;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #cbcbcb;
+}
+.top {
+    vertical-align:top
+}
+.select {  
+    width: 242px;
+    height: 30px;
+    overflow: hidden;
+	display: inline-block;
+    background: #fff url(arrow_down.png) no-repeat 220px center;
+}
+.select select {      
+    background: transparent; 
+	*background: #fff;
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+}
+.selected {
+   background-image: url(arrow_up.png);
+}
+</style> 
+<script>
+function changArrow(){
+    $('.select').addClass("selected");
+}
+function removeArrow(){
+    $('.select').removeClass("selected");
+}
+</script>
+</head>
+<body class="popup">
+<div class = "wrapper popup">
+
+<form action="" method="post">
+    <p><label>姓名: </label><input type="text" name="name" /></p>
+    <p><label>E-Mail: </label><input type="email" name="email" /></p>
+    <p><label>所在城市: </label><span class="select" onclick="changArrow()" onmouseout="removeArrow()">
+	    <select>
+			<option value="1">北京</option>
+			<option value="2">上海</option>
+			<option value="3">天津</option>
+	    </select>
+	    </span>
+    </p>
+    <p><label>性别: </label><input type="radio" name="sex" value="male" checked />男 
+       <input type="radio" name="sex" value="female" />女
+    </p>
+    <p><label>个人爱好: </label><input type="checkbox" name="music" value="music" checked />音乐 
+       <input type="checkbox" name="swimming" value="swimming" />游泳
+       <input type="checkbox" name="football" value="football" checked />足球 
+       <input type="checkbox" name="skating" value="skating" />轮滑
+	</p>
+    <p><label class="top">自我介绍: </label><textarea name="introduce" ></textarea></p>
+</form>
+</div>
+</body>
+</html>

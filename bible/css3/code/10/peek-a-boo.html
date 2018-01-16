@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>IE6的peek-a-boo(藏猫猫)Bug</title>
+<script>
+</script>
+<style>
+body {
+  background: #fff;
+}
+#wrapper {
+    width: 300px;
+	margin: 10px auto;
+    overflow: hidden;border: none;
+}
+
+
+.father {
+    background: #6FB934;
+}
+.fl {
+    float: left;
+    height: 60px;
+    padding: 10px;
+    font-family: Arial;
+}
+.clear {
+    clear: both;
+}
+div {
+    margin: 4px;
+    border: 1px solid #ccc;
+}
+.father,.float {
+    position: relatives
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+<div class="father">
+   <div class="fl">float: left</div>
+   <div>这是一个非浮动元素</div>
+   <div>这是另一个非浮动元素</div>
+   <div>这是再一个非浮动元素</div>
+   <div class="clear"></div>
+ </div>
+</div>
+</body>
+
+</html>

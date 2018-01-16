@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>内嵌样式</title>
+<style>
+div {width: 360px;font-size: 13px;
+   margin: 20px auto;
+}
+p {overflow:hidden;/*width: 244px;*/
+   padding: 0px;
+   border: 1px solid #ccc;  
+}
+span {
+   border: 1px dashed #ccc;
+}
+.floatL {
+   float: left;
+}
+.floatR {
+   float: right;
+}
+</style>
+</head>
+<body>
+<div>
+<p>
+   <span>inline element 1</span>
+   <span class = "floatL">float left</span>
+   <span class = "floatR">float right</span>
+   <span>inline element 2</span>
+</p>
+</div>
+</body>
+</html>

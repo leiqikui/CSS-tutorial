@@ -1,0 +1,102 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>align-items</title>
+<style>	
+div {font: bold 26px/40px monaco;color:#fff;text-align:center;}
+table {margin:60px auto;}
+td{font: 14px Arial;text-align:center;letter-spacing:1px;border:2px solid #fff}
+
+.father {
+    width:120px;  /* 增加宽度，方便看清水平方向上的剩余空间 */
+	height:100px;  /* 增加高度，方便看清垂直方向上的剩余空间 */
+	border:1px solid #ef39d5;  /* 增加边框，方便看清父元素边界 */
+	display: flex;
+}
+.father > div {
+	width: 60px; 
+}	
+.flex-start {
+    align-items: flex-start;
+}	
+.flex-end {
+    align-items: flex-end;
+}
+.center  {
+    align-items: center;
+}	
+.baseline {
+    align-items: baseline;
+}
+.father div:nth-child(1) {
+    height: 60px;
+	font-size: 40px;
+    background: #7f3ffd;
+}
+.father div:nth-child(2) {
+    height: 80px;
+    font-size: 70px;		 
+    background: #ef39d5;
+}
+.father div:nth-child(3) {
+    height: 40px;
+    font-size: 30px;
+    background: #1bb9f1;
+}
+.father div:nth-child(4) {
+    height: 70px;
+    font-size: 50px;
+    background: #6FB934;
+}
+
+
+</style>
+</head>
+<body>
+<table>
+<tr><td>flex-start</td><td>flex-end</td><td>center </td><td>baseline</td><td>stretch</td></tr>
+<tr>
+<td>
+<div class='father flex-start'>
+    <div>x</div>
+    <div>g</div>
+    <div>a</div>
+    <div>h</div>
+</div>
+</td>
+<td>
+<div class='father flex-end'>
+    <div>x</div>
+    <div>g</div>
+    <div>a</div>
+    <div>h</div>
+</div>
+</td>
+<td>
+<div class='father center'>
+    <div>x</div>
+    <div>g</div>
+    <div>a</div>
+    <div>h</div>
+</div>
+</td>
+<td>
+<div class='father baseline'>
+    <div>x</div>
+    <div>g</div>
+    <div>a</div>
+    <div>h</div>
+</div>
+</td>
+<td>
+<div class='father'>
+    <div style="height: 100px;">x</div>
+    <div style="height: 100px;">g</div>
+    <div style="height: 100px;">a</div>
+    <div style="height: 100px;">h</div>
+</div>
+</td>
+</tr>
+</body>
+</html>

@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>网页弹出隐藏的表单-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 弹出隐藏的表单,网页弹出隐藏的表单" />
+ <meta name="description" content="弹出表单的基本原理是，在页面上已经存在一个表单，并通过CSS将其隐藏，当用户点击某个按钮或链接，或满足一定触发条件时，再利用Javascript或JQuery将表单动态显示出来。当然，不局限于表单，页面上的任何元素，都可以通过这种方式动态显示出来" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("70204");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">7.2.4 弹出隐藏的表单</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h2 class="hide-text">表格</h2>
+<h2 class="hide-text">表单</h2>
+<h3 class="hide-text">垂直布局的表单</h3>
+<h3 class="hide-text">水平布局的表单</h3>
+<h3 class="hide-text">表单元素的样式</h3>
+<h3>弹出隐藏的表单</h3>
+<p>大多数情况下，表单会直接显示在页面上，但并非总是如此。比如，一些购物网站，允许用户把商品加入购物车，当提交订单时，再检测用户是否登录，如果没有登录，则弹出登录界面，供用户登录。</p>
+<p>弹出表单的基本原理是，在页面上已经存在一个表单，并通过CSS将其隐藏，当用户点击某个按钮或链接，或满足一定触发条件时，再利用 Javascript 或 jQuery 将表单动态显示出来。当然，不局限于表单，页面上的任何元素，都可以通过这种方式动态显示出来。</p>
+<p>这种效果不仅能够充分利用有限的版面空间，而且能够提高用户体验。更重要的是，它并不影响 SEO 效果，因为它实际存在于页面中，只是对用户不可见而已。</p>
+<p>本节，我们通过一个具体的实例，来演示一下如何弹出隐藏的表单。假设页面上有一个链接和一个隐藏的用户登录界面，用户点击链接后，会弹出隐藏的界面。效果如图 7‑27 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/form_popform.png' title='弹出隐藏的表单' alt='弹出隐藏的表单'><figcaption>图7-27  弹出隐藏的表单</figcaption></figure>
+<p>首先，制作用户登录的界面。它实际上就是一个表单，输入用户名和密码后，方可登录。同时，表单上还提供一个链接，供用户关闭表单。</p>
+<pre class="prettyprint linenums">
+<code>&lt;form id="layer" action="" method="post"&gt;
+&lt;div class="title"&gt;
+&lt;h2&gt;用户登录&lt;/h2&gt;
+&lt;a onclick="layer.style.display=none"&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;label&gt;用户名: &lt;/label&gt;&lt;input type="input" name="username" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label&gt;密  码: &lt;/label&gt;&lt;input type="password" name="password" /&gt;
+&lt;p&gt;&lt;input type="submit" value=" 登 录 " /&gt;&lt;/p&gt;
+&lt;/form&gt;</code></pre>
+<p>由于在执行显示和隐藏操作时，要通过 id 属性来获得表单对象，因此，需要为 form 元素定义 id 属性。</p>
+<p>在HTML代码中，如果在链接的 onclick 处理事件中编写Javascript代码，则可以直接通过 id 来获得一个对象。因此，可以直接通过 id 获得表单对象，再把它的 display 属性值设置为 none，来隐藏表单。</p>
+<p>考虑到代码的重用性，也可以编写一个Javascript函数，来隐藏表单。如果使用Javascript函数，就要通过 document.getElementById() 接口来获得一个对象，而不能直接通过 id 获得对象。</p>
+<pre class="prettyprint linenums">
+<code>function hideLayer(id) {
+    var obj = document.getElementById(id);
+    obj.style.display = "none";
+}</code></pre>
+<p>其次，通过CSS的 id 选择器将表单隐藏起来，因为在打开页面时，并不希望它被显示出来。需要注意的是，这个 id 选择器必须与 form 中定义的 id 名称匹配。</p>
+<pre class="prettyprint linenums">
+<code>#layer {
+   display: none;
+   position: absolute;
+}</code></pre>
+<p>如果表单使用绝对定位，在它被显示出来时，就不会影响其他元素，也不会破坏页面布局，因为它已经脱离文档流。绝对定位可以使用 position: absolute，也可以使用 position: fixed。但是，IE6及以下版本不支持固定定位，使用时要小心。</p>
+<p>隐藏一个绝对定位的元素，可以使用 display: none，也可以使用 visibility: visible，要根据实际情况，选择合适的方法。</p>
+<p>其次，创建Javascript代码，来动态显示表单，它是弹出隐藏表单的核心。为了方便代码重用，需要把弹出表单的操作封装为一个函数。</p>
+<p>因为要操作页面元素，必须要知道元素的 id。另外，还希望表单出现在屏幕的中央位置，就需要知道表单的宽度和高度。因此，该函数需要三个参数，第一个参数是表单元素的 id，第二个参数是表单的宽度，第三个参数是表单的高度。</p>
+<pre class="prettyprint linenums">
+<code>function showLayer(id, width, height) {
+    var obj  = document.getElementById(id);
+    var winWidth = document.documentElement.clientWidth;
+    var winHeight = document.documentElement.clientHeight;
+    var offsetTop = document.documentElement.offsetTop;
+    var left = (winWidth - width)/2;
+    var top  = (winHeight - height)/2 + offsetTop;
+    obj.style.top = top + "px";
+    obj.style.left = left + "px";
+    obj.style.display = "block";
+}</code></pre>
+<p>需要注意的是，在设置表单元素的 top 坐标时，要把页面滚动的距离计算在内。另外，在Javascript中操作CSS时，CSS的属性值都是字符串。因此，就要写成 obj.style.top = top + &quot;px&quot;，不能省略 &quot;px&quot;。</p>
+<p>最后，在页面是创建一个链接，当用户主动点击该链接时，调用Javascript函数，将表单动态显示出来。</p>
+<pre class="prettyprint linenums">
+<code>&lt;a onclick="showLayer("layer", 300, 400)"&gt; 登 录 &lt;/a&gt;</code></pre>
+<p>当然，在实际应用中，除了点击链接外，也可以让用户点击按钮，或满足一定触发条件时，自动调用Javascript或jQuery的函数来显示表单。</p>
+<section>
+<p class="note">说明：</p>
+<p>本例操作表单的显示和隐藏，都是直接使用Javascript实现的。当然，也可以使用jQuery来实现。无论使用Javascript，还是jQuery，其思想完全相同，只是两种表现形式而已。</p>
+<p>更重要的是，如果使用jQuery，代码会更加简洁。并且，jQuery可以很容易获取到表单元素的宽度和高度，showLayer()函数就可以省略两个参数，使用起来更加方便。</p>
+<pre class="prettyprint linenums">
+<code>function showLayer(id) {
+    var left = ($(window).width() - $(id).width())/2;
+    var top  = ($(window).height() - $(id).height())/2;
+    
+    $(id).css({"top": top, "left": left, "display": "block"});
+}
+
+function hideLayer(id) {
+    $(id).css({"display": "none"});
+}</code></pre>
+<p>需要注意的是，如果使用jQuery实现，设置坐标时，无需再添加 &quot;px&quot;。另外，在调用这两个函数的地方，参数 id 的前面要加一个 &#39;#&#39;（当然，也可以在函数中拼接），它是jQuery中 id 选择器的标识符。如，显示表单的链接就要写成 &lt;a onclick=&quot;showLayer(&#39;#layer&#39;)&quot;&gt; 登 录 &lt;/a&gt;。</p>
+</section>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/7/7.2.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/8/8.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>文本3像素偏移Bug</title>
+<script>
+</script>
+<style>
+body {
+  background: #fff;
+}
+a {
+   color: #fff;
+   font-size: 13px;
+   text-decoration: none;
+}
+#wrapper {
+    width: 240px;
+	margin: 10px auto;
+    overflow: hidden;border: none;
+}
+
+ul {
+    margin: 0;  
+    padding: 0;
+    list-style: none;
+}  
+ul lis {
+    margin-bottom: -1px;
+    border-bottom: 1px solid #fff;
+}
+li a {
+    display: block;
+    background: #fa7a20; 
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+<ul>  
+     <li><a href="#">公司介绍</a></li>
+	 <li><a href="#">产品中心</a></li>  
+     <li><a href="#">新闻动态</a></li>  
+     <li><a href="#">联系我们</a></li>  
+</ul>
+</div>
+</body>
+
+</html>

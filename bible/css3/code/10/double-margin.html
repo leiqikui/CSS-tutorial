@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>浮动元素双边距Bug</title>
+<script>
+</script>
+<style>
+body {
+  background: #fff;
+}
+#wrapper {
+	margin: 10px auto;
+    overflow: hidden;
+}
+.fl {
+   float: left;
+   width: 100px;
+   height: 60px;
+   margin-left: 100px;
+   display: inline;
+}
+#wrapper, .fl {
+   border: 1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="fl">float</div>
+    <div class="fl">float</div>
+</div>
+</body>
+
+</html>

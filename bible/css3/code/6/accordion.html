@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>垂直导航</title>
+<script>
+
+</script>
+<style>
+body {
+    background: #fff;
+}
+.wrap {
+	width:49%;
+	margin:120px auto;
+}
+dl, dd, ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.accordion {
+    width: 120px;
+}
+.accordion dt {
+    margin: 1px;
+    background: #6FB934;
+}
+.accordion a { 
+    display: block;
+    height: 32px;	
+    line-height: 32px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+.verticalnav li a {
+    color: #666;
+    font-size: 12px;
+}
+.verticalnav li a:hover,  
+.verticalnav li a:focus {
+    color: #ff5f3e;
+}
+.verticalnav li a.current {
+    color: #ff5f3e;
+}
+</style>
+<script src="jquery.js"></script>
+<script>
+$(document).ready(function(){
+    $("dd:not(:first)").hide();
+    $("dt a").click(function(){
+        $("dd:visible").slideUp("slow");
+        $(this).parent().next().slideDown("slow");
+        return false;
+    });
+});
+</script>
+</head>
+
+<body>
+<div class="wrap">
+<dl class="accordion">
+    <dt><a href="#">公司介绍</a></dt>
+    <dd>
+        <ul class="verticalnav">
+        <li><a href="#">公司概况</a></li>
+        <li><a href="#">历史沿革</a></li>
+        </ul>
+    </dd>
+    <dt><a href="#">产品中心</a></dt>
+    <dt><a href="#">工程案例</a></dt>
+    <dt><a href="#">新闻动态</a></dt>
+    <dd>
+        <ul class="verticalnav">
+        <li><a href="#">公司新闻</a></li>
+        <li><a class="current" href="#">行业新闻</a></li>
+        </ul>
+    </dd>
+    <dt><a href="#">联系我们</a></dt>
+</dl>
+</div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS类选择器_HTML class属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS选择器,类选择器,class属性" />
+ <meta name="description" content="类选择器，是在类名前面加一个点（.）定义的选择器。为了提高选择器的灵活性，类选择器的名称，可以由用户自定义。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("20202");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">2.2.2 类选择器</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h2 class="hide-text">概述</h2>
+<h2 class="hide-text">基本选择器</h2>
+<h3 class="hide-text">元素选择器</h3>
+<h3>类选择器</h3>
+<p>类选择器是以独立于文档元素的方式来指定样式，如果应用样式，而不考虑具体涉及的元素时，最常用的就是类选择器。</p><p>类选择器，是在类名前面加一个点（.）定义的选择器。为了提高选择器的灵活性，类选择器的名称，可以由用户自定义。如，以下代码定义了名称为 red 的类选择器：</p><pre class="prettyprint linenums"><code>.red { color: red }</code></pre><p>要为一个元素应用类选择器定义的样式，还需要在HTML代码中，为元素指定 class属性，并把属性的值设置为指定的类名。</p><p>类选择器的样式可以应用于任何HTML元素，一个类可以在一个文档中使用任意多次。浏览器会在文档中寻找 class属性中包含指定值的元素，为该元素应用该类选择器所定义的样式，而不管它是什么元素。如：</p><pre class="prettyprint linenums"><code>&lt;p class = "red"&gt;我是段落&lt;/p&gt;&lt;h1 class = "red"&gt;我是一级标题&lt;/p&gt;</code></pre><p>浏览器会在文档中寻找 class属性中包含red的元素，则 p 元素和 h1 元素都会被选中，因此段落和 h1 的文本都会变成红色。</p><p>但有时候，仅希望给某种特定类型的元素定义类选择器，此时仅仅使用类名就不能达到需要的效果。</p><p>这时，就可以在类选择器的前面添加特定元素的限定符E，如E.class，则该类选择器只匹配类型为E，且class属性值包含指定类名的元素，两个条件中任何一个不满足，都不会匹配。如：</p><pre class="prettyprint linenums"><code>p.red { color: red }</code></pre><p>选择器p.red解释为：“其class属性值包含red的所有p元素”。因此，该选择器就只匹配 class属性包含red的所有p元素，不匹配其它类型的元素，无论其 class属性中是否包含red。 如：</p><pre class="prettyprint linenums"><code>&lt;p class = "red"&gt;我是段落&lt;/p&gt;&lt;h1 class = "red"&gt;我是一级标题&lt;/p&gt;</code></pre><p>运行上述代码，只有段落文本会变成红色。因为 h1 元素不是段落，这个规则的选择器不会与它匹配，因此 h1 元素不会变成红色文本。</p><p>在HTML中，一个元素的 class属性值中可以包含多个类名，类名之间用空格分隔，表示为该元素应用多个类选择器的样式。当元素应用多个类的样式时，类名不分先后顺序，元素的最终样式就是所有这些样式层叠后的效果。如：</p><pre class="prettyprint linenums"><code>.red { color: red; }.bold { font-weight: bold; }</code></pre><pre class="prettyprint linenums"><code>&lt;p class = "red bold">本段落的文本将显示为红色、粗体。&lt;/p></code></pre><p>这个p元素同时应用了red和bold两个类选择器的样式，则段落文本为红色、粗体显示。运行结果如图 2‑3 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/class1.png' title='为元素应用多个类' alt='为元素应用多个类'><figcaption>图2-3  为元素应用多个类</figcaption></figure><p>当多个样式属性发生冲突时，会发生样式层叠，其结果是CSS代码中后定义的样式，会覆盖先定义的样式，而与元素 class属性中声明的顺序无关。假如将 .bold 类改为：</p><pre class="prettyprint linenums"><code>.bold { font-weight: bold; color: black; }</code></pre><p>得到运行结果如图 2‑4 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/class2.png' title='样式的层叠' alt='样式的层叠'><figcaption>图2-4  样式的层叠</figcaption></figure><p>这种情况下，即便 class属性声明为 class = "bold red"，段落文本依然是黑色、粗体显示。因为多个类作用后的结果，仅仅与CSS代码中类的定义顺序有关，与其他因素均无关。</p><p>注意： IE 6选择器并不支持在class属性中声明多个类名，如果这样声明，其将以末尾类名为准，使用时千万小心。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/2/2.2.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/2/2.2.3.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
