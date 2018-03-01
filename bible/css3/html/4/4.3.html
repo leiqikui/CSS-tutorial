@@ -1,196 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS外边距_CSS margin属性_margin-top属性_margin-right属性_margin-bottom属性_margin-left属性-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS外边距,margin,margin属性,margin-top,margin-right,margin-bottom,margin-left" />
- <meta name="description" content="CSS的margin属性，用来控制元素边框和内容之间的距离，包括margin-top、margin-right、margin-bottom、margin-left 属性。" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("403");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.3 外边距</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h1 class="hide-text">字体和文本</h1>
-<h1 class="hide-text">盒模型</h1>
-<h2 class="hide-text">概述</h2>
-<h2 class="hide-text">内边距</h2>
-<h2>外边距</h2>
-<p>外边距会在元素外创建额外的空白区域，这个区域不能放置其他元素。因此，大多数情况下，普通流中都是通过外边距来控制元素之间的距离，使元素间出现间隔。</p><p>外边距默认是透明的，在这个区域中可以看到父元素的背景。也不能通过任何属性，来为外边距设置颜色，或让其不透明。但是，可以通过 margin属性来设置外边距的宽度，其值可以是百分比、长度值、或 auto。</p><p>由于外边距也是可选的，默认值是 0。所以，如果没有显式声明 margin属性，元素就不会出现外边距。同样，浏览器也为外边距提供了默认的样式，需要设计师进行重置。如：</p><pre class="prettyprint linenums"><code>body, p, h1, h2, h3, ul, ol  {    margin: 0;}</code></pre><p>使用长度值设置外边距时，可以接受任何长度值，包括绝对长度和相对长度。如，在段落元素周围应用一个 10px 的空白区域：</p><pre class="prettyprint linenums"><code>p  {    margin: 10px;}</code></pre><p>使用百分比设置外边距时，元素的左右外边距和上下外边距，都是相对于父元素的 width 进行计算。如果父元素的 width 以某种方式发生改变，外边距的值也会随之改变。</p><p>外边距的值也可以混合使用长度值和百分比，并且，可以使用各种类型的长度值。如果希望一个元素各边上的外边距不同，同样遵循上、右、下、左的模式，也允许提供 1~4 个值，作用规则与 padding 相同：</p><pre class="prettyprint linenums"><code>p  {   margin: 10px 10% 2em 20mm;}</code></pre><p>CSS也为外边距提供了单边的属性，使用其中任何一个属性，将只设置该边上的外边距，而不影响其他外边距：</p><pre class="prettyprint linenums"><code>p  {    margin-top: 10px;    margin-right: 20px;    margin-bottom: 30px;    margin-left: 40px;}</code></pre><p>一个元素的外边距可以是正值，也可以是负值。当元素之间是父子关系时，通过设置子元素的外边距为负值，可以将子元素从父元素中分离出来，或者与其他元素重叠。如，在一个容器 div 中，有两个段落：</p><pre class="prettyprint linenums"><code>&lt;div&gt;   &lt;p&gt;这个段落的外边距为正值&lt;/p&gt;   &lt;p&gt;这个段落的外边距为负值&lt;/p&gt;&lt;/div&gt;</code></pre><p>现在，把第一个段落的外边距设置为正值，第二个段落的外边距设置为负值。为了方便查看，为容器和段落都设置了虚线边框：</p><pre class="prettyprint linenums"><code>div {   width: 300px;   border: 1px dashed #ccc;}div p {   border: 1px dashed #ccc;}div p:nth-child(1) {   margin: 10px;}div p:nth-child(2) {   margin: 10px -30px;}</code></pre><p>上述代码的运行结果如图 4‑3 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/maring1.png' title='负外边距' alt='负外边距'><figcaption>图4-3  负外边距</figcaption></figure><p>从上图可以看出，负外边距导致第二个段落超出了容器，跑动了容器的外面，似乎它的尺寸比容器宽了 60px。然而，根据数学计算，这个段落的 width 计算值加上其左右外边距，刚好等于容器 div 的 width，它并没有比容器更宽。</p><p>在把一个元素的 margin属性设置为负数时，一定要倍加小心，因为元素可能部分或完全脱离页面，或覆盖页面上的其他内容。</p><p>当然，有时候可以利用这个特性，把一个元素的 margin属性设置为一个很大的负数，使它移动到屏幕之外，来隐藏这个元素。然后，在需要的时候，恢复其 margin属性，让它正常显示出来。</p>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.4.1.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>

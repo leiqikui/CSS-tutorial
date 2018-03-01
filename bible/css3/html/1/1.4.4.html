@@ -1,198 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS中的颜色包括RGB颜色和HSL颜色,以及CSS3中的RGBA,HSLA颜色-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS颜色,CSS中的颜色,RGB,RGB颜色,HSL,HSL颜色,RGBA颜色,HSLA,HSLA颜色" />
- <meta name="description" content="CSS中的颜色包括RGB颜色和HSL颜色,以及CSS3中的RGBA,HSLA颜色" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("10404");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">1.4.4 颜色</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h2 class="hide-text">CSS简介</h2>
-<h2 class="hide-text">CSS开发环境</h2>
-<h2 class="hide-text">CSS语法</h2>
-<h2 class="hide-text">CSS属性的值</h2>
-<h3 class="hide-text">百分数</h3>
-<h3 class="hide-text">长度</h3>
-<h3 class="hide-text">数字</h3>
-<h3>颜色</h3>
-<p>在CSS中，使用 color 属性来定义元素中文本的前景色，使用 border-color 属性来定义元素边框的前景色，使用 background-color 属性来定义元素的背景色。</p><p>在CSS1中，定义了2种表示颜色的方式：预定义颜色名和RGB颜色。CSS3开始支持HSL颜色模式，借助人性化的HSL颜色模式，Web设计师可用更直观的定义所需要的颜色，并能很轻松的控制网页中的颜色变化。</p><h4>预定义颜色名称</h4><p>在CSS1中，预定义了 17 种颜色名称，分别为aqua（水绿色）、black（黑色）、blue（蓝色）、fuchsia（紫红色）、gray（灰色）、green（绿色）、lime（绿黄色）、maroon（紫酱色）、navy（藏蓝色）、olive（橄榄色）、orange（橙色）、purple（紫色）、red（红色）、silver（银灰色）、teal（蓝绿色）、white（白色）、yellow（黄色）。也可以使用关键字transparent，表示透明。</p><h4>RGB颜色</h4><p>从物理光学试验中得出结论：通过对红、绿、蓝这三种单色以不同比例的混合，几乎可以得出自然界所有的颜色，这就是所谓的RGB颜色模式。</p><p>RGB颜色模式中，通过 R、G、B 的值表示颜色，并通过 R、G、B 分量的变换和叠加，来得到各种各样的颜色。其中，R 为红色分量，G 为绿色分量，B 为蓝色分量，并为每个分量分配一个从 0 到 255的强度值，数值越大就越白，数值越小就越黑。</p><p>在CSS中，RGB颜色有 3 种表示方法：十六进制表示法、数字表示法、百分比表示法。</p><p>1）数字表示法</p><p>数字表示法，就是直接用 0 ~ 255 之间的数字表示RGB颜色，格式为RGB(R, G, B)。</p><p>可以把RGB颜色想象为由红、绿、蓝三盏灯发出三束光，当三束光叠加在一起就产生了白色，当三盏灯的亮度都减半就产生了灰色，当三盏灯都关掉就会一片漆黑了。得到相应的RGB颜色为：白色RGB(255, 255, 255)，灰色RGB(127, 127, 127)，黑色RGB(0, 0, 0)。</p><p>如果关掉绿灯和蓝灯，只亮红灯，那么只会看到一片红色，即红色RGB(255, 0, 0)；如果只亮绿灯，就只会看到绿色，即绿色RGB(0, 255, 0)；如果只亮蓝灯，就只会看到蓝色，即蓝色RGB(0, 0, 255)。</p><p>关掉其中一盏灯，用其它两盏灯的光线叠加，则蓝 + 绿 = 青，红 + 蓝 = 洋红，红 + 绿 = 黄，即青色 RGB(0, 255, 255)，洋红色 RGB(255, 0, 255)，黄色 RGB(255, 255, 0)。</p><p>2）百分比表示法</p><p>百分比表示法，就是用0.0% ~ 100.0% 之间的百分比表示RGB颜色，0 对应 0.0%，255 对应 100.0%。</p><p>3）十六进制表示法</p><p>十六进制表示法，即HEX表示法，就是将这些数字值转化为十六进制，再将它们合并到一起，并在前面加一个井号（#），格式为 #RRGGBB。</p><p>其中，RR为红色分量，GG为绿色分量，BB为蓝色分量，均为两位十六进制正整数，也就是用十六进制的0x00 ~ 0xff，来表示十进制的 0 ~ 255，但三个数字之间不能有空格、逗号或任何其他分隔符。如，十六进制表示法 #59007f 的含义如图 1‑3 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/1/color.png' title='RGB颜色的十六进制表示法' alt='RGB颜色的十六进制表示法'><figcaption>图1-3  RGB颜色的十六进制表示法</figcaption></figure><p>对于 #59007f，十六进制的59、00、7f，分别等于十进制的89、0、127。十六进制表示法中，字母不区分大小写，7f 和 7F都是允许的，推荐使用小写字母。</p><p>当十六进制的数值是由三对重复的数字组成时， #RRGGBB 就可以简写为 #RGB。如，# ff00ff 可简写为 #f0f，#cc9966 可以简写为 #c96。这也是推荐的写法，因为没有理由让代码无谓地变长。</p><p>上述 3 种表示方法，只是RGB颜色的不同表示形式而已，其作用是等价的，它们之间可以相互转换。如，RGB(255, 255, 255) = RGB(100%, 100%, 100%) = #ffffff = #fff。</p><p>常见的预定义颜色名称对应的HEX值及RGB值见表 1‑1。</p><table summary="CSS预定义颜色对照表"><caption>表 1-1 CSS预定义颜色对照表</caption><thead><tr><th>颜色名称</th><th>HEX值</th><th>RGB值</th><th>RGB百分比</th></tr></thead><tbody><tr><td>black</td><td>#000</td><td>rgb(0,0,0)</td><td>rgb(0%,0%,0%)</td></tr><tr><td>silver</td><td>#c0c0c0</td><td>rgb(192,192,192)</td><td>rgb(75%,75%,75%)</td></tr><tr><td>gray</td><td>#808080</td><td>rgb(128,128,128)</td><td>rgb(50%,50%,50%)</td></tr><tr><td>white</td><td>#fff</td><td>rgb(255,255,255)</td><td>rgb(100%,100%,100%)</td></tr><tr><td>red</td><td>#f00</td><td>rgb(255,0,0)</td><td>rgb(100%,0%,0%)</td></tr><tr><td>purple</td><td>#800080</td><td>rgb(128,0,128)</td><td>rgb(%,0%,%)</td></tr><tr><td>green</td><td>#008000</td><td>rgb(0,128,0)</td><td>rgb(0%,50%,0%)</td></tr><tr><td>yellow</td><td>#ff0</td><td>rgb(255,255,0)</td><td>rgb(100%,100%,0%)</td></tr></tbody></table> <h4>HSL颜色</h4><p>HSL颜色模式，是工业界的一种颜色标准，通过对色相（H）、饱和度（S）、亮度（L）三个颜色通道的变化，以及它们之间的相互叠加来获得各种颜色，它几乎包括了人类视力所能感知的所有颜色，是目前应用最广的颜色系统之一。</p><p>使用HSL颜色模式定义颜色的语法格式为HSL(H, S, L)，其中：</p><p>H（Hue）分量，指的是颜色的色相，代表的是人眼所能感知的颜色范围，这些颜色分布在一个360°的色相环上，每个角度代表一种颜色。色相值的意义在于，在不改变光感的情况下，通过旋转色相环来改变颜色。在实际应用中，只需记住色相环上的六大主色，它们在色相环上按照60°圆心角的间隔排列，0°红、60°黄、120°绿、180°青、240°蓝、300°洋红。如图 1‑4 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/1/hsl_h.png' title='HSL颜色的色相环' alt='HSL颜色的色相环'><figcaption>图1-4  HSL颜色的色相环</figcaption></figure><p>S（Saturation）分量，指的是颜色的饱和度，用 0% ~ 100% 的值来控制相同色相和亮度下颜色纯度的变化。0% 表示灰色，100% 表示完全饱和。数值越大，颜色中的灰色越少，元素越鲜艳。图 1‑5 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/1/hsl_s.png' title='HSL颜色的饱和度' alt='HSL颜色的饱和度'><figcaption>图1-5  HSL颜色的饱和度</figcaption></figure><p>L（Lightness）分量，指的是颜色的亮度，用 0% ~100% 的值来控制颜色的明暗变化。数值越小，颜色越暗，越接近于黑色，到  0% 就成了黑色；数值越大颜色越亮，越接近于白色，到 100% 就成了白色。如图 1‑6 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/1/hsl_l.png' title='HSL颜色的亮度' alt='HSL颜色的亮度'><figcaption>图1-6  HSL颜色的亮度</figcaption></figure><p>在使用HSL颜色模式表示颜色时，只需选择一个0 到360 之间的色相，并将饱和度设为100%，亮度设为50%，就会得到这种颜色最纯的形式。降低饱和度，颜色就会向灰色变化。增加亮度，颜色就会向白色变化；减少亮度，颜色就会向黑色变化。</p><p>如，沿着圆环移动的过程中，就可以得到以下比较重要的颜色：红色为 hsl(0, 100%, 50%)；黄色为 hsl(60, 100%, 50%)；绿色为 hsl(120, 100%, 50%)；青色为 hsl(180, 100%, 50%)；蓝色为 hsl(240, 100%, 50%)；洋红色为 hsl(300, 100%, 50%)。</p><h4>透明通道和透明度</h4><p>适当的使用透明度，可以让设计效果更加丰富多彩。对于相互重叠的元素，可以为元素设置透明度，让元素呈现出半透明效果，使其下方的元素可见。</p><p>在CSS3出现之前，只能通过浏览器的某些特殊属性，来实现元素的透明度效果，如IE8 以及更早的版本使用 filter 属性来替代。假如要弹出一个告警框，它会覆盖在现有文档上面，通过使用 filter 属性，就可以使其下方的内容依然可见：</p><pre class="prettyprint linenums"><code>alert {    filter: alpha(opacity = 50);}</code></pre><p>在CSS3中，可以通过 alpha 透明通道和 opacity 属性，来设置元素的透明度。它们都是浮点数，取值在 [ 0.0 ~1.0 ] 之间，值越接近0，颜色就越透明。如果设置为0.0，就会完全透明，就像没有设置任何颜色。类似的，1.0 就表示完全不透明，默认值为1.0。</p><p>alpha 透明通道是一个 8 位的灰度通道，该通道用 256 级灰度来记录图像中的透明度信息，定义透明、不透明和半透明区域，其中黑表示透明，白表示不透明，灰表示半透明。</p><p>opacity 属性可以单独使用，而 alpha 透明通道则要作为RGB或HSL颜色模式的 alpha分量来使用。支持 alpha 透明通道后，RGB就成为 RGBA，格式为RGB(R, G, B, A)，HSL就成为HSLA，格式为HSLA(H, S, L, A)。</p><p>当 A 的值等于 1 时，RGBA与RGB的效果相同，HSLA与HSL的效果相同。在任何使用颜色的地方都可以使用RGBA或HSLA颜色，如背景、边框、文本颜色等。如：</p><pre class="prettyprint linenums"><code>background-color: rgba(255, 76, 76, 0.9);       /* 10% 透明 */</code></pre><p>应用透明度的经典案例是按钮的淡入淡出效果，其基本原理是，按钮的原始透明度为某个值，当鼠标悬停到按钮上时，将按钮背景的透明度缓慢地变为另外一个值，当鼠标移出按钮后，再把背景透明度恢复到原始值。</p><p>本例分别使用 opacity 属性和 alpha 透明通道，来实现按钮的淡入淡出效果。代码如下：</p><pre class="prettyprint linenums"><code>input[type = submit] {    color: #fff;    font-size: 14px;    padding: 6px 30px;    border-radius: 3px;    border: 1px solid #f00;    background-color: rgb(255, 76, 76);}</code></pre><p></p><pre class="prettyprint linenums"><code>&lt;input  type = "submit"  value = "提 交"/></code></pre><p>可以使用 opacity 属性设置透明度：</p><pre class="prettyprint linenums"><code>input[type = submit]:hover {     opacity: 0.9;     transition:all rase-in 0.2s;   /* 缓慢改变透明度 */}</code></pre><p>也可以使用alpha透明通道设置透明度：</p><pre class="prettyprint linenums"><code>input[type = submit]:hover {     transition: all ease-in 0.2s;   /* 缓慢改变透明度 */     background-color: rgba(255, 76, 76, 0.9);}</code></pre><p>从上述代码可以看出，opacity 属性和 alpha 透明通道稍微有点不同，可以根据需要选择使用。opacity 设置的透明度会对整个元素产生影响（元素的内容也会透明），而使用RGBA或HSLA则可以让元素的某些部分有透明效果。所以，如果希望一个元素带有透明的背景、边框、盒阴影等，但内部的文字仍然不透明，就可以使用RGBA或HSLA。</p><section><p class="note">说明：为IE6、IE7、IE8提供备用颜色值</p><p>在CSS中，可以使用预定义的颜色名、十六进制数值、RGB值、RGB百分比、RGBA值、HSL值、HSLA值中的任意一种值来声明元素的文本颜色、边框颜色、背景颜色等。这些颜色值都是字符串类型，并且不区分大小写。如：</p><pre class="prettyprint linenums"><code>color: black;   /* 预定义的颜色名 */color: #000;   /* 十六进制数值 */border-color: RGB(0, 0, 0);  /* RGB值 */border-color: RGB(100%, 0%, 0%);   /* RGB百分比 */background-color: RGBA (80, 80, 80, 0.6);   /* RGBA值，40% 透明 */background-color: HSL (300, 90%, 50%);    /* HSL值 */background-color: HSLA(300, 90%, 50%, 0.8);  /* HSLA值，20% 透明*/</code></pre><p>需要注意的是，由于IE9以下的版本并不支持RGBA、HSL和HSLA颜色，因此，如果需要针对这些浏览器提供备用的颜色声明，则要放在RGBA、HSL和HSLA值之前。如：</p><pre class="prettyprint linenums"><code>div {    background-color: #fe0208;    background-color: hsl(359, 99%, 50%); }</code></pre></section>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/1/1.4.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/1/1.4.5.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>

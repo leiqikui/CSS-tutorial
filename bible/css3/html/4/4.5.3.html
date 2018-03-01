@@ -1,201 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS background-repeat属性_CSS背景重复-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, background-repeat,background-repeat属性,CSS background-repeat属性,CSS背景重复" />
- <meta name="description" content="background-repeat属性用来定义元素的背景图像如何重复" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("40503");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.5.3 背景重复</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h1 class="hide-text">字体和文本</h1>
-<h1 class="hide-text">盒模型</h1>
-<h2 class="hide-text">概述</h2>
-<h2 class="hide-text">内边距</h2>
-<h2 class="hide-text">外边距</h2>
-<h2 class="hide-text">边框</h2>
-<h2 class="hide-text">背景</h2>
-<h3 class="hide-text">背景图像</h3>
-<h3 class="hide-text">背景颜色</h3>
-<h3>背景重复</h3>
-<p>默认情况下，如果一幅背景图像不足以占满整个容器时，就会在水平方向和垂直方向重复，以填满整个容器。然而，有时候却希望背景图像只出现一次，或只在某个方向上重复。</p><p>这时，就可以通过 background-repeat属性来定义背景图像如何重复，即背景图像的平铺方式，可选值有 <a href='http://www.waibo.wang/bible/css3/demo/4/background-repeat_repeat.html' title='background-repeat:repeat效果演示' target='_blank'>repeat</a> | <a href='http://www.waibo.wang/bible/css3/demo/4/background-repeat_repeat-x.html' title='background-repeat:repeat-x效果演示' target='_blank'>repeat-x</a> | <a href='http://www.waibo.wang/bible/css3/demo/4/background-repeat_repeat-y.html' title='background-repeat:repeat-y效果演示' target='_blank'>repeat-y</a> | <a href='http://www.waibo.wang/bible/css3/demo/4/background-repeat_space.html' title='background-repeat:space效果演示' target='_blank'>space</a> | <a href='http://www.waibo.wang/bible/css3/demo/4/background-repeat_round.html' title='background-repeat:round效果演示' target='_blank'>round</a> | <a href='http://www.waibo.wang/bible/css3/demo/4/background-repeat_no-repeat.html' title='background-repeat:no-repeat效果演示' target='_blank'>no-repeat</a>，默认值为 repeat。不同取值的含义见表表 4‑5：</p><table summary="background-repeat属性的取值及含义">	<caption>表 4-5 background-repeat属性的取值及含义</caption>	<thead>		<tr>			<th>属性值</th><th>含义</th>		</tr>	</thead>	<tbody>		<tr><td>repeat</td><td>默认值，图像在水平方向和垂直方向都重复以填满容器</td></tr><tr><td>repeat-x</td><td>图像只在水平方向重复以填满容器</td></tr><tr><td>repeat-y</td><td>图像只在垂直方向重复以填满容器</td></tr><tr><td>space</td><td>图像向两端对齐重复以填满容器，多余空间用空白代替</td></tr><tr><td>round</td><td>图像向两端对齐重复以填满容器，多余空间通过图像拉伸来填充</td></tr><tr><td>no-repeat</td><td>不重复，图像只显示一次</td></tr>	</tbody></table><p>默认情况下，背景图像的填充区域为元素的 padding-box 区域，而背景图像平铺之后，其填充区域将是元素的 border-box 区域。</p><p>background-repeat属性需要 2 个参数，如果提供 2 个参数，第一个用于水平方向，第二个用于垂直方向。如果只提供 1 个参数，则同时用于水平方向和垂直方向。特殊值 repeat-x 和 repeat-y除外，因为 repeat-x 相当于 repeat no-repeat，repeat-y 相当于 no-repeat repeat，即 repeat-x 和 repeat-y 就等价于提供了 2 个参数值。</p><p>为了清楚了解 background-repeat属性在不同取值下的表现，这里针对每个取值定义了一个类，然后把它们分别应用到一个容器。</p><p>HTML代码如下：</p><pre class="prettyprint linenums"><code>&lt;div class="no-repeat"&gt;&lt;/div&gt;&lt;div class="repeat-x"&gt;&lt;/div&gt;&lt;div class="repeat-y"&gt;&lt;/div&gt;&lt;div class="repeat"&gt;&lt;/div&gt;&lt;div class="space"&gt;&lt;/div&gt;&lt;div class="round"&gt;&lt;/div&gt;</code></pre><p>CSS代码如下：</p><pre class="prettyprint linenums"><code>div  {     width: 100px;     height: 120px;    border: 1px dashed #888;    background-image: url(bg.png);}.repeat-x {    background-repeat: repeat-x;}.repeat-y {    background-repeat: repeat-y;}.repeat {    background-repeat: repeat;}.space {    background-repeat: space;}.round {    background-repeat: round;}.no-repeat {    background-repeat: no-repeat;}</code></pre><p>上述代码中，容器的宽度为 100px、高度为 120px，背景图像的宽度和高度都是 40px。为了能够清楚可见背景图像的范围，这里给容器增加了 1px 的虚线框，给背景图像增加了 1px 的黑色边框。运行结果如图 4‑27 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/background-repeat.png' title='background-repeat属性效果图' alt='background-repeat属性效果图'><figcaption>图4-27  background-repeat属性效果图</figcaption></figure><p>从上图可以看出，图像都是按原始尺寸进行重复，来填满容器。在水平方向上，当容器的宽度不是背景图像宽度的整数倍时：如果取值为 space，多余空间用空白填充；如果取值为 round，背景图像会被缩放；如果为其他值，最后一幅图像可能不完整。垂直方向同理。</p>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.5.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.5.4.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>

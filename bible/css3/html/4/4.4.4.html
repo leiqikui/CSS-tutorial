@@ -1,201 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS3 box-shadow属性_CSS3盒阴影-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, box-shadow,box-shadow属性,盒阴影,CSS3盒阴影" />
- <meta name="description" content="在CSS3中，使用可以使用 box-shadow 属性为盒子添加一个或多个阴影" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("40404");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.4.4 盒阴影</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h1 class="hide-text">字体和文本</h1>
-<h1 class="hide-text">盒模型</h1>
-<h2 class="hide-text">概述</h2>
-<h2 class="hide-text">内边距</h2>
-<h2 class="hide-text">外边距</h2>
-<h2 class="hide-text">边框</h2>
-<h3 class="hide-text">圆角边框</h3>
-<h3 class="hide-text">图像边框</h3>
-<h3 class="hide-text">线条边框</h3>
-<h3>盒阴影</h3>
-<p>默认情况下，一个盒子是没有阴影的，可以使用 box-shadow属性为盒子添加一个或多个阴影。语法格式为：</p><pre class="prettyprint linenums"><code>box-shadow: [inset]  x-offset  y-offset  blur-radius  spread-distance  color</code></pre><p>每个阴影由可选的 inset 关键字、2-4 个长度值、可选的颜色值来规定。如果省略可选的长度值，则使用默认值 0。各参数的含义见表表 4‑3：</p><table summary="box-shadow属性的参数及含义" class="param">	<caption>表 4-3 box-shadow属性的参数及含义</caption>	<thead>		<tr>			<th>参数</th><th>含义</th>		</tr>	</thead>	<tbody>		<tr><td>inset</td><td>可选值，表示阴影的投影方式。如果不设置，则默认投影方式是外阴影；如果设置为其唯一值inset，其投影方式是内阴影</td></tr><tr><td>x-offset</td><td>必选参数，表示阴影的水平偏移量。可以是正值，也可以是负值。取正值时，阴影向元素的右侧偏移，阴影在元素的右边；取负值时，阴影向元素的左侧偏移，阴影在元素的左边</td></tr><tr><td>y-offset</td><td>必选参数，表示阴影的垂直偏移量。可以是正值，也可以是负值。取正值时，阴影向元素的底部偏移，阴影在元素的底部；取负值时，阴影向元素的顶部偏移，阴影在元素的顶部</td></tr><tr><td>blur-radius</td><td>可选参数，表示阴影的模糊半径，默认值为0，不允许负值。如果取值为0，则阴影的边缘是清晰的。否则，值越大，阴影的边缘越模糊</td></tr><tr><td>spread-distance</td><td>可选参数，表示阴影的扩张距离。正值使外阴影向外扩大，内阴影向内缩小；负值使使外阴影向内缩小，内阴影向外扩大</td></tr><tr><td>color</td><td>可选参数，表示阴影的颜色。如果不指定，则使用浏览器的默认颜色，但各浏览器的默认颜色不尽相同</td></tr>	</tbody></table><p>这些参数中，通过关键字 inset 来控制阴影的类型，并通过调整其它 5 个参数，来得到不同的阴影效果。假设页面上有两个 span 元素：</p><p>&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</p><p>接下来以这两个元素为例，对 box-shadow属性的这些参数进行说明。并且，始终让这两个 span 元素并排显示，第一个元素使用外阴影，第一个元素使用内阴影。为了方便对比效果，为这两个元素设置边框和背景颜色：</p><pre class="prettyprint linenums"><code>span {    width: 120px;    height: 60px;    margin: 20px;     display: inline-block;     border: 10px solid blue;     background-color: orange; }</code></pre><p>参数 x-offset 和 y-offset 用来控制阴影的偏移量，通过取正值或负值，来控制阴影的偏移方向。如：</p><pre class="prettyprint linenums"><code>span:nth-child(1) {    box-shadow: 10px 10px 0 0 rgba(0,0,0,0.4);}span:nth-child(2) {    box-shadow: inset 10px 10px 0 0 rgba(0,0,0,0.4);}</code></pre><p>运行结果如图 4‑16 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_offset1.png' title='阴影的偏移量' alt='阴影的偏移量'><figcaption>图4-16  阴影的偏移量</figcaption></figure><p>如果偏移量为 0，则阴影与元素本身重合，就看不到阴影。于是，就可以让 x-offset 和 y-offset中的任一个值为 0，再把另一个的偏移设置为正值或负值，来实现某个方向上的单侧阴影效果。如，y-offset为 0，x-offset为正值，就得到右侧阴影效果：</p><pre class="prettyprint linenums"><code>span:nth-child(1) {    box-shadow: 10px 0 0 0 rgba(0,0,0,0.4);}span:nth-child(2) {    box-shadow: inset 10px 0 0 0 rgba(0,0,0,0.4);}</code></pre><p>运行结果如图 4‑17 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_offset2.png' title='单侧阴影' alt='单侧阴影'><figcaption>图4-17  单侧阴影</figcaption></figure><p>参数 blur-radius 用来控制阴影的模糊半径，即阴影从开始变淡到完全消失的距离。如果取值为0，则阴影不具有模糊效果，阴影的边缘是清晰的。否则，阴影会慢慢变虚，值越大，阴影的边缘越模糊。一个阴影在四个方向上的模糊效果完全相同，不能设置单侧的模糊效果。如：</p><pre class="prettyprint linenums"><code>span:nth-child(1) {    box-shadow: 0 0 20px 0 red;}span:nth-child(2) {    box-shadow: inset 0 0 20px 0 red;}</code></pre><p>运行结果如图 4‑18 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_blur.png' title='阴影模糊效果' alt='阴影模糊效果'><figcaption>图4-18  阴影模糊效果</figcaption></figure><p>参数spread-distance 用来控制阴影的扩张距离，即阴影的宽度。一个阴影在四个方向上的扩张效果完全相同，不能设置单侧的扩张效果。如：</p><pre class="prettyprint linenums"><code>span:nth-child(1) {    box-shadow: 0 0 0 10px rgba(0,0,0,0.4);}span:nth-child(2) {    box-shadow: inset 0 0 0 10px rgba(0,0,0,0.4);}</code></pre><p>运行结果如图 4‑19 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_spread.png' title='阴影扩张效果' alt='阴影扩张效果'><figcaption>图4-19  阴影扩张效果</figcaption></figure><p>如果同时设置了模糊半径和扩展半径，则会产生具有光晕效果的阴影。如：</p><pre class="prettyprint linenums"><code>span:nth-child(1) {    box-shadow: 0 0 20px 10px red;}span:nth-child(2) {    box-shadow: inset 0 0 20px 10px red;}</code></pre><p>运行结果如图 4‑20 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_blur_spread.png' title='阴影模糊和扩张效果' alt='阴影模糊和扩张效果'><figcaption>图4-20  阴影模糊和扩张效果</figcaption></figure><p>除了单阴影外，还可以使用逗号分隔的阴影列表，为元素添加多重阴影。多重阴影将按照声明的先后顺序，最先声明的阴影显示在最顶层，后声明的阴影依次显示在底层。并且，上层阴影会遮盖下层的阴影。如：</p><pre class="prettyprint linenums"><code>div {     width: 200px;    height: 60px;    border-radius: 10px;    border: 1px solid #ccc;     box-shadow: 0 0 0 5px red,                0 0 0 10px yellow,                0 0 0 15px blue,                0 0 0 20px green;}</code></pre><p>运行结果如图 4‑21 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_muti.png' title='多重阴影效果' alt='多重阴影效果'><figcaption>图4-21  多重阴影效果</figcaption></figure><p>从上图中，似乎很难直接看出阴影的层次关系，但只要分析不同颜色阴影的宽度，层次关系便一目了然。先看看最后声明的绿色阴影，它声明的宽度是 20px，而可见宽度只有 5px。这是因为黄色阴影在绿色阴影的上一层，将绿色阴影遮掉了 15px。因此，绿色阴影就只剩下 5px 了。其他阴影，以此类推。</p><p>事实上，不仅可以为一个元素声明多重阴影，而且，在多重阴影中，还可以同时存在外阴影和内阴影。看看W3C提供的实例：</p><pre class="prettyprint linenums"><code>div {     width: 100px;     height: 100px;    margin: 10px;    padding: 50px;    border: 12px solid blue;     background-color: orange;    border-top-left-radius: 60px 90px;    border-bottom-right-radius: 60px 90px;    box-shadow: 64px 64px 12px 40px rgba(0,0,0,0.4),                12px 12px 0px 8px rgba(0,0,0,0.4) inset;}</code></pre><p>W3C对该实例提供的效果说明如图 4‑22 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_w3c.png' title='box-shadow效果' alt='box-shadow效果'><figcaption>图4-22  box-shadow效果</figcaption></figure><p>另外，还可以从浏览器中得到上述 div 元素的盒模型。如图 4‑23 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/box-shadow_box.png' title='元素的盒模型' alt='元素的盒模型'><figcaption>图4-23  元素的盒模型</figcaption></figure><p>实际上，上述两幅图是对 box-shadow 工作机制的一个完整阐释，从这两幅图中可以得出以下结论：</p><ul>	<li>外阴影绘制在元素边框的外面，内阴影绘制在元素内边距的里面。并且，外阴影绘制在元素的背景之下，内阴影绘制在元素的边框之下、背景之上。由于元素的背景图像在背景颜色之上。因此，按从上到下的顺序，一个元素的整体层次关系依次为：边框、内阴影、背景图片、背景颜色、外阴影。</li>	<li>元素的 border-radius 会影响阴影的外形，并且阴影和元素具有相同的圆角半径，而 border-image 不会影响阴影的外形。</li>	<li>外阴影把元素的 border-box 看作一个非透明盒进行投影。如果扩张距离为0，则阴影的形状和尺寸，跟元素的 border-box完全相同。阴影可以看作是元素的 border-box，在自身边框外的一个拷贝。</li>	<li>内阴影把元素内边距边界以外的任何东西，都看作一个非透明盒进行投影。如果扩张距离为0，则阴影的形状和尺寸，跟元素的 padding-box 完全相同。阴影可以看作是元素的padding-box，在自身内边距内的一个拷贝。</li></ul><p>由此可知，box-shadow属性只会为盒子添加阴影，而不会影响盒子的尺寸。因此，无论是偏移、模糊、还是扩张，都不会改变元素本身的尺寸。于是，让一个外阴影发生偏移、模糊、扩张后，阴影可能延伸到元素的边界之外，也可能覆盖其它元素，但不会对页面布局产生任何影响。</p>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.4.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.5.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>

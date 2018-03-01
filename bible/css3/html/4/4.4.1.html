@@ -1,197 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS边框_CSS border属性_border-style属性_border-width属性_border-color属性-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS边框,border,border属性,border-style,border-width,border-color,border-style属性,border-width属性,border-color属性" />
- <meta name="description" content="在CSS中，通过border属性来定义样式的边框样式，border 属性可以分解为边框样式（border-style）、边框宽度（border-width）、边框颜色（border-color）这 3 个属性" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("40401");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.4.1 线条边框</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h1 class="hide-text">字体和文本</h1>
-<h1 class="hide-text">盒模型</h1>
-<h2 class="hide-text">概述</h2>
-<h2 class="hide-text">内边距</h2>
-<h2 class="hide-text">外边距</h2>
-<h2>边框</h2>
-<p>在CSS1中，就支持为元素添加边框，并可以设置边框的样式、颜色、及粗细。不过，当时的边框太过单一，只支持简单的线条边框。</p><p>在CSS3中，为了实现丰富的边框效果，对边框属性进行了扩展，除了线条边框外，也可以把图像作为边框，同时还可以创建圆角边框，也可以使用盒阴影来为元素添加一个或多个边框阴影。</p><p>线条边框使用 border属性定义，图像边框使用 border-image 属性来定义，圆角边框使用 border-radius 属性定义，盒阴影使用 box-shadow 属性定义。</p><h3>线条边框</h3><p>为元素定义线条边框，最简单的办法就是使用 border属性。border为复合属性，语法格式为：</p><pre class="prettyprint linenums"><code>border: &lt;border-style&gt; || &lt;border-width&gt; || &lt; border-color&gt;</code></pre><p>也就是说，border属性可以分解为边框样式（border-style）、边框宽度（border-width）、边框颜色（border-color）这 3 个属性，接下来分别进行介绍。</p><h4>border-style</h4><p>border-style属性是一个非常重要的边框属性，如果没有显式定义 border-style属性，或把 border-style属性设置为 none，元素将没有边框，并忽略 border-color属性 和 border-width属性。</p><p>border-style属性的取值为预定义关键字，CSS内置了 10 种不同的边框样式，每个样式都由一个预定义关键字来定义。</p><table summary="border-style属性的取值及含义" class="param">	<caption>表 4‑1 border-style属性的取值及含义</caption>	<thead>	<tr><th>属性值</th><th>样式说明</th></tr>	</thead>	<tbody><tr><td>none</td><td>无边框，不占据页面空间，同时忽略 border-color属性和 border-width属性</td></tr><tr><td>hidden</td><td>隐藏边框，它有边框，只是不可见</td></tr><tr><td>dotted</td><td>点状线</td></tr><tr><td>dashed</td><td>虚线</td></tr><tr><td>solid</td><td>实线</td></tr><tr><td>double</td><td>双线，两条单线与其间隔的和等于指定的 border-width属性的值</td></tr><tr><td>groove</td><td>3D凹槽</td></tr><tr><td>ridge</td><td>3D凸槽</td></tr><tr><td>inset</td><td>3D凹边</td></tr><tr><td>outset</td><td>3D凸边</td></tr>	</tbody></table><p>如果一个元素的边框、背景、内容发生重叠，则边框绘制在元素的背景之上，内容之下。这 10 种不同的边框样式，在浏览器中的渲染效果如图 4‑4 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/borderstyles.png' title='不同边框的样式' alt='不同边框的样式'><figcaption>图4-4  不同边框的样式</figcaption></figure><p>如果border-width属性设置为0，则忽略border-style属性。可以为给定的边框定义多个样式。如，以下规则定义的上边框为点状线、右边框为单实线、下边框为双实线、左边框为虚线：</p><pre class="prettyprint linenums"><code>border-style: dotted solid double dashed;</code></pre><p>可以看出，border-style属性的 4个参数值也采用 top-right-bottom-left 的顺序，其作用规则与 padding 相同。</p><p>有时候，你可能只想为元素的一边设置边框样式，而不是同时设置所有的 4 个边。这就要用到单边边框的样式属性，按上、右、下、左的顺序，对应的属性依次为border-top-style、border-right-style、border-bottom-style、border-left-style。</p><h4>border-width</h4><p>border-width属性用来设置边框的粗细程度，可以使用长度值或预定义关键字 thin | medium | thick，默认值为 medium。长度值表示具体的数值，如2px 或 0.5em，不允许负值。</p><p>如果未显式声明 border-width属性，则边框的宽度或者为零（使用reset css时），或者为浏览器的默认值（很可能不是零，尤其是那些通常没有重置的表单元素）。</p><p>如果 border-style属性的值为 none，则无论是否显式定义边框的宽度，其宽度都会被自动设置为 0。由于 border-style属性的默认值是 none，因此，如果希望边框出现，就必须显式声明一个边框样式。</p><p>border-width属性需要 4 个参数值，也采用 top-right-bottom-left 的顺序。如：</p><pre class="prettyprint linenums"><code>border-width: 1px 2px 3px 4px;</code></pre><p>上述规则就表示上边框的宽度为 1px、右边框的宽度为 2px、下边框的宽度为 3px、左边框的宽度为 4px。</p><p>也可以使用单边属性，按上、右、下、左的顺序，border-width对应的属性依次为border- top-width、border- right-width、border-bottom-width、border-left-width。</p><h4>border-color</h4><p>border-color属性用来设置边框的颜色，其值可以是任意合法CSS的颜色，如预定义的颜色名、十六进制数值、RGB、RGBA、HSL、HSLA。在CSS2中， 还引入了边框颜色值 transparent，这个值使边框透明，用于创建有宽度但不可见的边框。</p><p>如果 border-width属性的值等于 0 或 border-style属性的值为 none，则忽略该属性。border-color属性需要 4 个参数值，也采用 top-right-bottom-left 的顺序。如：</p><pre class="prettyprint linenums"><code>border-color: red black green blue;</code></pre><p>上述规则就表示上边框的颜色为红色、右边框的样式为黑色、下边框的样式为绿色、左边框的样式为蓝色。</p><p>边框颜色按上、右、下、左的顺序，border-color属性对应的独立属性依次为 border-top-color、border-right-color、border-bottom-color、border-left-color。</p><p>默认情况下，一个元素的边框颜色为元素内容的前景色。因此，如果没有显式声明边框颜色，边框的颜色将与元素的文本颜色相同。如果该元素不包含任何文本，如只包含图像，那么它的边框颜色，就是其父元素的文本颜色（因为 color 属性具有继承性）。&nbsp;&nbsp;</p><section><p class="note">说明：单边复合属性</p><p>在定义单边属性时，如果每次都要使用诸如 border-top-width、border-top-color 这样的属性，就会带来诸多不便。</p><p>于是，CSS也专门为单边定义了复合属性，按上、右、下、左的顺序，对应的单边属性依次为 border-top、border- right、border-bottom、border-left，它们的语法相同，格式如下：</p><pre class="prettyprint linenums"><code>border-top: &lt;border-style&gt; || &lt;border-width&gt; || &lt; border-color&gt;</code></pre><p>有了这些属性，就可以创建出一些复杂的边框。如，以下规则为容器的 4 个边创建了 4 种不同的边框：</p><pre class="prettyprint linenums"><code>div  {   width: 200px;   height: 60px;    border-top: 10px dotted #006dcc;     border-right: 10px solid #da4f49;   border-bottom: 10px dashed #5bb75b;     border-left: 10px double #faa732;}</code></pre><p>上述代码的运行结果如图 4 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/border_trbl.png' title='' alt=''><figcaption>图4  </figcaption></figure><p>实际上，在声明单边属性时，具体值的顺序并不重要，浏览器可以根据值的类型自动识别，并应用到相应的属性。所以，以下三个规则会得到相同的边框效果：</p><pre class="prettyprint linenums"><code>div { border-top: 10px dotted #006dcc; }div { border-top: dotted 10px #006dcc; }div { border-top: #006dcc dotted 10px; }</code></pre><p>并且，如果希望某个值使用默认值，也可以省略其值。如，以下规则就表示希望边框使用与容器中的文本相同的颜色：</p><pre class="prettyprint linenums"><code>div { border-top: 10px dotted; }</code></pre><p>需要注意的是，这些单边属性只能应用到一个特定的边，因此，只需声明一个宽度值、一个颜色值和一个边框样式值。否则，将导致整个声明无效。</p></section>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.4.2.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>

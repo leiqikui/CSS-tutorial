@@ -1,201 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS3 @font-face规则_CSS3 @font-face语法-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, font-face,@font-face,@font-face规则,@font-face语法" />
- <meta name="description" content="@font-face是一个CSS功能，它允许网页中使用自定义的网络字体，这些自定义的字体被放置在服务器上，从而摆脱对访问者计算机上字体环境的依赖。" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("30108");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">3.1.8 @font-face</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h1 class="hide-text">字体和文本</h1>
-<h2 class="hide-text">字体</h2>
-<h3 class="hide-text">字体调整</h3>
-<h3 class="hide-text">字体拉伸</h3>
-<h3 class="hide-text">字体变形</h3>
-<h3 class="hide-text">字体风格</h3>
-<h3 class="hide-text">字体粗细</h3>
-<h3 class="hide-text">字体大小</h3>
-<h3 class="hide-text">字体系列</h3>
-<h3>@font-face</h3>
-<p>多年以来，人们一直被迫使用一组单调乏味的Web安全字体。当网页中需要使用一些优雅的字体时，设计师最常用的办法，就是把文字做成图片。但是，由于图片难以修改，也不利于网站SEO，因此不可能大范围使用该字体。</p><p>值得庆幸的是，CSS3的 @font-face 为设计师打开了一个全新的世界，它提供了一种自定义网页字体的方法，使设计师可以大胆使用任意自己想要的字体。</p><p>事实上，@font-face规则在CSS2中就已经存在，但随后在CSS2.1中被删除。真的，不骗你，早在1998年，IE4就对它提供了部分支持。现在，它又回来了，已经被重新引入到CSS3的字体模块中！</p><p>@font-face是一个CSS功能，它允许网页中使用自定义的网络字体，这些自定义的字体被放置在服务器上，从而摆脱对访问者计算机上字体环境的依赖。</p><p>简单的说，有了@font-face，只需将字体上传到服务器端，无论访问者计算机上是否安装该字体，网页都能够正确的显示。</p><p>@font-face 能够让加载服务器端的字体，并让浏览器找到对应的字体，得益于一套成熟的语法规则：</p><pre class="prettyprint linenums"><code>@font-face {      font-family: &lt;fontName&gt;;      src: &lt;source&gt; [&lt;format&gt;][,&lt;source&gt; [&lt;format&gt;]]*;      font-style: &lt;style&gt;;      font-weight: &lt;weight&gt;;}</code></pre><p>其中，font-family 属性用来指定网络字体的名称，它可以是任意的字符串，建议最好使用字体本身的名称。font-* 属性分别表示该网络字体的风格和粗细。source 属性用来指定网络字体文件的存放路径，可以是相对路径或绝对路径；formart 属性用来指定网络字体的格式字符串，不同格式字符串对应的字体格式和后缀名见表 3‑2：</p><table summary="UI状态伪类选择器">	<caption>表 3-2 字体的格式字符串及后缀名</caption>	<thead>		<tr> <th>格式字符串</th><th>字体格式</th><th>后缀名</th></tr>	</thead>	<tbody><tr><td>"woff"</td><td>WOFF 格式</td><td>.woff</td></tr><tr><td>"truetype"</td><td>TrueType格式</td><td>.ttf</td></tr><tr><td>"opentype"</td><td>OpenType格式</td><td>.ttf, .otf</td></tr><tr><td>"embedded-opentype"</td><td>Embedded OpenType格式</td><td>.eot</td></tr><tr><td>"svg"</td><td>SVG Font格式</td><td>.svg, .svgz</td></tr>	</tbody></table><p>要在网页中使用自定义的网络字体，必须先将字体文件上传到服务器的某个地方，然后，再使用 @font-face&nbsp;规则定义网络字体。</p><p>定义网络字体时，font-family 和 src&nbsp; 都是必需的属性，通过 font-family 指定字体的名称，通过&nbsp; src&nbsp; 指定字体资源文件的存放路径：</p><pre class="prettyprint linenums"><code>@font-face {    font-family: DroidSans;    src: url(DroidSans.woff);}</code></pre><p>上述代码定义了一个网络字体，字体名称为DroidSans，字体文件为DroidSans.woff，并与CSS文件保存在相同目录中。</p><p>不过，这里定义的字体并不会有任何实际效果，因为还没有真正将它应用到网页中。要将网络字体 DroidSans 应用到网页中，还需在CSS选择器中，将 font-family&nbsp;属性的值设置为&nbsp;@font-face规则中定义的字体名称。如：</p><pre class="prettyprint linenums"><code>h1 {    font-family: DroidSans;}</code></pre><p>定义网络字体后，页面上任何引用该字体的元素，都将按该规则来渲染文本。因此，页面上的所有 h1 标题，都将使用自定义的DroidSans字体进行渲染。并且，对于 h1 标题，浏览器默认还会使用粗体显示。</p><p>然而，此时呈现的粗体，并不是真正的粗体，而是伪粗体，这是因为一个网络字体文件只对应一种风格、一种粗细。因此，要使用真正的粗体，还需要单独创建一个@font-face规则，在该规则中对 font-family 进行重命名，并提供粗体对应的字体文件，同时将 font-weight 属性设置为 bold：</p><pre class="prettyprint linenums"><code>@font-face {    font-family: DroidSans_bold;    src: url(DroidSans_bold.woff);    font-weight: bold;}</code></pre><p>同理，如果要使用斜体加粗体，还要单独创建另一个@font-face规则，并提供粗斜体对应的字体文件，同时将 font-style 属性设置为 italic，font-weight 属性设置为 bold。当然，如果某种Web 字体没有粗体、斜体、或粗斜体版本，而我们又对文本添加了这些样式，浏览器就会显示伪样式。</p><p>一个现实的问题是，虽然具有许多不同格式的Web字体，但各种浏览器仅支持这些格式的不同子集。因此，为了得到更多浏览器的支持，一个折中的办法是提供多种字体，并在@font-face规则中定义多个url，中间用逗号隔开。如果浏览器无法识别第一个字体，它会依次尝试后面的字体，直到找到一个可用的字体为止。如，下面的写法几乎可以让所有浏览器都有一个可用的字体：</p><pre class="prettyprint linenums"><code>@font-face {     font-family: 'webFont';     src: url('webFont.eot');                                     /* IE9 兼容模式*/     src: url('webFont.eot?#iefix')  format('embedded-opentype'), /* IE6~IE8 */          url('webFont.woff')  format('woff'),                    /* 现代浏览器 */          url('webFont.ttf')  format('truetype'),                 /* Safari, Android, iOS */          url('webFont.svg#svgFontName')  format('svg');          /* Legacy iOS */ }</code></pre><p>当然，需要注意的是，字体文件可能比较大，并且每增加一个样式和粗细版本都会引入一个新的字体文件，每个文件都需要额外的HTTP请求，从而影响性能。所以，在使用网络字体前，需要仔细斟酌，判断是否真的有必要在自己的网站上使用它，以及如何正确使用它。</p><p>除了将网络字体应用于文本外，还可以使用网络字体在网页上绘制图标。网上有很多字体图标资源，比如在Bootstrap中，可以使用Glyphicon Halflings 或Font Awesome等字体图标。</p><p>下面以Glyphicon Halflings 字体为例，来说明一下如何在网页中使用字体图标。假设在网页上有 5 个span 元素，使用Glyphicon Halflings字体，在每个 span 元素中生成一个播放器按钮图标：</p><pre class="prettyprint linenums"><code>&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</code></pre><p>首先，下载Glyphicon Halflings的字体文件。Glyphicons Halflings 一般是收费的，但他们的作者允许 Bootstrap 免费使用（向作者致敬）。因此，可以从Bootstrap官网下载编译后的Bootstrap版本，在 fonts 目录中就包含四种格式的Glyphicon Halflings字体文件。</p><p>然后，在CSS中，通过@font-face规则定义网络字体，并在 span 元素中使用该字体。同时，根据网站的配色风格，设定合适的文本颜色：</p><pre class="prettyprint linenums"><code>@font-face  {    font-family: 'Glyphicons Halflings';    src: url('bootstrap/fonts/regular.eot');    src: url('bootstrap/fonts/regular.eot?#iefix') format('embedded-opentype'),          url('bootstrap/fonts/regular.woff') format('woff'),          url('bootstrap/fonts/regular.ttf') format('truetype'),          url('bootstrap/fonts/regular.svg#regular') format('svg');} span {    color: #444;     font-family: 'Glyphicons Halflings';}</code></pre><p>字体图标的原理，基本都是使用字符或实体字符来生成字体图标。因此，就可以使用伪元素，在元素的前面或后面，插入特定的字符或实体字符，就能得到相应的图标。不同的字体，插入的字符可能不同，Glyphicon Halflings字体中，播放器按钮对应的字符如下：</p><pre class="prettyprint linenums"><code>span:nth-child(1):before {    content: "\e069";}span:nth-child(2):before {    content: "\e071";}span:nth-child(3):before {    content: "\e072";}span:nth-child(4):before {    content: "\e075";}span:nth-child(5):before {    content: "\e077";}</code></pre><p>就这么简单，运行结果如图 3‑10 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/3/font-face.png' title='字体图标' alt='字体图标'><figcaption>图3-10  字体图标</figcaption></figure><p>使用字体图标的好处是，如果要改变网站的配色风格，只需修改字体的颜色即可，非常方便。如果使用图像，要重新制作所有图标，非常麻烦。并且，字体图标还可以自由缩放而不会失真，而图像在缩放时可能会失真。</p>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/3/3.1.7.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/3/3.2.1.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>
