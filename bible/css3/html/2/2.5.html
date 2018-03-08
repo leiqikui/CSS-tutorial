@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS伪元素选择器-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS选择器,伪元素选择器" />
+ <meta name="description" content="伪元素选择器，并不是基于真正的元素，而是基于元素当前所具有的特性来选取元素。由于这些元素本身并不存在于文档中，只是基于元素的抽象，因此称作伪元素。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("205");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">2.5 伪元素选择器</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h2 class="hide-text">概述</h2>
+<h2 class="hide-text">基本选择器</h2>
+<h2 class="hide-text">关系选择器</h2>
+<h2 class="hide-text">属性选择器</h2>
+<h2>伪元素选择器</h2>
+<p>伪元素选择器，并不是基于真正的元素，而是基于元素当前所具有的特性来选取元素。由于这些元素本身并不存在于文档中，只是基于元素的抽象，因此称作伪元素。</p><p>伪元素选择器是CSS 中已经定义好的选择器，不能由用户随便起名，只能按CSS规定的标准格式使用。语法格式为：</p><p>选择器:伪元素 { 属性: 值 }</p><p>伪元素选择器在CSS中一直存在，但CSS3对伪元素进行了一定的调整，把选择器和伪元素之间冒号，由CSS1和CSS2.1中的一个冒号，改成了两个冒号。但是，为了向下兼容，现代浏览器仍然支持老的写法，因此，两种写法都是合法的。</p><table summary="伪元素选择器" class="pseudo">	<caption>表 2-4 伪元素选择器</caption>	<thead>		<tr> <th>选择器</th><th>功能描述</th><th>版本</th></tr>	</thead>	<tbody>		<tr><td>E:first-letter/E::first-letter</td><td>选择E元素内的第一个字符</td><td>1/3</td></tr><tr><td>E:first-line/E::first-line</td><td>选择E元素内的第一行</td><td>1/3</td></tr><tr><td>E:before/E::before</td><td>在E元素之前插入由content属性生成的内容</td><td>2/3</td></tr><tr><td>E:after/E::after</td><td>在E元素之后插入由content属性生成的内容</td><td>2/3</td></tr><tr><td>E::placeholder</td><td>选择表单输入框文字占位符</td><td>3</td></tr><tr><td>E::selection</td><td>选择被用户选取的元素</td><td>3</td></tr>	</tbody></table><h4>E: first-letter/E::first-letter</h4><p>E::first-letter 伪选择器用于选择E元素中的第一个字符，第一个字符包括 E::before 插入的内容。</p><p>许多报刊或杂志的文章中，开篇第一个字都很大，通过首字放大来吸引读者的眼球。而这个首字放大的效果，就可以使用 E::first-letter 伪选择器来实现。如：</p><pre class="prettyprint linenums"><code>p:first-child::first-letter {      font-size: 3em;}</code></pre><pre class="prettyprint linenums"><code>&lt;p&gt;许多报刊或杂志的文章中，…，就可以使用E::first-letter伪选择器来实现。 &lt;/p&gt;&lt;p&gt;这里首先使用 …以免所有段落的第一个字都被放大。 &lt;/p&gt;</code></pre><p>首先，使用 p:first-child选择第一个段落，然后，再使用 E::first-letter 伪选择器。这样的话，只有第一个段落中的第一个字是正常字体的3倍，以免所有段落的第一个字都被放大。</p><p>运行结果如图 2‑8 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/first-letter.png' title='首字放大' alt='首字放大'><figcaption>图2-8  首字放大</figcaption></figure><h4>E: first-line/E::first-line</h4><p>E::first-line伪选择器用于选择E元素中的第一行文本。第一行是指在浏览器中显示的第一行文本，如果调整浏览器窗口的尺寸，第一行的内容会跟着变化。第一行的内容包括E::before和E::after插入的内容。如，让段落的第一行文本以红色显示：</p><pre class="prettyprint linenums"><code>p::first-line {    color: red;}</code></pre><pre class="prettyprint linenums"><code>&lt;p&gt;E::first-line伪选择器用于…第一行的内容会跟着变化。&lt;/p&gt;</code></pre><p>运行结果如图 2‑9 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/first-line.png' title='改变首行文本颜色' alt='改变首行文本颜色'><figcaption>图2-9  改变首行文本颜色</figcaption></figure><h4>E::before/E::after</h4><p>使用 E::before和E::after 伪元素选择器，可以很方便地为页面添加一些令人难以置信的设计效果。它们可以跟 content 属性结合使用，来创建所谓的生成内容，并将生成的内容插入到元素E的前面或后面。E::before和E::after的作用相同，只是插入位置不同而已。</p><p>尽管生成的内容不会成为DOM的一部分，但同样可以通过CSS来格式化生成的内容。可以设置生成内容的颜色、字体、背景颜色、背景图像（包括渐变）、宽度、高度、边框、圆角等样式。如果未设置样式，则生成的内容会继承元素自身的可继承属性。</p><p>使用E::before和E::after的好处是，可以直接通过CSS向页面添加内容，而不必在页面上增加HTML元素。可插入的内容包括：</p><p>1）文本</p><p>通过 content 属性来指定待插入的文本，文本会原封不动输出，即便文本中包含HTML标记也不例外。如，在一个段落的前后，分别插入指定的文本：</p><pre class="prettyprint linenums"><code>p::before  {     color: #00f;     content: "&lt;strong&gt;段落之前插入的内容&lt;/strong&gt;，"; }p::after  {     color: #f00;     content: "，段落之后插入的内容"; }</code></pre><pre class="prettyprint linenums"><code>&lt;p&gt;段落文本&lt;/p&gt;</code></pre><p>由于生成的内容不会成为DOM的一部分，因此，这些HTML标记仅仅作为纯文本显示在页面上。运行结果如图 2‑10 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/befor_after_text.png' title='段落前后插入文本' alt='段落前后插入文本'><figcaption>图2-10  段落前后插入文本</figcaption></figure><p>2）文本符号</p><p>生成内容中，有一种特殊形式，就是文本符号，如双引号、单引号、括号等。在一个元素前后插入文本符号的方法为：</p><p>首先，在元素样式中，通过 quotes 属性来定义文本符号的内容。quotes 属性的值必须是一对字符串，中间用一个或多个空格分开，第一个串定义了开始符号（open-quote），第一个串定义了结束符号（close-quote）。因此，以下三种声明中，只有第一个是合法的：</p><pre class="prettyprint linenums"><code>cite { quotes: '“'  '”'; }cite { quotes: '“'; }cite { quotes: '”'; }</code></pre><p>由于文本符号是字符串，所以，要用引号把字符串包围起来，可以使用双引号，也可以使用单引号。事实上，文本符号可以是任意字符串。因此，以下声明都是合法的：</p><pre class="prettyprint linenums"><code>cite { quotes: "{"  "}"; }cite { quotes: '('  ')'; }cite { quotes: 'start'  'end'; }</code></pre><p>然后，把 content 属性的值设置为 open-quote 和 close-quote，就可以在元素的前面和后面分别插入由 open-quote 和 close-quote 定义的文本符号。如：</p><pre class="prettyprint linenums"><code>cite { quotes: '“' '”'; font-style: normal; }cite::before { content: open-quote; }cite::after  { content: close-quote; }</code></pre><pre class="prettyprint linenums"><code>&lt;p&gt;子在川上曰:&lt;cite&gt;逝者如斯夫&lt;/cite&gt;&lt;/p&gt;</code></pre><p>上述的代码，在引文的两侧分别添加双引号。运行结果如图 2‑11 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/befor_after_quote1.png' title='插入文本符号' alt='插入文本符号'><figcaption>图2-11  插入文本符号</figcaption></figure><p>因为不同的语言有不同的文本符号，如中文使用全角引号，英文使用半角引号。所以，使用 quotes 属性来确定使用什么文本符号是有道理的。</p><p>当然，quotes 属性可以支持任意多层嵌套引用模式。通常的做法是，先以双引号开头，内层嵌套的引用使用单引号。如：</p><pre class="prettyprint linenums"><code>cite { quotes: '“'  '”' '‘'  '’'; font-style:normal;}cite::before { content:open-quote; }cite::after  { content:close-quote; }</code></pre><pre class="prettyprint linenums"><code>&lt;p&gt;《水调歌头·游泳》:&lt;cite&gt;子在川上曰:&lt;q&gt;逝者如斯夫&lt;/q&gt;&lt;/cite&gt;&lt;/p&gt;</code></pre><p>上述的代码，外层引文使用双引号，内层引文使用单引号。运行结果如图 2‑12 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/befor_after_quote2.png' title='文本符号嵌套' alt='文本符号嵌套'><figcaption>图2-12  文本符号嵌套</figcaption></figure><p>CSS2.1规范还规定，如果引号的嵌套层数大于已定义的引号对数，更深层次的嵌套，将使用最后一对引号。</p><p>3）外部资源</p><p>使用E::before和E::after选择器，不仅可以插入文本，也可以插入外部资源，如图片。插入外部资源时，需要在 content 属性中，通过url来指定资源的路径。</p><p>如，上一节中根据文件类型，显示相应文件类型的图标的例子，也可以使用E::before伪元素选择器来实现：</p><pre class="prettyprint linenums"><code>a  { display:block; padding:4px; font-size:14px;  }a::before  { padding-right:10px;  }a[href $= "doc"]::before  { content: url('img/doc.gif');  }a[href $= "xls"]::before  { content: url('img/xls.gif');  }a[href $= "ppt"]::before  { content: url('img/ppt.gif');  }a[href $= "pdf"]::before  { content: url('img/pdf.gif');  }a[href $= "rar"]::before  { content: url('img/rar.gif');  }a[href $= "wmv"]::before  { content: url('img/wmv.gif');  }</code></pre><p>如果浏览器出于某种原因不支持所指定的资源，如插入SVG，但该浏览器不能识别SVG，此时，浏览器就会忽略该资源，不插入任何内容。</p><p>虽然CSS2.1规范规定，可以通过 url 属性来插入音频、视频或浏览器支持的其他任何资源。但目前为止，还没有任何浏览器支持。</p><p>4）元素的属性值</p><p>除了文本和外部资源，也可以插入元素的某个属性值。插入属性值时，需要在content属性中，通过 attr 来指定元素的属性名称。</p><p>如，为了方便用户查看外部链接的地址，可以把页面上的每个外部链接的 href 属性值显示在链接的后面：</p><pre class="prettyprint linenums"><code>a[href ^= "http://"]:after  {     content: " ["attr(href)"]"; }</code></pre><pre class="prettyprint linenums"><code>&lt;a href="http://www.waibo.wang/"&gt;歪脖网&lt;/a&gt;</code></pre><p>上述代码的运行结果如图 2‑13 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/befor_after_attr.png' title='插入属性值' alt='插入属性值'><figcaption>图2-13  插入属性值</figcaption></figure><p>注意，如果插入的属性不存在，则会在相应的位置插入一个空字符串。另外，到目前为止，各浏览器对 attr 属性值的支持有限，并非任何属性都能支持。</p><p>5）空内容</p><p>如果设置content: &quot;&quot;，则不插入任何内容。借助元素自身的特征，通过巧妙设置一些CSS属性，虽然在元素的前后没有插入任何内容，却可以实现很多非常有趣的效果。如：</p><pre class="prettyprint linenums"><code>#gossip {    width: 96px;    height: 48px;    background: #fff;    border-color: #000;    border-style: solid;    border-width: 1px 1px 50px 1px;    border-radius: 100%;    position: relative;}#gossip:before {    content: "";    width: 12px;    height: 12px;    top: 50%;    left: 0;    position: absolute;    background: #fff;    border: 18px solid #000;    border-radius: 100%;}#gossip:after {    content: "";    width: 12px;    height: 12px;    top: 50%;    left: 50%;    position: absolute;    background: #000;    border: 18px solid #fff;    border-radius: 100%;} </code></pre><pre class="prettyprint linenums"><code>&lt;div id="gossip"&gt;&lt;/div&gt;</code></pre><p>上述代码将实现一个八卦图的效果。运行结果如图 2‑14 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/befor_after_empty.png' title='插入空内容' alt='插入空内容'><figcaption>图2-14  插入空内容</figcaption></figure><p>6）项目符号</p><p>插入的内容还可以是列表的项目符号，只要 list-style-type 属性能支持的符号类型，均可插入。这是一个非常实用的功能。</p><p>假如在写一篇文章，文章有各级标题，有时需要调整标题的顺序。如果每次调整顺序或增删标题后，都要人工重新调整编号，就极不方便。如果采用自动编号，那就方便多了。这种情况，就可以借助 content 属性，在标题前插入自动编号，省时省力。效果如图 2‑15 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/befor_after_list.png' title='章节自动编号' alt='章节自动编号'><figcaption>图2-15  章节自动编号</figcaption></figure><p>插入自动章节编号的具体方法，将在11.3.1节中详细介绍，这里不再赘述，先有个感性认识就可以了。</p><h4>E::placeholder</h4><p>E::placeholder伪选择器用于控制表单输入框占位符的外观，它允许设计师改变文字占位符的样式。默认情况下，占位符文字为浅灰色，无边框。目前所有的浏览器都不支持该选择器，需要添加浏览器私有前缀。如：</p><pre class="prettyprint linenums"><code>input::-webkit-input-placeholder  { 	color: #f00;	border: 1px solid #00f;}</code></pre><pre class="prettyprint linenums"><code>&lt;input  placeholder = "用户名" /&gt;</code></pre><p>上述代码，把占位符文本的颜色设置为红色，并为它添加了一个宽度为1像素的蓝色实线边框。运行结果如图 2‑16 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/placeholder.png' title='控制文本占位符样式' alt='控制文本占位符样式'><figcaption>图2-16  控制文本占位符样式</figcaption></figure><h4>E::selection</h4><p>E::selection选择器用于选择被选中的文本。可以使用该选择器，为被选中的文本设计一个与众不同的效果，如改变其背景色、前景色、文字阴影等。</p><p>这里有一个文本输入框和一个p元素。当文本输入框处于被选中状态时，被选中文本的背景色将会变成绿色。</p><pre class="prettyprint linenums"><code>input[type = text]::selection  {    background: #0f0;}</code></pre><pre class="prettyprint linenums"><code>&lt;input  type="text" /&gt;</code></pre><p>上述代码的运行结果如图 2‑17 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/selction1.png' title='改变被选中文本背景色' alt='改变被选中文本背景色'><figcaption>图2-17  改变被选中文本背景色</figcaption></figure><p>这里有一个段落，段落中被选中文本的背景色将会变成黑色，文本颜色会变成白色，并为文本添加了阴影。代码如下：</p><pre class="prettyprint linenums"><code>p::selection {    background: #000;	  color: #fff;    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);}</code></pre><p>&lt;p&gt;鼠标选中这段文字后，文本的背景色将会变成黑色，文本颜色会变成白色，并为文本添加了阴影，快用鼠标选中试一试吧O(&cap;_&cap;)O~&lt;/p&gt;</p><p>上述代码的运行结果如图 2‑18 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/selction2.png' title='改变被选中文本背景、前景、阴影' alt='改变被选中文本背景、前景、阴影'><figcaption>图2-18  改变被选中文本背景、前景、阴影</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/2/2.4.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/2/2.6.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS属性选择器-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS选择器,属性选择器" />
+ <meta name="description" content="在HTML中，可以通过元素各种各样的属性，来给元素增加很多附加信息。如通过width属性，可以指定元素的宽度；通过id属性，可以区分不同的元素，并通过Javascript来控制这些元素的内容和状态。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("204");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">2.4 属性选择器</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h2 class="hide-text">概述</h2>
+<h2 class="hide-text">基本选择器</h2>
+<h2 class="hide-text">关系选择器</h2>
+<h2>属性选择器</h2>
+<p>在HTML中，可以通过元素各种各样的属性，来给元素增加很多附加信息。如通过 width 属性，可以指定元素的宽度；通过 id 属性，可以区分不同的元素，并通过Javascript来控制这些元素的内容和状态。</p><p>以往的CSS中，大量使用类选择器来定义样式。由于类选择器并不能说明什么样式服务于什么元素。因此，对于一个大型网站，CSS代码比较庞大，若要修改某个样式，就成为非常头疼的事情。</p><p>CSS的属性选择器使上述问题迎刃而解，因为它是语义化的选择器，可以根据元素是否拥有某个属性或属性的值来选择元素。</p><table summary="属性选择器" class="attr">	<caption>表 2‑3 属性选择器</caption>	<thead>		<tr> <th>选择器</th><th>功能描述</th><th>版本</th></tr>	</thead>	<tbody>		<tr><td>E[attribute]</td><td>选择拥有属性 attribute 的E元素，不考虑属性的值</td><td>2</td></tr><tr><td>E[attribute = val]</td><td>选择属性 attribute 的值等于val的E元素</td><td>2</td></tr><tr><td>E[attribute ~= val]</td><td>选择属性 attribute 的值是用空格分隔的多个单词，其中一个单词的值等于 val的E元素</td><td>2</td></tr><tr><td>E[attribute |= val]</td><td>选择属性 attribute 的值是用连字符"-"分隔的单词，并以 val 开头的E元素，主要用于 lang 属性，比如 "en"、"en-us"、"en-gb" 等</td><td>2</td></tr><tr><td>E[attribute *= val]</td><td>选择属性 attribute 的值包含 val 子字符串的E元素</td><td>3</td></tr><tr><td>E[attribute ^= val]</td><td>选择属性 attribute 的值以 val 开头的E元素，val 为完整的单词或单词的一部分</td><td>3</td></tr><tr><td>E[attribute $= val]</td><td>选择属性 attribute 的值以 val 结尾的E元素，val 为完整的单词或单词的一部分</td><td>3</td></tr>	</tbody></table><p>（1）E[attribute] 选择器</p><p>该选择器表示，选择拥有attribute属性的E元素，不管属性的值是什么。如果省略E，则表示选择任何类型的元素，只要它拥有attribute属性（下同）。</p><p>如，为所有包含 rel 属性的超链接应用样式，让其文本为绿色：</p><pre class="prettyprint linenums"><code>a[rel] { 	color: green; } </code></pre><p>还可以根据多个属性进行选择，只需将多个属性链接在一起即可。如，将同时带有href和 title 属性的所有超链接设置为红色：</p><pre class="prettyprint linenums"><code>a[href][title] { 	color: red; }</code></pre><p>（2）E[attribute = val] 选择器</p><p>该选择器表示，选择设置了属性 attribute，且属性的值为val的E元素。如，将指向首页的的所有超链接设置为红色：</p><pre class="prettyprint linenums"><code>a[href = "http://www.waibo.wang/"] { 	color: red; }</code></pre><p>在处理表单时，许多元素都使用相同的标签，如复选框、文本输入框、提交按钮等，都使用 input 标签，而实际上它们的功能却完全不同，其功能由 type 属性的值来决定。如果仅仅想为文本输入框添加边框，就可以使用这个选择器。如：</p><pre class="prettyprint linenums"><code>input[type = "text"] {   border: 1px solid #ccc;} </code></pre><p>该选择器也支持根据多个属性进行选择，只需将多个属性-值链接在一起即可。如，将 href 属性值为 http://www.waibo.wang/，且 title 属性值为&ldquo;歪脖网首页&rdquo;的所有超链接加粗显示：</p><pre class="prettyprint linenums"><code>a[href = "http://www.waibo.wang/"][title = "歪脖网首页"] {   font-weight: bold;}</code></pre><p>需要注意的是，该选择器的指定的属性值，必须与HTML标签中的属性值完全匹配才行，否则就会选择失败。如，在HTML中的class属性中，如果包含多个类名，类名之间用一个空格分隔：</p><pre class="prettyprint linenums"><code>&lt;p class="urgent warning"&gt; urgent warning&lt;/p&gt;</code></pre><p>如果要根据 class 属性的值来选择这个元素，必须写成：</p><pre class="prettyprint linenums"><code>p[class = "urgent warning"] {   font-weight: bold;}</code></pre><p>要求选择器的属性值必须与HTML标签中的属性值完全相同，urgent在前，warning在后，就连空格的个数也要完全相同，否则就会匹配失败。</p><p>（3）E[attribute ~= val] 选择器</p><p>该属性选择器表示，选择拥有属性 attribute，且属性的值是用空格分隔的列表，其中一个列表值为 val的E元素。</p><p>在HTML中，这方面最经典的例子就是 class 属性，它能接受一个或多个词作为其属性值。还是前面的示例：</p><pre class="prettyprint linenums"><code>&lt;p class="urgent warning"&gt; urgent warning&lt;/p&gt;</code></pre><p>如果要选择 class 属性值中包含 warning 的元素，写成下面这个样子就可以了：</p><pre class="prettyprint linenums"><code>p[class ~= "warning"] {  font-weight: bold;}</code></pre><p>其实，该选择器只要求属性中包含指定的值即可，属性的值是否是词的列表也无关紧要，因此，上述选择器也会匹配 class = &quot;warning&quot; 的段落。也就是说，p[class ~= &quot;warning&quot;] 和 p.warning 的作用是等价的。</p><p>（4）E[attribute |= val] 选择器</p><p>该属性选择器表示，选择拥有属性 attribute，且属性的值是用连字符&quot;-&quot;分隔的单词，并以 val 开头的E元素，主要用于 lang 属性，比如 &quot;en&quot;、&quot;en-us&quot;、&quot;en-gb&quot; 等等。</p><p>如，通过使用通用选择器，这个选择器选择任何带有 lang 属性且属性值以 en 开头的元素：</p><pre class="prettyprint linenums"><code>*[lang |= "en"] {   color: green; }</code></pre><p>上述规则就会选择 lang属性值等于 en，或以 en- 开头的所有元素。因此，以下示例中的前两个会被选中，而后两个不会被选中：</p><pre class="prettyprint linenums"><code>&lt;h1 lang = "en"&gt;Hello!&lt;/h1&gt;&lt;p lang = "en-us"&gt;Greetings!&lt;/p&gt;&lt;h2 lang = "fr"&gt;Bonjour!&lt;/h2&gt;&lt;div lang = "cy-en"&gt;Jrooana!&lt;/div&gt;</code></pre><p>当然，该选择器可以用于任何属性和值。假如一个文档中有一系列图像，每个图像的文件名都形如 figuer-1.gif 和figuer-2.jpg，就可以使用以下选择器匹配所有这些图像：</p><pre class="prettyprint linenums"><code>img[src |= "figuer"] {   border: 1px solid gray;}</code></pre><p>（5）E[attribute *= val] 选择器</p><p>该属性选择器表示，选择拥有属性 attribute，且属性的值包含 val 子字符串的E元素。</p><p>假如网站在链接类名中添加 nav 子串，来区分导航链接，主导航的类名为 mainnav，页码导航的类名为 pagenav：</p><pre class="prettyprint linenums"><code>&lt;div class = "mainnav"&gt;  &lt;a href = "#"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class = "pagenav"&gt;  &lt;a href = "#" &gt;&lt;/a&gt;&lt;/div&gt;</code></pre><p>如果想去掉所有导航链接的下划线，就可以使用该选择器：</p><pre class="prettyprint linenums"><code>div[class *= "nav"] a {   text-decoration: none;}</code></pre><p>（6）E[attribute ^= val] 选择器</p><p>该属性选择器表示，选择拥有属性 attribute，且属性的值以 val 开头的E元素，val 为完整的单词或单词的一部分。</p><p>如，为了突显指向网站外部的链接，就可以使用 E[ attribute ^= val ] 属性选择器，来寻找所有以 http: 开头的链接，在右侧添加外部链接的小图标。</p><pre class="prettyprint linenums"><code>a[href ^= "http://"] {  padding-right: 20px;  background: url(img/external.gif) no-repeat right top;}</code></pre><p>（7）E[attribute $= val] 选择器</p><p>该属性选择器表示，选择拥有属性 attribute，且属性的值以 val 结尾的E元素，val 为完整的单词或单词的一部分。</p><p>对于一些下载站，用户可以下载各种不同类型的文件，而文件类型是根据超链接中 href 属性值的最后几个字符来确定：</p><pre class="prettyprint linenums"><code>&lt;a href = "a.doc"&gt;DOC文件&lt;/a&gt;&lt;a href = "a.xls"&gt;XLS文件&lt;/a&gt;&lt;a href = "a.ppt"&gt;PPT文件&lt;/a&gt;&lt;a href = "a.pdf"&gt;PDF文件&lt;/a&gt;&lt;a href = "a.rar"&gt;RAR文件&lt;/a&gt;&lt;a href = "a.wmv"&gt;WMV文件&lt;/a&gt;</code></pre><p>这种情况，就可以使用该属性选择器，检测文件的扩展名，并为不同类型的文件添加不同的图标，以提高用户体验：</p><pre class="prettyprint linenums"><code>a {   display: block;   padding: 4px 24px;   font-size: 14px;   color: #000;}a[href $= "doc"],a[href $= "docx"] {   background: url('img/doc.gif') no-repeat left center; }a[href $= "xls"],a[href $= "xlsx"] {   background: url('img/xls.gif') no-repeat left center; }a[href $= "ppt"] {   background: url('img/ppt.gif') no-repeat left center; }a[href $= "pdf"] {   background: url('img/pdf.gif') no-repeat left center; }a[href $= "zip"],a[href $= "rar"] {   background: url('img/rar.gif') no-repeat left center; }a[href $= "wmv"] {   background: url('img/wmv.gif') no-repeat left center; }</code></pre><p>运行结果如图 2‑7 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/attribute.png' title='CSS属性选择器' alt='CSS属性选择器'><figcaption>图2-7  CSS属性选择器</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/2/2.3.4.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/2/2.5.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
