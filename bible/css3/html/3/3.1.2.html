@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS font-size属性_CSS字体大小-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, font-size,font-size属性,CSS font-size属性, CSS字体大小" />
+ <meta name="description" content="font-size属性用来设置元素中所包含文本的字体大小。如果一个元素没有显式定义font-size属性，则会自动继承父元素的 font-size 属性的计算结果" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("30102");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">3.1.2 字体大小</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h2 class="hide-text">字体</h2>
+<h3 class="hide-text">字体系列</h3>
+<h3>字体大小</h3>
+<p>在CSS中，通过 font-size属性来设置元素中所包含文本的字体大小。如果一个元素没有显式定义font-size属性，则会自动继承父元素的 font-size属性的计算结果。</p><p>定义 font-size 时，可以使用预定义关键字、绝对尺寸、相对尺寸：</p><p>1）预定义关键字</p><p>预定义关键字有 xx-small、x-small、small、medium、large、x-large、xx-large，尺寸按顺序依次增大，类似于衣服的尺寸。</p><p>使用预定义关键字有两大缺陷：一是只有 7 种选择，可选择范围太小；二是跟衣服的尺寸一样，不同厂商对每个关键字对应的字体大小的精确值可能各不不同，导致在不同浏览器下，文本的大小可能不同。因此，不推荐使用预定义关键字来定义字体的大小。</p><p>2）绝对尺寸</p><p>绝对尺寸有px（像素）、pt（点，1pt 相当于 1/72in）、in（英寸）、cm（厘米）、mm（毫米）等。如：</p><pre class="prettyprint linenums"><code>.px {    font-size: 14px;}.pt {    font-size: 10pt;}.in {    font-size: .15in;}.cm {    font-size: .4cm;}.mm {    font-size: 4mm;}</code></pre><pre class="prettyprint linenums"><code>&lt;p class="px"&gt;字体大小： 14px&lt;/p&gt;&lt;p class="pt"&gt;字体大小： 10pt&lt;/p&gt;&lt;p class="in"&gt;字体大小： .15in&lt;/p&gt;&lt;p class="cm"&gt;字体大小： .4cm&lt;/p&gt;&lt;p class="mm"&gt;字体大小： 4mm&lt;/p&gt;</code></pre><p>上述代码定义了 5 种字体大小，都使用绝对单位。使用绝对长度单位后，在固定分辨率的显示器下，显示出来的都是固定大小。运行结果如图 3‑1 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/3/font-size1.png' title='font-size属性' alt='font-size属性'><figcaption>图3-1  font-size属性</figcaption></figure><p>如果以 px 为单位设置字体大小，使用IE浏览器的用户，就不能在浏览器上通过设置“文字大小”来对文本进行放大或缩小。如果文本太小，就会影响阅读，使用户体验大打折扣。</p><p>3）相对尺寸</p><p>相对尺寸有 em、%、rem，它们都是相对于某个参考基准的字体大小，来计算当前字体的大小，只是参考基准不同而已。</p><p>em 的参考基准是父元素。那么，如何计算要指定的 em 值呢？实际上，1em 总是等于父元素 font-size属性的值，这就是 em 的工作原理。据此，可以通过以下公式来确定百分比的值：</p><p>目标元素的字体大小 / 父元素的字体大小 = 值</p><p>因此，在使用 em 定义字体大小时，最好在 html 或 body 元素上建立一个基准。假设在 body 中设置的基准大小为 12px：</p><pre class="prettyprint linenums"><code>body {    font-size: 12px;}</code></pre><p>如果希望 body 中所有段落的字体大小为 18px，根据上述公式：</p><p>18 / 12 = 1. 5</p><p>因此，只需将将段落的 font-size 设置为 1.5em 就可以了，这条规则就表示段落文本的字体大小为父元素文本大小的1.5 倍：</p><pre class="prettyprint linenums"><code>body  p  {    font-size: 1.5em;}</code></pre><p>% 的参考基准也是父元素，100% 也总是等于父元素 font-size属性的值，即 1em 就等于 100%。也就是说，在用 % 定义字体大小时，只需将 em 的值换算成相应的百分数即可。因此，以下两条声明会得到相同的结果（假设两个段落具有相同的父元素）：</p><pre class="prettyprint linenums"><code>p.one {    font-size: 1.5em;}p.one {    font-size: 150%;}</code></pre><p>需要注意的是，尽管 font-size 是可以继承的，但在使用 % 和 em 定义字体大小时，子元素继承的是计算结果的值，而不是 % 和 em 的数字。并且，% 和 em 还可以累积。考虑以下代码：</p><pre class="prettyprint linenums"><code>p {    font-size: 12px;}em {    font-size: 200%;}strong {    font-size: 200%;}</code></pre><pre class="prettyprint linenums"><code>&lt;p&gt;12px &lt;em&gt; 200% &lt;strong&gt; 200% &lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</code></pre><p>上述代码中，p 为父元素，em 为 p 的子元素，strong 为 em 的子元素。em 元素的基准是 p 元素，而 strong 元素的基准是 em 元素。计算结果如下：</p><p>em：12 × 200% = 24px</p><p>strong：24 × 200% = 48px</p><p>得到的运行结果如图 3‑2 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/3/font-size2.png' title='font-size属性继承' alt='font-size属性继承'><figcaption>图3-2  font-size属性继承</figcaption></figure><p>在这种多层嵌套的情况下，如果某一个计算结果不是整数，浏览器可能就会取整，子元素再继承取整后的值。如果嵌套很深，下层的字体大小就越来越偏离实际计算值。并且，由于参考基准总是随着元素发生变化，嵌套越深，计算起来也就越困难。</p><p>鉴于此，CSS3中新增的一个相对单位 rem（root em的简称），它总是以文档的根元素（即 html 元素）为参考基准，来设置其它元素的字体大小，即 1rem 相当于 html 元素 font-size属性的值。考虑以下代码：</p><pre class="prettyprint linenums"><code>html {    font-size: 10px;}p {    font-size: 1.4rem;}</code></pre><p>上述声明中，p 元素的字体大小将是 html 字体大小的1.4倍，则计算得到 p 元素的字体大小就是1.4 × 10px = 14px。</p><p>这样一来，无论嵌套多少层，参考基准始终不变，计算字体大小就变得容易多了。不过，需要注意的是，rem 是CSS3新增的一个相对单位，IE9 以下版本的老浏览器却不支持它，这也是很多编程人员尚未使用 rem 的原因。</p><p>在定义字体大小时，笔者建议在 html 元素中定义绝大多数元素所需要的字体大小，并让所有子元素继承 html 的字体大小。如果某个子元素需要要改变字体大小，则使用相对尺寸 em 或 % 或 rem 重新定义。</p><p>这样做的好处是，一方面，绝大多数元素都不必定义字体大小，减少不必要的定义；另一方面，如果完成所有的文字排版后，又要统一调整页面文字大小，就可以只修改 html 中的字体大小，其它所有文字的字体大小会自动变化，修改起来就很容易。</p><section><p class="note">说明：</p><p>在某些特殊场景下，需要把 font-size 的值设置为0，来隐藏某些文本。但是，在IE6和IE7中，font-size: 0 的文本却变成了小黑点，并没有完全隐藏。</p><p>解决这个问题的最简单办法，就是在 font-size: 0 的同时，把 text-indent 属性设置为一个很大的负值，让这些文本显示在屏幕之外，自然就被隐藏起来。</p></section>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/3/3.1.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/3/3.1.3.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
