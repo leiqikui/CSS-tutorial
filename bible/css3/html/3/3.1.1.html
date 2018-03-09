@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS font-family属性_CSS字体系列-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, font-family,font-family属性,CSS font-family属性, CSS字体系列" />
+ <meta name="description" content="font-family属性用来指定文本所使用的字体系列" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("30101");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">3.1.1 字体系列</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h2>字体</h2>
+<p>CSS规范清楚的认识到，字体选择是一个常见而且很重要的特性，所以设置字体的属性就是样式表中最常见的用途之一。</p><p>字体相关的属性在CSS1就已经定义，CSS3又新增了font-stretch 和 font-size-adjust 这两个属性。</p><p>人们早已认识到字体选择很重要，并在CSS2就支持可下载字体，也定义了 @font-face 相关属性，但是并没有得到浏览器的广泛支持。直到CSS3，浏览器才开始支持 @font-face，使设计师可以在网页中使用自己喜欢的任意字体。</p><h3>字体系列</h3><p>在CSS中，通过 font-family属性来指定文本所使用的字体系列。语法格式为：</p><pre class="prettyprint linenums"><code>font-family: [&lt;family-name&gt;&nbsp;|&nbsp;&lt;generic-family&gt;] #</code></pre><p>其中，family-name为字体系列的名称；generic-family为通用字体系列的名称。也就是说，font-family属性的值既可以是具体的字体系列的名称，也可以是通用字体系列的名称。</p><p>CSS定义了 5 种通用字体系列，分别是serif、sans-serif、cursive、fantasy、monospace，font-family属性可用使用其中的任何一种。如果希望文档使用一种通用字体系列中的某个字体，但并不关心是哪一种具体的字体，使用通用字体系列就比较合适。如：</p><pre class="prettyprint linenums"><code>body  {	font-family: sans-serif;}</code></pre><p>这样，浏览器就会从 sans-serif 字体系列中选择一种字体，并将它应用到 body 元素。由于 font-family属性具有继承性，这种字体将会应用到 body 元素中的所有元素，除非有一种更特殊的选择器将其覆盖。</p><p>选择字体时，要尽量选择能够引人注目（特别是标题），并且容易阅读的字体。当然，设计师也可以选择使用特定的字体。假如设计师希望所有 h1 标题都使用 Georgia 字体，可以使用以下声明：</p><pre class="prettyprint linenums"><code>h1  {	font-family: Georgia;}</code></pre><p>这会使浏览器对所有 h1 标题都使用 Georgia 字体。当然，这个规则是假设访问者的计算机上已经安装了该字体。并且，设计师总是希望使用任何想要的字体，遗憾的是，如果访问者的计算机上没有安装该字体，浏览器便会使用默认字体来显示 h1 标题。</p><p>不过，不必万念俱灰，通过结合特定字体和通用字体系列，可以创建与你预想相同的文档。可以使用以下规则，告诉浏览器使用 Georgia 字体（如果可用），如果 Georgia 字体不可用，就使用另外一种 serif 字体：</p><pre class="prettyprint linenums"><code>h1  {	font-family: Georgia, serif;}</code></pre><p>这时，如果访问者的计算机上没有安装Georgia字体，但安装了 Times 字体，浏览器就会使用 Times。尽管 Times 与 Georgia 并不完全匹配，但至少足够接近。</p><p> 出于这个原因，强烈建议在所有 font-family 规则中，都提供一个通用字体系列。这样一来，就提供了一条后路。</p><p>如果你对字体很熟悉，也可以在 font-family属性中指定想要的字体，并按优先顺序依次排列，中间用逗号分隔。如：</p><pre class="prettyprint linenums"><code>body {	font-family: Arial, SimSun, Helvetica, sans-serif;}</code></pre><p>浏览器会根据这个列表，按顺序查找这些字体，如果访问者的计算机上安装了第一种字体，就可以正确显示。如果没有安装第一种字体，就自动切换到第二种、第三种字体，以此类推。如果所有字体都没有找到，就会从 sans-serif 字体系列中选择一种可用的字体。</p><p>利用这个特性，还可以实现英文和中文使用不同字体的效果。通常的做法是，把英文字体写在前面，中文字体写在后面。如：</p><pre class="prettyprint linenums"><code>p {  font-family:  Arial, 'Microsoft YaHei';   /* Arial，微软雅黑 */}</code></pre><p>这样，浏览器会优先使用 Arial 字体显示文本，由于中文字符不识别 Arial 字体，就会在后面的字体中继续查找，找到 Microsoft YaHei 字体后，便对中文应用该字体，这样，就达到了中文和英文使用不同字体的效果。</p><p>在指定字体时，如果字体名称中包含空格或中文或其他特殊字符，则要把整个字体名称用放在引号中，可以使用单引号，也可以使用双引号。并且，字体名称不区分大小写。</p><p>对于中文，有三种指定字体的方法：一种是直接使用中文字体名称，一种是使用英文字体名称，一种是使用字体的 unicode 码。但是，在CSS文档中定义字体时，如果直接书写中文，经常会出现乱码，或者在某些浏览器下字体不生效。一个常用的解决办法，是把中文字体名称转换为对应的英文字体名称或unicode 码。如，宋体的英文字体名称为 SimSun、unicode 码为 \5B8B\4F53，则可以写成：</p><pre class="prettyprint linenums"><code>p {  font-family: SimSun;}</code></pre><p>也可以写成：</p><pre class="prettyprint linenums"><code>p {  font-family: "\5B8B\4F53";}</code></pre><p>上述两种写法是等价的，可以自行选择。为了方便查阅，几种常用字体的中文名称、英文名称、unicode码的对照关系见表 3‑1。</p><table summary="常见字体对照表">	<caption>表 3-1 常见字体对照表</caption><thead>	<tr>		<th>中文名称</th>	    <th>英文名称</th>	    <th>unicode</th>	</tr></thead><tbody>	<tr><td>新细明体</td><td>PMingLiU</td><td>\65B0\7EC6\660E\4F53</td></tr>	<tr><td>细明体</td><td>MingLiU</td><td>\7EC6\660E\4F53</td></tr>	<tr><td>标楷体</td><td>DFKai-SB</td><td>\6807 \6977\4F53</td></tr>	<tr><td>黑体</td><td>SimHei</td><td>\9ED1\4F53</td></tr>	<tr><td>宋体</td><td>SimSun</td><td>\5B8B\4F53</td></tr>	<tr><td>新宋体</td><td>NSimSun</td><td>\65B0\5B8B\4F53</td></tr>	<tr><td>仿宋</td><td>FangSong</td><td>\4EFF\5B8B</td></tr>	<tr><td>楷体</td><td>KaiTi</td><td>\6977\4F53</td></tr>	<tr><td>仿宋_GB23122</td><td>FangSong_GB2312</td><td>\4EFF\5B8B_GB2312</td></tr>	<tr><td>楷体_GB2312</td><td>KaiTi_GB2312</td><td>\6977\4F53_GB2312</td></tr>	<tr><td>微软正黑体</td><td>Microsoft JhengHei</td><td>\5FAE\x8F6F\6B63\9ED1\4F53</td></tr>	<tr><td>微软雅黑</td><td>Microsoft YaHei</td><td>\5FAE\8F6F\96C5\9ED1</td></tr>	<tr><td>华文细黑</td><td>STXihei</td><td>\534E\6587\7EC6\9ED1</td></tr>	<tr><td>华文黑体</td><td>STHeiti</td><td>\534E\6587\9ED1\4F53</td></tr>	<tr><td>华文楷体</td><td>STKaiti</td><td>\534E\6587\6977\4F53</td></tr>	<tr><td>华文宋体</td><td>STSong</td><td>\534E\6587\5B8B\4F53</td></tr>	<tr><td>华文仿宋</td><td>STFangsong</td><td>\534E\6587\4EFF\5B8B</td></tr>	<tr><td>丽黑</td><td>ProLiHei Pro Medium</td><td>\4E3D\9ED1 Pro</td></tr>	<tr><td>丽宋</td><td>ProLiSong Pro Light</td><td>\4E3D\5B8B Pro</td></tr>	<tr><td>标楷体</td><td>BiauKai</td><td>\6807\6977\4F53</td></tr>	<tr><td>隶书</td><td>LiSu</td><td>\96B6\4E66</td></tr>	<tr><td>幼圆</td><td>YouYuan</td><td>\5E7C\5706</td></tr>	<tr><td>华文细黑</td><td>STXihei</td><td>\534E\6587\7EC6\9ED1</td></tr>	<tr><td>华文楷体</td><td>STKaiti</td><td>\534E\6587\6977\4F53</td></tr>	<tr><td>华文宋体</td><td>STSong</td><td>\534E\6587\5B8B\4F53</td></tr>	<tr><td>华文中宋</td><td>STZhongsong</td><td>\534E\6587\4E2D\5B8B</td></tr>	<tr><td>华文仿宋</td><td>STFangsong</td><td>\534E\6587\4EFF \5B8B</td></tr>	<tr><td>方正舒体</td><td>FZShuTi</td><td>\65B9\6B63\8212\4F53</td></tr>	<tr><td>方正姚体</td><td>FZYaoti</td><td>\65B9 \6B63\59DA\4F53</td></tr>	<tr><td>华文彩云</td><td>STCaiyun</td><td>\534E\6587\5F69\4E91</td></tr>	<tr><td>华文琥珀</td><td>STHupo</td><td>\534E\6587\7425\73C0</td></tr>	<tr><td>华文隶书</td><td>STLiti</td><td>\534E\6587\96B6\4E66</td></tr>	<tr><td>华文行楷</td><td>STXingkai</td><td>\534E\6587\884C\6977</td></tr>	<tr><td>华文新魏</td><td>STXinwei</td><td>\534E\6587\65B0\9B4F </td></tr>	</tbody></table><p>虽然CSS提供了备选字体的机制，但是，在CSS3之前，所有的字体都只能是Web安全字体（即预先安装在主流个人计算机操作系统中的字体的子集）。直到CSS3中@font-face的出现，这个问题才彻底得到解决。</p><section><p class="note">说明：</p><p>虽然 font-family属性具有继承性，但有几个元素不会继承父元素的字体设置，其中有表单的select、textarea 和input 元素。不过，可以强制它们继承父元素的字体设置。代码如下：</p><pre class="prettyprint linenums"><code>input, select, textarea {   font-family: inherit; }</code></pre></section>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/3/3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/3/3.1.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
