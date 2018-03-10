@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3 font-size-adjust属性_CSS3字体调整-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, font-size-adjust,font-size-adjust属性,font-size,font-size属性,CSS3字体调整" />
+ <meta name="description" content="把 font-size-adjust 属性的值，设置为首选字体的 aspect 值，就可以保证使用备选字体后，文本的显示尺寸不发生变化" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("30107");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">3.1.7 字体调整</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h2 class="hide-text">字体</h2>
+<h3 class="hide-text">字体拉伸</h3>
+<h3 class="hide-text">字体变形</h3>
+<h3 class="hide-text">字体风格</h3>
+<h3 class="hide-text">字体粗细</h3>
+<h3 class="hide-text">字体大小</h3>
+<h3 class="hide-text">字体系列</h3>
+<h3>字体调整</h3>
+<p>设计师也会经常遇到一种情况，就是精心设计好的页面，如果改变字体的种类，页面上使用该字体的文本尺寸将发生变化，从而导致原来安排好的页面产生混乱，这是设计者不愿意看到的结果。</p><p>一种字体的 x-height（即，小写字母 &#39;x&#39; 的高度）与 font-size 高度的比值，称作该字体的 aspect值，它决定了文本的显示尺寸。</p><p>在相同的 font-size 取值下，字体拥有的 aspect 值越大，文本的显示尺寸就越大，就越容易阅读。</p><p>如，Verdana 字体的 aspect 值是0.58，Times 字体的 aspect 值是 0.46。也就是说，当 font-size 为 100px 时，Verdana 字体的 x-height 是 58px，而 Times 字体的 x-height 是 58px，这就意味着 Verdana 字体比 Times 字体更易阅读。</p><p>在指定字体时，出于安全考虑，人们通常会为一个元素指定多种字体，希望当首选字体不可用时，让浏览器自动使用备选字体。</p><p>如，以下样式将 Verdana 字体作为段落的首选字体，当 Verdana 字体不可用时，则使用 Georgia 字体，当 Georgia 字体不可用时，则使用 Times 字体：</p><pre class="prettyprint linenums"><code>p {    font-family: Verdana, Georgia，Times;}</code></pre><p>由于 Georgia 和 Times 字体比 Verdana 字体的 aspect 值要小，当使用备选字体时，必然会影响文本的易读性，甚至导致页面布局产生混乱。</p><p>为了避免这种情况，在CSS 3中，新增加了 font-size-adjust属性。目前，仅得到 Firefox 浏览器的支持。</p><p>实际应用中，只需把 font-size-adjust属性的值，设置为首选字体的 aspect 值，就可以保证使用备选字体后，文本的显示尺寸不发生变化。</p><p>设置 font-size-adjust属性后，浏览器将不再使用所设置的 font-size 属性的值来显示文本，而是根据 font-size-adjust属性、font-size 属性的值，及备选字体的 aspect 值，重新计算文本的 font-size 值，并用这个计算值来显示文本。计算公式如下：</p><p>c&nbsp; =&nbsp; ( a / a&#39; ) s</p><p>其中：</p><p>c&nbsp; =&nbsp; 实际使用的 font-size 值</p><p>a&nbsp; =&nbsp; font-size-adjust属性的值，即首选字体的 aspect 值</p><p>a&#39; &nbsp;=&nbsp; 备选字体的 aspect 值</p><p>s&nbsp; =&nbsp; font-size 属性的值</p><p>也就是说，假设首选字体 Verdana 不可用时，浏览器将使用 Times 字体，只需为使用 Times 字体的元素设置 font-size-adjust属性，并设置为首选字体的 aspect 值，就可以保证使用备选字体后，文本的显示尺寸不发生变化：</p><pre class="prettyprint linenums"><code>p {    font-family: Verdana, Times;     font-size-adjust: 0.58;}</code></pre><p>设置 font-size-adjust属性后，在渲染页面时，浏览器将执行以下步骤，来计算备选字体实际所使用的 font-size 值：</p><p>1）查得 font-size-adjust属性的值为 0.58。</p><p>2）查得备选字体 Times 的 aspect 值为 0.46。</p><p>3）将 0.58 除以 0.46，得到近似值 1.26。</p><p>4）再将 100 乘以1.26，得到 font-size 的计算值 126px。</p><p>然后，浏览器将使用 font-size 的计算值 126px 来显示备选字体，也就是说，100px 的Verdana字体跟 126px 的 Times 字体的显示尺寸相当。</p><p>除了让备选字体和首选字体具有相同的显示尺寸外，还有一种情况，就当两种字体并存且都可用时，也可以通过font-size-adjust属性，让它们具有相同的显示尺寸。</p><p>假设在一个段落中有两个 span 元素，为了方便对比，在每个 span 元素中包含一个小写字母 &#39;b&#39;：</p><pre class="prettyprint linenums"><code>&lt;p&gt;&lt;span&gt;b&lt;/span&gt;&lt;span&gt;b&lt;/span&gt;&lt;/p&gt;</code></pre><p>两个 span 元素的字体大小都是 100px，而它们使用的字体不同，第一个 span 元素使用 Verdana 字体，第二个 span 元素使用 Times 字体：</p><pre class="prettyprint linenums"><code>p {    font-size: 100px;}span:nth-child(1) {    font-family: Verdana;}span:nth-child(2) {    font-family: Times;}</code></pre><p>上述代码的运行结果如图 3‑8 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/3/font-size-adjust1.png' title='不同字体的显示尺寸' alt='不同字体的显示尺寸'><figcaption>图3-8  不同字体的显示尺寸</figcaption></figure><p>从上图可以看出，即便使用相同的 font-size，由于 font-family 的不同，文本在浏览器中的显示尺寸也会不同，右侧 Times 字体的文本，显然比左侧 Verdana 字体的文本要小。</p><p>同理，可以把一个元素的 font-size-adjust属性，设置为期望字体的 aspect 值，就可以保证它和期望字体具有相同的显示尺寸。</p><p>如，希望第二个 span 元素中文本，与第一个 span 元素中文本的显示尺寸相同，就要把第二个元素的 font-size-adjust属性，设置为 Verdana 字体的 aspect 值：</p><pre class="prettyprint linenums"><code>span:nth-child(2) {    font-family: Times;    font-size-adjust: 0.58;}</code></pre><p>运行结果如图 3‑9 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/3/font-size-adjust2.png' title='使用font-size-adjust属性调整后效果' alt='使用font-size-adjust属性调整后效果'><figcaption>图3-9  使用font-size-adjust属性调整后效果</figcaption></figure><p>从上图可以看出，使用 font-size-adjust属性调整后，两种字体就具有相同的显示尺寸，就能保证在改变字体时，不会影响文本的易读性，也不会导致页面混乱。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/3/3.1.6.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/3/3.1.8.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
