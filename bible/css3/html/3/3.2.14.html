@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS word-break属性_CSS单词换行-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, word-break,word-break属性,CSS word-break属性,CSS单词换行" />
+ <meta name="description" content="word-break属性用来规定自动换行的处理方式，它不仅可以让浏览器在半角空格或连字符的后面换行，也可以实现在任意位置换行，可选值有normal | keep-all | break-all，默认值为normal" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("30214");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">3.2.14 单词换行</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h2 class="hide-text">字体</h2>
+<h2 class="hide-text">文本</h2>
+<h3 class="hide-text">单词折行</h3>
+<h3 class="hide-text">处理空白符</h3>
+<h3 class="hide-text">文本方向</h3>
+<h3 class="hide-text">文本阴影</h3>
+<h3 class="hide-text">文本装饰</h3>
+<h3 class="hide-text">文本转换</h3>
+<h3 class="hide-text">单词间距</h3>
+<h3 class="hide-text">字符间距</h3>
+<h3 class="hide-text">垂直对齐</h3>
+<h3 class="hide-text">行高</h3>
+<h3 class="hide-text">水平对齐</h3>
+<h3 class="hide-text">水平对齐</h3>
+<h3 class="hide-text">文本缩进</h3>
+<h3>单词换行</h3>
+<p>word-break属性用来规定自动换行的处理方式，它不仅可以让浏览器在半角空格或连字符的后面换行，也可以实现在任意位置换行，可选值有 <a href='http://www.waibo.wang/bible/css3/demo/3/word-break_normal.html' title='word-break:normal效果演示' target='_blank'>normal</a> | <a href='http://www.waibo.wang/bible/css3/demo/3/word-break_keep-all.html' title='word-break:keep-all效果演示' target='_blank'>keep-all</a> | <a href='http://www.waibo.wang/bible/css3/demo/3/word-break_break-all.html' title='word-break:break-all效果演示' target='_blank'>break-all</a>，默认值为 normal。</p><p>normal 表示根据语言自身的换行规则，确定换行方式，中文将容器边界处的汉字换到下一行，西方文字则将整个单词换到下一行；keep-all 表示不允许把单词截断，只能在半角空格或连字符处换行；break-all 允许把单词截断，在单词内换行。</p><p>为了演示不同取值的效果，就可以使用 word-wrap属性，定义两个不同的类。为了方便查看效果，为它们定义了固定宽度和边框。CSS代码如下：</p><pre class="prettyprint linenums"><code>.keep-all {   word-break: keep-all;}.break-all {   word-break: break-all;}.keep-all, .break-all {   width: 180px;    height: 50px;   border: 1px solid #444;    font-size: 16px;   display: inline-block;}</code></pre><p>把上述两个不同的类，应用到特定的段落，就可以看到单词在容器的边界处自动换行的不同效果。HTML代码如下：</p><pre class="prettyprint linenums"><code>&lt;p class="keep-all"&gt;welcom to www.waibo-wang&lt;/p&gt;&lt;p class="break-word"&gt;welcom to www.waibo-wang&lt;/p&gt;</code></pre><p>上述代码的运行效果如图 3-26 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/3/word-break.png' title='break-word属性运行效果' alt='break-word属性运行效果'><figcaption>图3-26  break-word属性运行效果</figcaption></figure><p>上图中，左侧容器的word-break属性取值为keep-all，其中的长单词waibo-wang在连字符处进行换行。右侧容器右侧容器的word-break属性取值为break-all，在长单词内部进行换行，单词被截断。</p><section><p class="note">white-space、word-wrap、word-break的区别：</p><p>white-space: nowrap让一段文本不换行，在一行内显示。word-wrap: normal 使一个单词或URL不折行，在一行内显示。</p><p>word-wrap: break-word在容器边界自动换行，会把整个长单词看成一个整体放到下一行，而不会把单词截断。word-break: break-all在行末宽度不够显示整个单词时，会把单词截断。</p></section>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/3/3.2.13.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/3/3.2.15.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
