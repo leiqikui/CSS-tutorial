@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3圆角边框_CSS3 border-radius属性_CSS3 border-top-left-radius属性_CSS3 border-top-right-radius属性_CSS3 border-bottom-right-radius属性_CSS3 border-bottom-left-radius属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS3圆角,CSS3圆角边框,border-radius,border-radius属性,border-top-left-radius,border-top-right-radius,border-bottom-right-radius,border-bottom-left-radius" />
+ <meta name="description" content="CSS3 border-radius属性用来为元素指定圆角边框，border-radius属性可以分解为border-top-left-radius属性、border-top-right-radius属性、border-bottom-right-radius属性、border-bottom-left-radius属性" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("40403");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.4.3 圆角边框</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h2 class="hide-text">概述</h2>
+<h2 class="hide-text">内边距</h2>
+<h2 class="hide-text">外边距</h2>
+<h2 class="hide-text">边框</h2>
+<h3 class="hide-text">图像边框</h3>
+<h3 class="hide-text">线条边框</h3>
+<h3>圆角边框</h3>
+<p>在Web页面上，圆角效果是美化页面的常用手法之一，圆角给页面添加曲线之美，让页面不那么生硬。但是，为了设计圆角，设计师常常需要花费很多的时间和精力。</p><p>在CSS3中，专门针对圆角效果增加了一个 border-radius属性，通过该属性，便可以轻松实现圆角效果，设计师不必再为圆角而伤透脑筋。</p><p>border-radius属性的值为边框的圆角半径，可以使用任意合法的CSS长度值，如em、pt、px、百分比等。</p><p>定义 border-radius 后，浏览器将用 1/4 椭圆来绘制元素相应的角，4 个角上对应的圆角属性分别是 border-top-left-radius、border-top-right-radius、border-bottom-right-radius、border-bottom-left-radius，其语法格式为：</p><pre class="prettyprint linenums"><code>border-*-radius : [ &lt;length&gt; | &lt;percentage&gt; ]{1,2}</code></pre><p>也就是说，定义border-*-radius属性时，需要提供两个参数值，第一个参数用于椭圆的横轴半径，第二个参数用于椭圆的纵轴半径。</p><p>如果只提供1个值，表示横轴半径与纵轴半径相等。如果某个值为0，则使用方角，不使用圆角。使用百分比时，横轴半径根据元素的 width 计算得到，纵轴半径根据元素的 height 计算得到。</p><p>如，把一个元素的横轴半径设置为55pt，纵轴半径为25pt，对应的CSS代码为：</p><pre class="prettyprint linenums"><code>border-top-left-radius: 55pt 25pt;</code></pre><p>上述代码的效果如图 4‑11 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/border-radius1.png' title='border-radius效果示意图' alt='border-radius效果示意图'><figcaption>图4-11  border-radius效果示意图</figcaption></figure><p>这样给元素设置单个圆角效果，费时费力，而且难以维护，也容易出错。其实，完全可以借助复合属性 border-radius，来实现 4 个属性相同的效果。语法格式为：</p><pre class="prettyprint linenums"><code>border-radius : &lt;length&gt;{1,4} [/ &lt;length&gt;{1,4} ]?</code></pre><p>也就是说，border-radius属性需要 2 组参数，并以 / 分隔。第1组参数用于椭圆的横轴半径，第2组参数用于椭圆的纵轴半径。如果省略第2组参数，则使用第1组参数的拷贝。每组参数中，允许设置1~4个值，分别根据所提供值的个数来决定作用对象，遵循以下规则：</p><p>1）如果提供一个，将用于全部的四个角。</p><p>2）如果提供两个，第一个用于左上、右下，第二个用于右上、左下。</p><p>3）如果提供三个，第一个用于左上，第二个用于右上、左下，第三个用于右下。</p><p>4）如果提供四个，将按左上、右上、右下、左下的顺序作用于四个角（顺时针顺序）。</p><p>如，border-radius: 2em 1em 4em / 0.5em 3em，提供了2组参数，第1组参数提供3个值，第2组参数提供2个值。其作用就相当于：</p><pre class="prettyprint linenums"><code>border-top-left-radius:     2em 0.5em;border-top-right-radius:    1em 3em;border-bottom-right-radius: 4em 0.5em;border-bottom-left-radius:  1em 3em;</code></pre><p>事实上，只要一个元素通过border-radius属性定义了圆角，而无论它是否定义边框，浏览器都会按圆角进行渲染。对于图像、或具有背景的元素，很容易看到这个效果。</p><p>利用这个特点和图形几何特性，可以很轻松实现许多有趣的效果，如圆形、半圆形、扇形、椭圆形等。</p><p>1）圆形</p><p>如果椭圆的横向半径和纵向半径相等，椭圆就会变成圆。如果一个元素为正方形，就利用这个特性，把圆角的半径设置为宽度或高度一半，即可把正方形按圆形显示。当然，如果把圆角的半径设置为 50% 会更方便，因为半径会随元素的尺寸自动调整。如：</p><pre class="prettyprint linenums"><code>img {    width: 100px;    height: 100px;    border-radius: 50%;}</code></pre><pre class="prettyprint linenums"><code>&lt;img src="img.jpg"&gt;</code></pre><p>运行结果如图 4‑12 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/border-radius2.png' title='border-radius制作圆形' alt='border-radius制作圆形'><figcaption>图4-12  border-radius制作圆形</figcaption></figure><p>2）半圆形</p><p>制作半圆形跟制作圆形的方法相同，只是需要元素的宽度和高度，与不同方位的圆角半径进行适当配合。</p><p>如果元素的宽度是高度的 2 倍，且圆角半径等于元素的高度值，就可以得到上半圆或下半圆；如果元素的高度是宽度的 2 倍，且圆角半径等于元素的宽度值，就可以左半圆或右半圆。如：</p><pre class="prettyprint linenums"><code>img {    width: 140px;    height: 70px;    border-radius: 70px 70px 0 0;}</code></pre><p>运行结果如图 4‑13 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/border-radius3.png' title='border-radius制作上半圆' alt='border-radius制作上半圆'><figcaption>图4-13  border-radius制作上半圆</figcaption></figure><p>3）扇形</p><p>通过border-radius 制作的扇形，实际上就是制作四分之一圆形。如果把圆形的 3 个半径设置为 0，让圆形只剩下四分之一，就会得到扇形。通过改变圆角的位置，就可以制作出左上、右上、右下、左下四种扇形的效果。如：</p><pre class="prettyprint linenums"><code>img {    width: 100px;    height: 100px;    border-radius: 100% 0 0 0;}</code></pre><p>运行结果如图 4‑14 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/border-radius4.png' title='border-radius制作扇形' alt='border-radius制作扇形'><figcaption>图4-14  border-radius制作扇形</figcaption></figure><p>4）椭圆形</p><p>根据几何特性，椭圆实际上就是圆形受到挤压后得到的形状。椭圆有两种，一种是水平椭圆（长轴在横轴方向），一种是垂直椭圆（长轴在纵轴方向）。因此，椭圆的横轴半径始终等于元素的宽度，纵轴半径始终等于元素的高度。如：</p><pre class="prettyprint linenums"><code>img {    width: 200px;    height: 100px;    border-radius: 200px / 100px;}</code></pre><p>运行结果如图 4‑15 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/4/border-radius5.png' title='border-radius制作椭圆形' alt='border-radius制作椭圆形'><figcaption>图4-15  border-radius制作椭圆形</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.4.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.4.4.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
