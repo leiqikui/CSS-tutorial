@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>块级元素_块级框_块框-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 块级元素,块级框,块框" />
+ <meta name="description" content="块级元素（Block-level element），就是那些在源文档中被格式化成块的元素。每个块级元素都会形成一个新的内容块，左右不能放置其他元素。如果一个元素的 display 属性值为 block、list-item、table、flex，它就会生成一个块级框，用来包含后代框和其他生成的内容" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("40801");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.8.1 块级元素和块框</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h2 class="hide-text">概述</h2>
+<h2 class="hide-text">内边距</h2>
+<h2 class="hide-text">外边距</h2>
+<h2 class="hide-text">边框</h2>
+<h2 class="hide-text">背景</h2>
+<h2 class="hide-text">盒尺寸</h2>
+<h2 class="hide-text">处理溢出</h2>
+<h2>框的生成</h2>
+<p>在盒模型中，一切皆为框，即页面上的每个元素会生成一个矩形框。默认情况下，一个元素的类型，决定了该元素生成框的类型。块级元素生成块级框，行内级元素生成行内级框，没有被任何元素所包含的文本生成匿名框。</p>
+<p>也可以通过元素的 display 属性，来改变框的显示类型。可以把块级元素的 display 属性设置为 inline 或 inline-block，让它生成行内级框；也可以把行内块级元素的 display 属性设置为 block，让它生成块级框。</p>
+<h3>块级元素和块框</h3><p>块级元素（block-level element），就是那些在源文档中被格式化成块的元素。每个块级元素都会形成一个新的内容块，左右不能放置其他元素。典型的块级元素有div、p、h1~h6、ul、ol、table，等等。</p>
+<p>如果一个元素的 display 属性值为 block、list-item、table、flex，它就会生成一个块级框，用来包含后代框和其他生成的内容。</p>
+<p>每个块级框被渲染为完整的一行，即便一行的空间足以容纳多个块级框也是如此。假设在一个 div 容器中，包含三个块级子元素：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class = "wrapper"&gt;
+    &lt;div&gt;div&lt;/div&gt;
+    &lt;p style = "width: 100px;"&gt;p&lt;/p&gt;
+    &lt;h1 style = "width: 100px;"&gt;h1&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+<p>假设把 .wrapper 容器的宽度设置为 300px，把 p 元素和 h1 元素的宽度都设置为 100px。为了便于观察，并为div、p、h1都设置了 10px 的外边距和 1px 的虚线边框：</p>
+<pre class="prettyprint linenums">
+<code>.wrapper {
+   width: 300px;
+   height: 120px;
+   border: 1px solid #ccc;
+}
+div, p, h1 {
+   margin: 10px;
+   border: 1px dashed gray;
+}</code></pre>
+<p>上述代码的运行结果如图 4‑59 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/4/block-element2.png' title='块级元素' alt='块级元素'><figcaption>图4-59  块级元素</figcaption></figure>
+<p>从上图可以看出，.wrapper 容器和三个子元素都分别生成一个块级框，由于 div、p、h1 子元素都是块级元素，它们分别独占一行。虽然一行的空间足以同时容纳 p 元素和 h1 元素， 但它们生成的块级框也是各自独占一行。</p>
+<p>有些块级元素，除了生成块级框外，还会生成其他的框，如 display 属性值为 list-item 列表元素，会生成额外的框来放置列表的项目符号。假设有一个有序列表：</p>
+<pre class="prettyprint linenums">
+<code>&lt;ol&gt;
+   &lt;li&gt;列表项1&lt;/li&gt;
+   &lt;li&gt;列表项2&lt;/li&gt;
+   &lt;li&gt;列表项2&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+<p>为了方便查看效果，为 ol 和 li 元素都设置 1px 的灰色边框：</p>
+<pre class="prettyprint linenums">
+<code>ol {
+   border: 1px solid #ccc;
+}
+li {
+   border: 1px dashed gray;
+}</code></pre>
+<p>有序列表 ol 元素本身是块级元素，其子元素 li 也是块级元素。因此，ol 元素会生成一个块级框，每个 li 子元素也会生成一个块级框。在为每个 li 子元素生成块级框时，还会生成额外的框，用来放置列表的项目符号。如图 4‑60 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/4/block.png' title='块级元素生成额外的框' alt='块级元素生成额外的框'><figcaption>图4-60  块级元素生成额外的框</figcaption></figure>
+<p>除了 table 框和替换元素的框，一个块级框同时也是一个块容器框。一个块容器框要么只包含块级框，要么创建一个行格式化上下文，并只包含行内级框。</p>
+<p>并不是所有的块容器框都是块级框，非替换的行内块（inline-block），以及非替换的表格单元格都是块容器框，但它们都不是块级框。如果一个框既是块级框，同时又是块容器框，则被称作块框。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.7.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.8.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
