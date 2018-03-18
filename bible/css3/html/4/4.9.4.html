@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3 box-reflect属性为元素添加倒影效果-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, box-reflect,box-reflect属性,CSS3 box-reflect属性" />
+ <meta name="description" content="box-reflect属性用来为元素添加倒影效果，通过 direction、offset、mask-box-image这3个参数来定义倒影的方向、偏移和遮罩效果" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("40904");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">4.9.4 倒影效果</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h2 class="hide-text">概述</h2>
+<h2 class="hide-text">内边距</h2>
+<h2 class="hide-text">外边距</h2>
+<h2 class="hide-text">边框</h2>
+<h2 class="hide-text">背景</h2>
+<h2 class="hide-text">盒尺寸</h2>
+<h2 class="hide-text">处理溢出</h2>
+<h2 class="hide-text">框的生成</h2>
+<h2 class="hide-text">框的外观</h2>
+<h3 class="hide-text">显示风格</h3>
+<h3 class="hide-text">自由缩放</h3>
+<h3 class="hide-text">轮廓样式</h3>
+<h3>倒影效果</h3>
+<p>在CSS3之前，要在网页中使用倒影效果，只能事先使用 photoshop 将倒影设计好，然后导入到网页中，这不但耗费资源，而且影响开发的效率。</p>
+<p>CSS3中，新增了 box-reflect属性，通过该属性为元素添加倒影效果。语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>box-reflect：&lt;direction&gt; &lt;offset&gt;? &lt;mask-box-image&gt;?</code></pre>
+<p>也就是说，在 box-reflect属性中，通过 direction、offset、mask-box-image 这 3 个参数来定义倒影的方向、偏移和遮罩效果。</p>
+<table summary="box-reflect属性的参数及含义" class="param">
+	<caption>表 4-9 box-reflect属性的参数及含义</caption>
+	<thead>
+		<tr>
+			<th>参数</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>direction</td><td>用来设置倒影出现的方向，可选值有 above | below | left | right，分别表示倒影在对象的上、下、左、右出现</td></tr>
+<tr><td>offset</td><td>用来设置倒影距离对象本身的距离，用长度或百分百来定义（百分百根据对象的尺寸确定），默认值为0。可以是正值，也可以是负值。为正值时，倒影向远离元素的方向偏移；为负值时，倒影向靠近元素的方向偏移</td></tr>
+<tr><td>mask-box-image</td><td>用来设置倒影上的遮罩效果，遮罩将覆盖倒影区域。遮罩可以是none、图像、线性渐变、径向渐变、重复线性渐变、重复径向渐变。如果省略该参数值，则默认无遮罩</td></tr>
+	</tbody>
+</table>
+<p>默认情况下，一个元素是没有倒影的，通过 box-reflect属性，可以为任何元素添加倒影效果，视频也不例外。不过，目前为止，box-reflect属性仅得到 Webkit 内核的支持，在使用时需要添加浏览器私有前缀。如，页面上有一个容器，容器的内容是一首唐诗：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class="wrapper"&gt;
+&lt;h1&gt;静夜思&lt;/h1&gt;
+&lt;h2&gt;唐·李白&lt;/h2&gt;
+&lt;p&gt;床前明月光，疑是地上霜。&lt;/p&gt;
+&lt;p&gt;举头望明月，低头思故乡。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<p>现在，通过 box-reflect属性，在容器的下方，距离容器本身 2px 的地方，为容器添加倒影，让容器中的文本出现镜像效果：</p>
+<pre class="prettyprint linenums">
+<code>.wrapper {
+    width: 200px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ccc;
+    -webkit-box-reflect: below 2px;
+}
+h1 {
+    font-size: 16px;
+    letter-spacing: 10px;
+}
+h2 {
+    font-size: 13px;
+    font-weight: normal;
+}</code></pre>
+<p>上述代码的运行结果如图 4‑75 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/4/box-reflect1.png' title='box-reflect属性效果' alt='box-reflect属性效果'><figcaption>图4-75  box-reflect属性效果</figcaption></figure>
+<p>镜像的倒影效果非常简单，而在实际应用中，还可以使用遮罩来制造更加绚丽的倒影效果。如，使用线性渐变来制造朦胧的文本倒影：</p>
+<pre class="prettyprint linenums">
+<code>.wrapper  {
+    …
+    -webkit-box-reflect: below 2px linear-gradient(transparent, transparent 50%, #000);
+}</code></pre>
+<p>运行结果如图 4‑76 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/4/box-reflect2.png' title='box-reflect属性倒影+遮罩效果' alt='box-reflect属性倒影+遮罩效果'><figcaption>图4-76  box-reflect属性倒影+遮罩效果</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/4/4.9.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/4/4.9.5.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
