@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS行格式化上下文 IFC(Inline Formatting Contexts)-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 格式化上下文,行格式化上下文,Inline Formatting Contexts,IFC,格式化上下文" />
+ <meta name="description" content="只有行内级框参与的格式化上下文，称作行格式化上下文（Inline Formatting Contexts，简称IFC），它规定了内部的行内级框如何排列" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("50101");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">5.1.1 行格式化上下文</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h2>普通流</h2>
+<p>默认情况下，所有框都在普通流中定位，普通流包括块级框的块格式化、行内级框的行格式化、块级框和行内级框的相对定位。</p>
+<p>在普通流中，不同类型的框，会参与不同的格式化上下文（Formatting Context），格式化上下文就是框的布局上下文，它规定了该上下文中的框如何排列，以及这些框之间的关系和相互作用。</p>
+<p>普通流中的每个框，只能参与某一种格式化上下文，要么是块格式化上下文，要么是行格式化上下文。块级框参与块格式化上下文，行内级框参与行格式化上下文。</p>
+<h3>行格式化上下文</h3>
+<p>只有行内级框参与的格式化上下文，称作行格式化上下文（Inline Formatting Contexts，简称IFC），它规定了内部的行内级框如何排列。</p>
+<p>在行格式化上下文中，行内级框从包含块的顶部开始，一个接一个地水平排列。在布局时，水平方向的外边距、边框和内边距都有效，并通过水平方向的外边距来调整框之间的水平距离。两个相邻的行内级框之间的水平距离，等于第一个框的 margin-right 与第二个框的 margin-left 之和。如图 5‑1 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc1.png' title='行内元素的水平外边距' alt='行内元素的水平外边距'><figcaption>图5-1  行内元素的水平外边距</figcaption></figure>
+<p>把包含了一行内所有行内级框的矩形区域，称作行框（line box）。行框是本行一个虚拟的框，是浏览器渲染模型中的一个概念，并没有实际显示出来。</p>
+<p>通常情况下，行框的宽度等于其包含块内容区的宽度。行框的左外边界，会紧贴其包含块的左内边界，行框的右外边界，会紧贴包含块的右内边界。</p>
+<p>假设在一个段落中，包含三个 span 元素：</p>
+<pre class="prettyprint linenums">
+<code>&lt;p&gt;
+   &lt;span&gt;inline element 1&lt;/span&gt;
+   &lt;span&gt;inline element 2&lt;/span&gt;
+   &lt;span&gt;inline element 3&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+<p>上述代码中，包含块就是 p 元素的内容边界，行框的边界就是p 元素的内容边界。为了查看效果，为 p 元素定义了内边距和边框，为 span 元素也定义了边框：</p>
+<pre class="prettyprint linenums">
+<code>p {
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+span {
+    background: #fff;
+    border: 1px dashed #ccc;
+}</code></pre>
+<p>上述代码的运行效果如图 5‑2 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc2.png' title='行框' alt='行框'><figcaption>图5-2  行框</figcaption></figure>
+<p>然而，如果在一行内存在浮动框，浮动框会脱离文档流，并被置于包含块和行框的外边界之间。假设现在让第二个 span 元素向左浮动：</p>
+<pre class="prettyprint linenums">
+<code>span:nth-child(2) {
+    float: left;
+}</code></pre>
+<p>在一行内存在浮动框后的运行效果如图 5‑3 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc3.png' title='行框内存在浮动框' alt='行框内存在浮动框'><figcaption>图5-3  行框内存在浮动框</figcaption></figure>
+<p>从上图可以看出，尽管浮动框是第二个子元素，它仍然会紧贴包含块的左内边界。并且，浮动框脱离文档流后，会使行框的宽度变窄。由此可知，尽管同一行内格式化上下文中的行框是等宽的（等于包含块的宽度），浮动框却会使行框的宽度变窄。</p>
+<p>如果一行内的多个行内级框的总宽度超过行框的宽度时，行内框将被分割成多个框，这些框又分布在多个垂直堆叠的行框中。但是，如果行内框的 white-space 属性值为 nowrap 或 pre，则该行内框将溢出到行框的外面。而原子行内级框不允许被分割，它将作为一个整体，被置于具有足够空间的行框中。</p>
+<p>如果一个行内框被分割，外边距、边框和内边距，不会在所有分割的地方都产生视觉效果，而是仅出现在行内框的开始处和结尾处。假如有一个段落，其中包含重点强调的文本：</p>
+<pre class="prettyprint linenums">
+<code>&lt;p&gt;为该段落中的&lt;strong&gt;重点强调的文本&lt;/strong&gt;设置外边距、边框和内边距&lt;/p&gt;</code></pre>
+<p>现在，在 strong 元素的左右两侧各添加 1em 的内边距和 1em 的外边距。为了便于观察，为容器 p 添加了 1px的实线边框，为 strong 元素添加了 1px 的虚线边框：</p>
+<pre class="prettyprint linenums">
+<code>p {
+   width: 240px;
+   padding: 10px;
+   border: 1px solid #ccc;
+}
+strong {
+   margin: 0 1em;
+   padding: 0 1em;
+   background: #eee;
+   border: 1px dashed #444;
+}</code></pre>
+<p>上述代码的运行结果如图 5‑4 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc4.png' title='行内框被分割' alt='行内框被分割'><figcaption>图5-4  行内框被分割</figcaption></figure>
+<p>从上图可以看出，行内框的外边距、边框和内边距，仅仅出现在行框的开始处和结尾处，没有出现在每个分割的地方。</p>
+<p>一个行框的高度，总是足以容纳一行内的所有行内级框。也就是说，一个行框的高度，就等于本行内所有行内级框中，高度最大者。</p>
+<p>一个行内框的高度，总是等于其 line-height 属性的值，垂直方向的外边距、边框、内边距，都不会增加行内框的高度。</p>
+<p>假设在 strong 元素的四个方向，均添加 1em 的内边距和外边距：</p>
+<pre class="prettyprint linenums">
+<code>strong {
+   margin: 1em;
+   padding: 1em;
+   line-height: 1;
+   background: #eee;
+   border: 1px dashed #444;
+}</code></pre>
+<p>运行结果如图 5‑5 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc5.png' title='行内框的高度' alt='行内框的高度'><figcaption>图5-5  行内框的高度</figcaption></figure>
+<p>从上图可以看出，垂直方向的外边距、边框、内边距，并没有增加行内框的高度，因为行内框的高度仅仅由它的 line-height 属性决定。</p>
+<p>原子行内级框的情况有所不同，它的高度等于margin-box 的高度，也就是说，垂直方向的外边距、边框、内边距，都可以增加原子行内级框的高度。假设为段落中一幅图像应用垂直方向的外边距、边框、内边距：</p>
+<pre class="prettyprint linenums">
+<code>img {
+   margin: 10px;
+   padding: 10px;
+   background: #ccc;
+   vertical-align: middle;
+   border: 1px dashed #444;
+}</code></pre>
+<p>运行结果如图 5‑6 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc6.png' title='原子行内级框的高度' alt='原子行内级框的高度'><figcaption>图5-6  原子行内级框的高度</figcaption></figure>
+<p>从上图可以看出，第一行明显比第二行要高，这是因为垂直方向的外边距、边框、内边距，增加了原子行内级框的高度，进而使行框的高度也相应增加。</p>
+<p>由于不同的行框所包含的内容可能不同，比如一行仅包含文本，但另一行可能包含图像、表格等。因此，在同一行内格式化上下文中，行框的高度也不尽相同。如图 5‑7 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/ifc7.png' title='不同行框的高度' alt='不同行框的高度'><figcaption>图5-7  不同行框的高度</figcaption></figure>
+<p>在一个行框中，当行内级框 B 的高度小于包含它的行框的高度时，则 B 在行框中垂直对齐的位置，由 B 的 vertical-align 属性决定。</p>
+<p>当一行中的行内级框的总宽度，小于包含它们的包含块的宽度时，这些行内级框在行中的水平分布，取决于包含块的 text-align 属性。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/5/5.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/5/5.1.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
