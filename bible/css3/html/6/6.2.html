@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>list-style属性_list-style-type属性_list-style-position属性_list-style-image属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, list-style,list-style属性,list-style-type,list-style-type属性,list-style-position,list-style-position属性,list-style-image,list-style-image属性" />
+ <meta name="description" content="list-style 属性用来定义列表的样式，list-style属性可以分解为list-style-type、list-style-position和list-style-image这3个独立的属性" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("602");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">6.2 列表的样式</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h2 class="hide-text">链接的样式</h2>
+<h2>列表的样式</h2>
+<p>在CSS中，列表元素是一个块框，列表中的每个表项也是一个块框，只是在表项前面多了一个项目符号。列表的格式化，主要由浏览器完成，而不是由设计人员完成。设计人员只能通过 list-style属性来定义列表的样式。</p>
+<p>list-style属性只对 display 属性值为 list-item 的对象有效，对其它类型对象无效。list-style属性的语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>list-style：[ list-style-type ] || [ list-style-position ] || [ list-style-image ]</code></pre>
+<p>也就是说，list-style属性可以分解为 list-style-type、list-style-position和list-style-image 这3个独立的属性，下面分别进行介绍。</p>
+<h3>list-style-type</h3>
+<p>list-style-type属性用来定义列表所使用的项目符号的类型，可选值有 <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_none.html' title='list-style-type:none效果演示' target='_blank'>none</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_disc.html' title='list-style-type:disc效果演示' target='_blank'>disc</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_circle.html' title='list-style-type:circle效果演示' target='_blank'>circle</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_square.html' title='list-style-type:square效果演示' target='_blank'>square</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_decimal.html' title='list-style-type:decimal效果演示' target='_blank'>decimal</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_decimal-leading-zero.html' title='list-style-type:decimal-leading-zero效果演示' target='_blank'>decimal-leading-zero</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_lower-alpha.html' title='list-style-type:lower-alpha效果演示' target='_blank'>lower-alpha</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_upper-alpha.html' title='list-style-type:upper-alpha效果演示' target='_blank'>upper-alpha</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_lower-roman.html' title='list-style-type:lower-roman效果演示' target='_blank'>lower-roman</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-type_upper-roman.html' title='list-style-type:upper-roman效果演示' target='_blank'>upper-roman</a>，默认值为 disc。常用属性值及效果说明见表 6‑1：</p>
+<table summary="list-style-type属性的常用属性值及效果说明" class="pseudo">
+	<caption>表 6-1 list-style-type属性的常用属性值及效果说明</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>效果说明</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>none</td><td>不使用任何项目符号</td></tr>
+<tr><td>disc</td><td>默认值，实心圆</td></tr>
+<tr><td>circle</td><td>空心圆</td></tr>
+<tr><td>square</td><td>实心矩形</td></tr>
+<tr><td>decimal</td><td>数字1、2、3、4、5</td></tr>
+<tr><td>decimal-leading-zero</td><td>以0打头的数字，01、02、03、04、05</td></tr>
+<tr><td>lower-alpha</td><td>小写英文字母，a、b、c、d、e</td></tr>
+<tr><td>upper-alpha</td><td>大写英文字母，A、B、C、D、E</td></tr>
+<tr><td>lower-roman</td><td>小写罗马数字，ⅰ、ⅱ、ⅲ、ⅳ、ⅴ</td></tr>
+<tr><td>upper-roman</td><td>大写罗马数字，Ⅰ、Ⅱ、Ⅲ、Ⅳ、Ⅴ</td></tr>
+	</tbody>
+</table>
+<p>如果一个元素的 list-style-image属性的值设置为 none，或者 list-style-image属性指定的图像无法正常时，则由 list-style-type属性来决定 list-item 元素的外观。</p>
+<p>由于CSS无法区别一个列表是有序列表，还是无序列表，因此，不管是有序列表还是无序列表，都是使用 list-style-type属性来定义列表项符号。只要你愿意，完全可以让一个有序列表使用实心圆，而非数字作为项目符号。如果项目符号设置为数字或字母，这些数字或字母由浏览器自动计算。</p>
+<p>如果为 ul 或 ol 元素定义 list-style-type属性，则其内部的所有 li 子元素都使用相同的项目符号。当然，也可以为 li 元素单独设置 list-style-type属性，让其只对该 li 元素有效。</p>
+<pre class="prettyprint linenums">
+<code>.disc {
+   list-style-type: disc;
+}
+.circle {
+   list-style-type: circle;
+}
+.decimal-leading-zero {
+   list-style-type: decimal-leading-zero;
+}
+.lower-alpha {
+   list-style-type: lower-alpha;
+}
+.upper-roman {
+   list-style-type: upper-roman;
+}</code></pre>
+<p>上述代码定义了 5 个类，每个类定义了不同的列表项目符号类型，把这 5 个类分别应用于同一个 ul 元素下的不同 li 元素。</p>
+<pre class="prettyprint linenums">
+<code>&lt;ul&gt;
+    &lt;li class="disc"&gt;disc：默认值，实心圆&lt;/li&gt;
+    &lt;li class="circle"&gt;circle：空心圆&lt;/li&gt;
+    &lt;li class="decimal-leading-zero"&gt;decimal-leading-zero：以0打头的数字 01、02&lt;/li&gt;
+    &lt;li class="lower-alpha"&gt;lower-alpha：小写英文字母a、b、c、d、e&lt;/li&gt;
+    &lt;li class="upper-roman"&gt;upper-roman：大写罗马数字Ⅰ、Ⅱ、Ⅲ、Ⅳ、Ⅴ&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>上述代码的运行结果如图 6‑2 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/list-style-type1.png' title='list-style-type属性效果' alt='list-style-type属性效果'><figcaption>图6-2  list-style-type属性效果</figcaption></figure>
+<p>从上图可以看出，把上述&nbsp; 5 个类分别应用于同一个 ul 元素下的不同 li 元素后，不同的 li 元素具有不同的项目符号。</p>
+<p>如果想禁止显示项目符号，就可以把 list-style-type属性值设置为 none，none 会导致浏览器在原本放置项目符号的位置不显示任何内容，不过，它不会中断有序列表的计数。如，有以下有序列表元素：</p>
+<pre class="prettyprint linenums">
+<code>&lt;ol&gt;
+    &lt;li&gt;List Item 1&lt;/li&gt;
+    &lt;li style = "list-style-type: none;"&gt;List Item 2&lt;/li&gt;
+    &lt;li&gt;List Item 3&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+<p>上述列表中，禁止第二个列表项的项目符号。运行结果如图 6‑3 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/list-style-type2.png' title='禁止项目符号' alt='禁止项目符号'><figcaption>图6-3  禁止项目符号</figcaption></figure>
+<p>由于 list-style-type属性具有继承性，所以，如果希望嵌套列表中使用不同的项目符号，可能需要在内层列表中单独定义。</p>
+<h3>list-style-position</h3>
+<p>list-style-position属性设置列表项目符号的位置及列表项的对齐方式，取值 <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-position_outside.html' title='list-style-position:outside效果演示' target='_blank'>outside</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-position_inside.html' title='list-style-position:inside效果演示' target='_blank'>inside</a>，默认值为 outside。</p>
+<p>outside 表示列表项目符号放置在内容以外，列表项以内容为准对齐；inside 表示列表项目符号放置在内容以内，列表项以项目符号为准对齐。如：</p>
+<pre class="prettyprint linenums">
+<code>ul  {
+   padding: 0;
+   border: 1px solid #444;
+   list-style-type: square;
+}
+.outside  {
+    list-style-position: outside;
+}
+.inside  {
+    list-style-position: inside;
+}</code></pre>
+<pre class="prettyprint linenums">
+<code>&lt;ul class = "outside"&gt;
+    &lt;li&gt;outside的列表，列表项以内容为准对齐&lt;/li&gt;
+    &lt;li&gt;outside的列表，列表项以内容为准对齐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class = "inside"&gt;
+    &lt;li&gt;inside的列表，列表项以标记为准对齐&lt;/li&gt;
+    &lt;li&gt;inside的列表，列表项以标记为准对齐&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>上述代码中，第一个列表采用 outside 列表项标记，第二个列表采用 inside 列表项标记。运行结果如图 6‑4 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/list-style-position.png' title='list-style-position属性效果' alt='list-style-position属性效果'><figcaption>图6-4  list-style-position属性效果</figcaption></figure>
+<p>从上图可以看出，如果列表项的内容为多行，在内容发生换行后，outside 的列表项是以内容为准对齐，而 inside 的列表项则以项目符号为准对齐。</p>
+<p>上图还告诉我们，outside 列表的项目符号不但出现在列表项的内容之外，也出现在列表元素的内容之外，这是因为项目符号实际上并不是列表内容区的一部分，它不占据容器的空间。所以，在列表元素的 margin 或 padding 为 0 时，项目符号就有可能覆盖其它元素或被其它元素覆盖。如果发现列表的项目符号显示不出来，这可能是原因之一。</p>
+<h3>list-style-image</h3>
+<p>浏览器提供的列表项目符号，不能满足所有人的需要，并且可选择的范围有限。因此，可以通过 list-style-image属性定义一幅图像，来取代默认的列表项目符号。语法格式为：</p>
+<p>list-style-image:  <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-image_none.html' title='list-style-image:none效果演示' target='_blank'>none</a> | <a href='http://www.waibo.wang/bible/css3/demo/6/list-style-image_url.html' title='list-style-image:url()效果演示' target='_blank'>url()</a></p>
+<p>默认值为none，表示使用 list-style-type属性指定的列表项目符号；url()表示使用 url 指定的图像来取代默认的列表项目符号，如果图像无效，则 list-style-type属性会生效。如：</p>
+<pre class="prettyprint linenums">
+<code>ul  {
+    list-style-image: url(img/square.png);
+}</code></pre>
+<pre class="prettyprint linenums">
+<code>&lt;ul&gt;
+&lt;li&gt;list-style-type属性&lt;/li&gt;
+&lt;li&gt;list-style-position属性&lt;/li&gt;
+&lt;li&gt;list-style-image属性&lt;/li&gt;
+&lt;ul&gt;</code></pre>
+<p>上述代码中，使用图像 square.png 作为列表项标记。运行结果如图 6‑5 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/list-style-image1.png' title='list-style-image属性效果' alt='list-style-image属性效果'><figcaption>图6-5  list-style-image属性效果</figcaption></figure>
+<p>不错，就这么简单，只需一个简单的 url() 值，就可以使用图像作为项目符号。不过，在选择图像时要当心，尽量选择合适尺寸的图片，否则项目符号可能不清晰。</p>
+<p>通常，为了防止一些意外情况，如图像未能加载、或被破坏、或浏览器无法识别图像的格式等等，为列表定义一个备用的 list-style-type 是一个很好的实践。</p>
+<pre class="prettyprint linenums">
+<code>ul  {
+    list-style-image: url(img/square.png);
+    list-style-type: square;
+}</code></pre>
+<p>由于list-style-image属性具有继承性，所以，内层的所有列表都会使用该图像作为项目符号。如果不希望这种情况发生，假如希望内层列表使用实心矩形，就需要把内层列表的 list-style-type属性设置为 square。另外，由于 list-style-image属性比 list-style-type属性的优先级要高。因此，还需要把内层列表的 list-style-image属性重置为 none。</p>
+<pre class="prettyprint linenums">
+<code>ul ul {
+    list-style-image: none;
+    list-style-type: square;
+}</code></pre>
+<p>得到的运行结果如图 6‑6 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/list-style-image2.png' title='改变嵌套列表符号' alt='改变嵌套列表符号'><figcaption>图6-6  改变嵌套列表符号</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/6/6.1.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/6/6.3.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
