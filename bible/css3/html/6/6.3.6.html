@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS制作下拉菜单_CSS制作下拉导航-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 下拉菜单,CSS制作下拉菜单,下拉导航,CSS制作下拉导航" />
+ <meta name="description" content="下拉菜单仍然是Web上流行的界面元素，虽然有一些纯Javascript 解决方案，但在禁用Javascript 的浏览器下，它却无能为力。因此，纯CSS的下拉菜单才是最好的选择" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("60306");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">6.3.6 下拉导航</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h2 class="hide-text">链接的样式</h2>
+<h2 class="hide-text">列表的样式</h2>
+<h2 class="hide-text">创建导航</h2>
+<h3 class="hide-text">主导航</h3>
+<h3 class="hide-text">手风琴导航</h3>
+<h3 class="hide-text">垂直导航</h3>
+<h3 class="hide-text">分页导航</h3>
+<h3 class="hide-text">面包屑导航</h3>
+<h3>下拉导航</h3>
+<p>下拉菜单仍然是Web上流行的界面元素，虽然有一些纯Javascript 解决方案，但在禁用Javascript 的浏览器下，它却无能为力。因此，纯CSS的下拉菜单才是最好的选择。</p>
+<p>这种技术及其简单，只需把子导航嵌套在无序列表中，并让子导航默认隐藏，然后当鼠标悬停或点击父列表时，再让它显示出来。</p>
+<p>本节，在上一节主导航的基础上，添加子导航，来演示下拉导航的制作方法。主导航的样式保持不变，这里只介绍子导航的样式。首先，创建多级导航列表。</p>
+<pre class="prettyprint linenums">
+<code>&lt;ul class = "mainnav"&gt;
+   &lt;li&gt;&lt;a href="#"&gt;文件&lt;/a&gt;
+       &lt;ul class = "submenu"&gt;
+       &lt;li&gt;&lt;a href="#"&gt;新建&lt;/a&gt;&lt;/li&gt;
+       &lt;li&gt;&lt;a href="#"&gt;打开&lt;/a&gt;&lt;/li&gt;
+       &lt;li&gt;&lt;a href="#"&gt;保存&lt;/a&gt;&lt;/li&gt;
+       &lt;/ul&gt;
+   &lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;编辑&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;查看&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;收藏夹&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;工具&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;帮助&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>与主导航相同，首先需要重置列表的默认样式，将外边距、内边距设置为 0，并去掉默认的项目符号。</p>
+<pre class="prettyprint linenums">
+<code>.submenu {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}</code></pre>
+<p>由于在主导航中让所有 li 向左浮动，子导航中，需要子导航垂直显示。因此，需要让子导航中的 li 样式不再浮动。</p>
+<pre class="prettyprint linenums">
+<code>.submenu li {
+   float: none;
+}</code></pre>
+<p>接下来，把子导航中链接的 display 属性设置为 block，以便在链接区域的任何位置都能激活链接。再设置链接的宽度、默认属性、以及鼠标悬停时的属性。</p>
+<pre class="prettyprint linenums">
+<code>.submenu li a {
+   color: #000;
+   padding: 4px 0;
+   font-size: 13px;
+   display: block;
+}
+.submenu li a:hover {
+   color: #fff;
+   background: #4899E0;
+}</code></pre>
+<p>子导航样式设置完成后，就可以通过 display: none 把子导航隐藏起来。当鼠标悬停在主导航的 li 上时，再通过 display: block 把子导航显示出来。</p>
+<pre class="prettyprint linenums">
+<code>.mainnav li:hover .submenu {
+   display: block;
+}</code></pre>
+<p>由于子导航在普通流中定位，会占用父元素的空间。因此，如果子导航使用绝对定位，它就会脱离文档流，不再占用父元素的空间。这样的话，在子导航被显示出来时，父元素的高度就不会被撑开。</p>
+<pre class="prettyprint linenums">
+<code>.submenu {
+   padding: 0;
+   list-style: none;
+   display: none;
+   position: absolute;
+}</code></pre>
+<p>至此，纯CSS的下拉菜单就制作完成了，快来看看效果吧！</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/drop1.png' title='二级下拉导航' alt='二级下拉导航'><figcaption>图6-16  二级下拉导航</figcaption></figure>
+<p>这里只是演示了二级下拉菜单的制作过程，当然，也可以制作三级、四级，甚至更多级的下拉菜单。假如在二级菜单下，又添加三级下拉菜单：</p>
+<pre class="prettyprint linenums">
+<code>&lt;li&gt;&lt;a href="#"&gt;查看&lt;/a&gt;
+   &lt;ul class = "submenu"&gt;
+   &lt;li&gt;&lt;a href="#"&gt;工具栏&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;转到&lt;/a&gt;
+       &lt;ul class = "drop"&gt;
+       &lt;li&gt;&lt;a href="#"&gt;后退&lt;/a&gt;&lt;/li&gt;
+       &lt;li&gt;&lt;a href="#"&gt;前进&lt;/a&gt;&lt;/li&gt;
+       &lt;/ul&gt;
+   &lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/li&gt;</code></pre>
+<p>无论多少级菜单，其本质完全相同，制作方法也没什么差别。都是让子菜单使用绝对定位，并默认隐藏起来，当鼠标悬停在上一级菜单上时，再自动将下级菜单显示出来。</p>
+<pre class="prettyprint linenums">
+<code>.drop {
+   left: 100%;
+   display: none;
+   list-style: none;
+   background: #ccc;
+   position: absolute;
+}
+.submenu li:hover .drop {
+   display: block;
+   margin-top: -27px;
+}</code></pre>
+<p>添加三级菜单后的运行结果如图 6‑17 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/6/drop2.png' title='三级下拉导航' alt='三级下拉导航'><figcaption>图6-17  三级下拉导航</figcaption></figure>
+<p>上述这种技术制作出来的下拉导航，可以适用于大多数现代浏览器，但在IE7及以下版本中，存在易用性问题。</p>
+<p>一个问题是，在IE7及以下版本中，多级列表中，下级列表的位置会发生偏移，导致二级和三级菜单的位置不正确。可以通过 CSS hack 对二级和三级列表进行修正，偏移的距离，要根据实际情况确定，而IE6与IE7偏移的距离可能会不同，需要单独修正。</p>
+<pre class="prettyprint linenums">
+<code>.mainnav li:hover .submenu {
+   display: block;
+   *margin-top: 38px;
+   *margin-left: -88px;
+   _margin-top: 40px;
+   _margin-left: -84px;
+}
+.submenu li:hover .drop {
+   display: block;
+   margin-top: -27px;
+   *margin-top: 0;
+   *margin-left: 0;
+}</code></pre>
+<p>另一个问题是，在IE6中，当鼠标悬停在主导航的 li 上时，子导航却不能正常显示出来，因为IE6不支持在非锚元素上使用 :hover 伪类选择器。因此，需要使用 Javascript 或 .htc 文件来启用这个功能。</p>
+<p>.htc 文件实际上就是脚本文件，只有IE能够识别它。 在网上下载csshover.htc 文件，把它放在网站的某个位置，然后，在 body 选择器中通过 behavior 属性指向该文件即可。</p>
+<pre class="prettyprint linenums">
+<code>body {
+   behavior: url("http://XXX/csshover.htc");
+}</code></pre>
+<p>还有一个问题，就是上述每个 li 后面有一个回车，在IE6中，当 li 中的内容是一个 a 元素，并且 a 元素或 a 元素的子元素（如，&lt;img/&gt;元素）设置了display: block 时，浏览器将不会忽略 li 之间的空白字符，表现为在 li 之间有一个额外的空行。</p>
+<p>这个问题有两种解决办法：一种方法是避免为 li 中的 a 元素或 a 元素的子元素设置display: block，或去掉 li 后面的回车；另一种方法是就是让 a 元素或 a 元素的子元素触发布局，常用的就是通过 _zoom: 1 触发布局，因为它没有副作用。</p>
+<p>我们使用第一种方法，让二级、三级等列表中的链接使用display: inline-block，这样既不影响链接的点击区域，又可以消除 li 之间的额外空行，可谓一举两得。</p>
+<pre class="prettyprint linenums">
+<code>.submenu li a {
+   color: #000;
+   font-size: 13px;
+   padding: 4px 0;
+   display: inline-block;
+}</code></pre>
+<p>至此，我们的三级下拉导航才算真正制作完成，它在所有的浏览器下都表现正常，并且表现完全一致。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/6/6.3.5.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/7/7.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
