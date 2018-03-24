@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3动画_CSS3 @keyframes_关键帧_CSS关键帧-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS3动画,@keyframes,关键帧" />
+ <meta name="description" content="CSS3中，animation实现的动画由两个部分组成：首先，使用关键帧 @keyframes 来声明一个动画；然后，在 animation 属性中，调用关键帧声明的动画" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("80301");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">8.3.1 关键帧</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h2 class="hide-text">变换</h2>
+<h2 class="hide-text">过渡</h2>
+<h2>动画</h2>
+<p>在CSS3中，通过 animation 属性来定义动画。虽然 transition 也可以实现从一种状态到另一种状态的动画效果，但它只能控制开始和结束的两个点，功能非常有限。而 animation 除了能控制开始和结束的两个点外，还能通过关键帧来控制动画的每一步，可以实现更为复杂的动画效果。</p>
+<p>CSS3中，animation 实现的动画由两个部分组成：首先，使用关键帧 @keyframes 来声明一个动画；然后，在 animation属性中，调用关键帧声明的动画。</p>
+<p>简单的说，就是在 keyframes 中定义动画效果，再由 animation 的相关属性来控制动画的播放，接下来分别进行介绍。</p>
+<h3>关键帧</h3>
+<p>在CSS3中，把 @keyframes 称作关键帧，并使用 @keyframes 来定义动画每一帧的效果，即定义由当前样式逐渐改变为新样式的动画效果。</p>
+<p>@keyframes 有自己的语法规则，它由 @keyframes 开头，后面紧跟动画名称和一对大括号，在大括号中定义每个帧的样式规则：</p>
+<pre class="prettyprint linenums">
+<code>@keyframes &lt;identifier&gt; {
+    &lt;keyframes-blocks&gt;
+}</code></pre>
+<p>identifier 表示动画的名称，它将被动画的 animation-name 属性引用，来实现动画和元素的关联。动画可以使用任何名称，但考虑到动画可以在多个元素上复用，尽量取一个合理的、能望文生义的名称。</p>
+<p>keyframes-blocks 定义动画每个帧的样式规则，样式规则是由多个百分比构成，在每个百分比中定义该帧的样式规则，从而实现从一种状态到另一种状态的动画效果。样式规则中的百分比，可以看做是每一帧在动画时间轴上的位置，0% 为时间轴的起点，100% 为时间轴的终点。</p>
+<p>由此可知，使用 @keyframes 声明一个动画的语法规则为：外，在声明关键帧时，0% 可以用 from 代替，100% 可以用 to 代替。如：</p>
+<pre class="prettyprint linenums">
+<code>@keyframes &lt;identifier&gt; {
+    from {
+        /* CSS样式 */
+    }
+    percentage {
+        /* CSS样式 */
+    }
+    to {
+        /* CSS样式 */
+    }
+}</code></pre>
+<p>接下来，看看一个由W3C提供的实例：</p>
+<pre class="prettyprint linenums">
+<code>@keyframes wobble {
+    0% {
+       left: 100px;
+    }
+    40% {
+        left: 150px;
+    }
+    60% {
+        left: 75px;
+    }
+    100% {
+        left: 100px;
+    }
+}</code></pre>
+<p>上述代码定义了一个名称为 wobble 的动画，它从 0% 开始，到 100% 结束，中间还经历了40% 和 60% 两个过程。也就是说，名称为 wobble 的动画共有四个关键帧，来实现以下动画效果：</p>
+<p>1）在0%（第一帧）时，元素的定位到 left 为100px 的位置；</p>
+<p>2）在40%（第二帧）时，元素的过渡到 left 为150px 的位置；</p>
+<p>3）在60%（第三帧）时，元素的过渡到 left 为75px 的位置；</p>
+<p>4）在100%（第四帧）时，元素的又回到 left 为100px 的起点位置。</p>
+<p>假设让这个动画执行 10 秒钟，每一阶段的执行状态如图 8‑16 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/animation1.png' title='动画的执行状态' alt='动画的执行状态'><figcaption>图8-16  动画的执行状态</figcaption></figure>
+<p>事实上，关键帧的写法相当自由，它不必以 0% 开始、100% 结束，也可以省略某个中间状态，浏览器会自动推算，进行平滑播放。就连关键帧的声明顺序，也可以随意书写，因为播放动画上，关键帧的顺序是由百分比决定，而不是由声明顺序决定。还可以将多个状态写在一起，如from，to { transform: none; }，它就表示 from 和 to 这两个关键帧应用了相同的样式。</p>
+<p>但需要注意的是，不能省略百分比中的百分号，即 0% 不能写成 0，100% 也不能写成1。否则，将导致整个动画的声明无效，不会产生动画效果。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/8/8.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/8/8.3.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
