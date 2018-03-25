@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3 flex布局_CSS3 flex-direction属性_CSS3 flex-wrap属性_CSS3 flex-flow属性_CSS3 align-items属性_CSS3 justify-content属性_CSS3 align-content属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, flex,inline-flex,flex布局,flex-direction,flex-wrap,flex-flow,align-items,justify-content,align-content,flex-direction属性,flex-wrap属性,flex-flow属性,align-items属性,justify-content属性,align-content属性" />
+ <meta name="description" content="在CSS3弹性布局盒模型中，通过flex-direction属性,flex-wrap属性,flex-flow属性,align-items属性,justify-content属性,align-content属性来控制主轴的方向、子元素溢出后的行为、子元素的对齐方式等" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("90303");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">9.3.3 弹性容器的属性</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h2 class="hide-text">基本布局类型</h2>
+<h2 class="hide-text">多列布局</h2>
+<h2 class="hide-text">弹性布局盒模型</h2>
+<h3 class="hide-text">建立弹性盒布局</h3>
+<h3 class="hide-text">弹性布局盒模型</h3>
+<h3>弹性容器的属性</h3>
+<p>为了实现对弹性子元素的灵活控制，在弹性容器上定义了相关属性，通过这些属性来控制主轴的方向、子元素溢出后的行为、子元素的对齐方式等。这些属性见表 9‑2：</p>
+<table summary="CSS弹性布局盒模型父元素属性" class="param">
+	<caption>表 9-2 父元素属性</caption>
+	<thead>
+		<tr>
+			<th>属性</th><th>说明</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>flex-direction</td><td>定义容器的主轴方向</td></tr>
+<tr><td>flex-wrap</td><td>定义容器溢出后的行为，即容器溢出后是否换行</td></tr>
+<tr><td>flex-flow</td><td>复合属性，定义容器的主轴方向和溢出后的行为</td></tr>
+<tr><td>align-items</td><td>定义单行容器的侧轴对齐方式</td></tr>
+<tr><td>justify-content</td><td>定义单行容器和多行容器的主轴对齐方式</td></tr>
+<tr><td>align-content</td><td>定义多行容器的侧轴对齐方式</td></tr>
+	</tbody>
+</table>
+<h4>flex-direction</h4>
+<p>flex-direction属性用来定义主轴的方向，主轴方向确定之后，侧轴的方向也相应确定下来，因为主轴和侧轴总是互相垂直。可选值有 <a href='http://www.waibo.wang/bible/css3/demo/9/flex-direction_row.html' title='flex-direction:row效果演示' target='_blank'>row</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/flex-direction_row-reverse.html' title='flex-direction:row-reverse效果演示' target='_blank'>row-reverse</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/flex-direction_column.html' title='flex-direction:column效果演示' target='_blank'>column</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/flex-direction_column-reverse.html' title='flex-direction:column-reverse效果演示' target='_blank'>column-reverse</a>，默认值是 row。不同取值的含义见表 9‑3：</p>
+<table summary="flex-direction属性值及含义" class="param">
+	<caption>表 9-3 flex-direction属性值及含义</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>row</td><td>主轴为水平方向。子元素排列顺序与容器的书写模式相关。如果是 ltr，则从左到右排列，如果是 rtl，则从右到坐排列</td></tr>
+<tr><td>row-reverse</td><td>主轴为水平方向。子元素排列顺序与取值 row 相反</td></tr>
+<tr><td>column</td><td>主轴为垂直方向。子元素从上到下排列</td></tr>
+<tr><td>column-reverse</td><td>主轴为垂直方向。子元素从下到上排列</td></tr>
+	</tbody>
+</table>
+<p>由于主轴方向不同，主轴起点和主轴终点的位置不同。而子元素总是从主轴起点，到主轴终点进行排列。因此，主轴方向就确定了每一行内，子元素的排列方向。</p>
+<p>在默认情况下，弹性容器中的子元素是采用从上到下、从左到右的排列方式，这与中文的默认书写模式相同，因此，本章的所有实例都采用这种排列方式。</p>
+<p>基于前面的实例，在弹性容器的 flex-direction属性取不同值时的布局效果如图 9‑13 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/flex-direction.png' title='flex-direction属性效果' alt='flex-direction属性效果'><figcaption>图9-13  flex-direction属性效果</figcaption></figure>
+<p>从上图可以看出，把弹性容器的 flex-direction属性设置为 column 和 column-reverse 后，可以把文档流的默认排列方向，由水平方向改为垂直方向。</p>
+<h4>flex-wrap</h4>
+<p>默认情况下，弹性盒容器中的子元素会尽量占满主轴方向上的一行。当容器的主轴尺寸不足以容纳所有子元素时，子元素之间就会互相重叠或溢出容器。</p>
+<p>可以通过 flex-wrap属性来定义子元素容器溢出后的行为，即当容器的主轴尺寸不足以容纳所有子元素时，子元素是否换行排列到下一行，以及换行后的排列方向。可选值有 <a href='http://www.waibo.wang/bible/css3/demo/9/flex-wrap_nowrap.html' title='flex-wrap:nowrap效果演示' target='_blank'>nowrap</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/flex-wrap_wrap.html' title='flex-wrap:wrap效果演示' target='_blank'>wrap</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/flex-wrap_wrap-reverse.html' title='flex-wrap:wrap-reverse效果演示' target='_blank'>wrap-reverse</a>，默认值是 nowrap。不同取值的含义见表 9‑4：</p>
+<table summary="flex-wrap属性值及含义" class="param">
+	<caption>表 9-4 flex-wrap属性值及含义</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>nowrap</td><td>不换行，子元素始终在一行排列</td></tr>
+<tr><td>wrap</td><td>自动换行，子元素多行排列，下一行的位置与侧轴的方向一致</td></tr>
+<tr><td>wrap-reverse</td><td>自动换行，子元素多行排列，下一行的位置与侧轴的方向相反</td></tr>
+	</tbody>
+</table>
+<p>在 flex-wrap属性取值为 nowrap 时，子元素始终在一行排列，容器被称作单行容器；取其他值时，子元素可以在多行排列，容器被称作多行容器。</p>
+<p>基于前面的实例，现在把父元素的宽度设置为 140px，子元素的宽度设置为 70px，容器的空间就不足，在一行内无法容纳所有子元素：</p>
+<pre class="prettyprint linenums">
+<code>father {
+    width: 140px;
+    display: flex; 
+}
+.father &gt; div {
+    width: 70px;
+}</code></pre>
+<p>此时，就需要使用 flex-wrap属性来控制子元素溢出后的行为，在 flex-wrap属性取不同值时的布局效果如图 9‑14 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/flex-wrap.png' title='flex-wrap属性效果' alt='flex-wrap属性效果'><figcaption>图9-14  flex-wrap属性效果</figcaption></figure>
+<p>从上图可以看出，当父元素的 flex-wrap属性取值为 nowrap 时，子元素就会根据各自的 flex-shrink属性进行收缩。由于 flex-shrink属性的默认值为 1，所以，3个子元素的收缩比例相同，收缩后的尺寸也相同。当然，如果把某个子元素的 flex-shrink属性值设置为 0，它就不会收缩，子元素就可能溢出到容器的外面。这时候，就可以通过父元素的 overflow 属性，来控制溢出时的处理方式。</p>
+<p>当父元素的 flex-wrap属性取值为 wrap 时，box3 就会换到下一行。由于侧轴方向是从上到下，行的排列顺序与侧轴方向相同，即从 cross-start 到 cross-end 排列，故新产生的行就会在其它行的下方。</p>
+<p>当父元素的 flex-wrap属性取值为 wrap-reverse 时，则行的排列顺序与侧轴方向相反，即从 cross-end 到 cross-start 排列，新产生的行就会在其它行的上方。</p>
+<h4>flex-flow</h4>
+<p>flex-flow属性是 flex-direction属性 和 flex-wrap属性的复合属性，用来一次性定义容器的主轴方向和容器溢出后的行为。语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;</code></pre>
+<p>如果希望主轴方向为水平方向，子元素溢出后自动换行，并且下一行的位置与侧轴的方向一致。使用复合属性 flex-flow 的定义如下：</p>
+<pre class="prettyprint linenums">
+<code>.father {
+    width: 140px;
+    display: flex; 
+    flex-flow: row wrap;
+}</code></pre>
+<h4>justify-content</h4>
+<p>justify-content属性用来定义容器中所有子元素在主轴上的对齐方式，即当容器在主轴方向上有额外的空白空间时，主轴方向上的空白空间如何分布。可选值有 <a href='http://www.waibo.wang/bible/css3/demo/9/justify-content_flex-start.html' title='justify-content:flex-start效果演示' target='_blank'>flex-start</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/justify-content_flex-end.html' title='justify-content:flex-end效果演示' target='_blank'>flex-end</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/justify-content_center.html' title='justify-content:center效果演示' target='_blank'>center</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/justify-content_space-between.html' title='justify-content:space-between效果演示' target='_blank'>space-between</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/justify-content_space-around.html' title='justify-content:space-around效果演示' target='_blank'>space-around</a>，默认值为 flex-start。不同取值的含义见表 9‑5：</p>
+<table summary="justify-content属性值及含义" class="param">
+	<caption>表 9-5 justify-content属性值及含义</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>flex-start</td><td>子元素集中在主轴起点，多余或溢出的空间位于主轴终点</td></tr>
+<tr><td>flex-end</td><td>子元素集中在主轴终点，多余或溢出的空间位于主轴起点</td></tr>
+<tr><td>center</td><td>子元素集中在主轴的中央，多余或溢出的空间在两侧平均分配</td></tr>
+<tr><td>space-between</td><td>第一个子元素在主轴起点、最后一个子元素与父元素的在主轴终点，多余的空间由中间的元素平均分配，并确保两两之间的空白空间相等</td></tr>
+<tr><td>space-around</td><td>所有子元素平均分配剩余空间，每个子元素的空白在该元素的两侧平均分配。这样，第一个元素前和最后一个元素后的空白空间，是其它元素空白空间的一半</td></tr>
+	</tbody>
+</table>
+<p>对单行容器和多行容器，该属性均有效。在弹性容器的 justify-content属性取不同值时的布局效果如图 9‑15 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/justify-content.png' title='justify-content属性效果' alt='justify-content属性效果'><figcaption>图9-15  justify-content属性效果</figcaption></figure>
+<h4>align-items</h4>
+<p>通过 align-items属性用来定义单行容器中所有子元素在侧轴上的对齐方式，即单行容器在侧轴方向上有额外的空白空间时，侧轴方向上的空白空间如何分布。可选值有 <a href='http://www.waibo.wang/bible/css3/demo/9/align-items_flex-start.html' title='align-items:flex-start效果演示' target='_blank'>flex-start</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-items_flex-end.html' title='align-items:flex-end效果演示' target='_blank'>flex-end</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-items_center.html' title='align-items:center效果演示' target='_blank'>center</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-items_baseline.html' title='align-items:baseline效果演示' target='_blank'>baseline</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-items_stretch.html' title='align-items:stretch效果演示' target='_blank'>stretch</a>，默认值为 stretch。不同取值的含义见表 9‑6：</p>
+<table summary="align-items属性值及含义" class="param">
+	<caption>表 9-6 align-items属性值及含义</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr><td>flex-start</td><td>子元素集中在侧轴起点，多余或溢出的空间位于侧轴终点</td></tr>
+<tr><td>flex-end</td><td>子元素集中在侧轴终点，多余或溢出的空间位于侧轴起点</td></tr>
+<tr><td>center</td><td>子元素集中在侧轴的中央，多余或溢出的空间在两侧平均分配</td></tr>
+<tr><td>baseline</td><td>子元素沿着它们的基线对齐，多余或溢出的空间可前可后</td></tr>
+<tr><td>stretch</td><td>容器空间过剩时，子元素被拉伸到与容器同高；容器空间不足时，子元素保持实际高度</td></tr>
+	</tbody>
+</table>
+<p>如，在一个弹性容器中，有 5 个子元素。为了方便查看剩余空间的分布情况，为子元素设置不同的高度，让子元素高度参差不齐。代码如下：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class = "father"&gt;
+    &lt;div&gt;x&lt;/div&gt;
+    &lt;div&gt;g&lt;/div&gt;
+    &lt;div&gt;a&lt;/div&gt;
+    &lt;div&gt;h&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre class="prettyprint linenums">
+<code>.father {
+    width: 120px;  /* 增加宽度，防止容器过宽 */
+    height: 100px;  /* 增加高度，方便看清垂直方向上的剩余空间 */
+    border: 1px solid #ef39d5;  /* 增加边框，方便看清容器边界 */
+    display: flex;
+}
+.father div:nth-child(1) {
+    font-size: 40px;
+    background: #7f3ffd;
+}
+.father div:nth-child(2) {
+    font-size: 70px;
+    background: #ef39d5;
+}
+.father div:nth-child(3) {
+    font-size: 30px;
+    background: #1bb9f1;
+}
+.father div:nth-child(4) {
+    font-size: 50px;
+    background: #6fb934;
+}</code></pre>
+<p>在弹性容器的 align-items属性取不同值时的运行结果如图 9‑16 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/align-items.png' title='align-items属性效果' alt='align-items属性效果'><figcaption>图9-16  align-items属性效果</figcaption></figure>
+<p>值得注意的是，当 align-items属性取值为 baseline 时，所有子元素以各自的基线相互对齐，多余的空间可前可后，所有子元素在侧轴方向参差不齐排列。</p>
+<h4>align-content</h4>
+<p>align-content属性用来定义容器中所有子元素在侧轴上的对齐方式，即当容器在侧轴方向上有额外的空白空间时，侧轴方向上的空白空间如何分布。可选值有 <a href='http://www.waibo.wang/bible/css3/demo/9/align-content_flex-start.html' title='align-content:flex-start效果演示' target='_blank'>flex-start</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-content_flex-end.html' title='align-content:flex-end效果演示' target='_blank'>flex-end</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-content_center.html' title='align-content:center效果演示' target='_blank'>center</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-content_space-between.html' title='align-content:space-between效果演示' target='_blank'>space-between</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-content_space-around.html' title='align-content:space-around效果演示' target='_blank'>space-around</a> | <a href='http://www.waibo.wang/bible/css3/demo/9/align-content_stretch.html' title='align-content:stretch效果演示' target='_blank'>stretch</a>，默认值为 stretch。不同取值的含义见表 9‑7：</p>
+<table summary="align-content属性值及含义" class="param">
+	<caption>表 9-7 align-content属性值及含义</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>flex-start</td><td>行集中在侧轴起点，多余或溢出的空间位于侧轴终点</td></tr>
+<tr><td>flex-end</td><td>行集中在侧轴终点，多余或溢出的空间位于侧轴起点</td></tr>
+<tr><td>center</td><td>行集中在侧轴的中央，多余或溢出的空间在两侧平均分配</td></tr>
+<tr><td>space-between</td><td>第一行在侧轴起点、最后一个行在侧轴终点，多余的空间由中间的行平均分配，并确保相邻行之间的空白空间相等</td></tr>
+<tr><td>space-around</td><td>所有行平均分配剩余空间，每行的空白在该行的两侧平均分配。这样，第一行前和最后一行后的空白空间，是其它行空白空间的一半</td></tr>
+<tr><td>stretch</td><td>拉伸行，并占满剩余空间。剩余空间由所有行平均分配，使得每一行的侧轴尺寸变大</td></tr>
+	</tbody>
+</table>
+<p>对于单行容器，即当容器的 flex-wrap属性值为 nowrap 时，该属性无效。在弹性容器的 align-content属性取不同值时的布局效果如图 9‑17 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/align-content.png' title='align-content属性效果' alt='align-content属性效果'><figcaption>图9-17  align-content属性效果</figcaption></figure>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/9/9.3.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/9/9.3.4.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
