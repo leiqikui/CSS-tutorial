@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3 flex布局_order属性_flex-grow属性_flex-shrink属性_flex-basis属性_flex属性_align-self属性_align-items属性-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, flex,inline-flex,flex布局,order,flex-grow,flex-shrink,flex-basis,flex,align-self,align-items,order属性,flex-grow属性,flex-shrink属性,flex-basis属性,flex属性,align-self属性,align-items属性" />
+ <meta name="description" content="在CSS3 flex弹性布局盒模型中，浏览器会根据子元素的order属性,flex-grow属性,flex-shrink属性,flex-basis属性,flex属性,align-self属性,align-items属性，来自动调整子元素的尺寸和顺序。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("90304");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">9.3.4 弹性子元素的属性</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h2 class="hide-text">基本布局类型</h2>
+<h2 class="hide-text">多列布局</h2>
+<h2 class="hide-text">弹性布局盒模型</h2>
+<h3 class="hide-text">弹性容器的属性</h3>
+<h3 class="hide-text">建立弹性盒布局</h3>
+<h3 class="hide-text">弹性布局盒模型</h3>
+<h3>弹性子元素的属性</h3>
+<p>弹性布局盒模型的核心，在于弹性容器中子元素的尺寸是弹性的，容器会根据布局的需要，自动调整子元素的尺寸和顺序，并以最佳方式填充所有可用空间。</p>
+<p>当容器中有空白空间时，子元素可以扩展，以占据额外的空白空间；当容器中的空间不足时，子元素可以缩小尺寸，以防止超出容器范围。</p>
+<p>在弹性布局盒模型中，浏览器会根据子元素的相关属性，来自动调整子元素的尺寸和顺序。这些属性见表 9‑8：</p>
+<table summary="CSS3弹性布局盒模型子元素属性">
+	<caption>表 9-8 CSS3弹性布局盒模型子元素属性</caption>
+	<thead>
+		<tr>
+			<th>属性</th><th>说明</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>order</td><td>定义子元素的排列顺序</td></tr>
+<tr><td>flex-grow</td><td>定义子元素的拉伸因子，当容器空间过剩时，子元素按比例进行拉伸</td></tr>
+<tr><td>flex-shrink</td><td>定义子元素的收缩因子，当容器空间不足时，子元素按比例进行收缩</td></tr>
+<tr><td>flex-basis</td><td>定义为子元素分配的默认空间大小</td></tr>
+<tr><td>flex</td><td>复合属性，定义子元素的拉伸因子、收缩因子、默认空间大小</td></tr>
+<tr><td>align-self</td><td>定义子元素自身在侧轴方向上的对齐方式</td></tr>
+	</tbody>
+</table>
+<h4>order属性</h4>
+<p>默认情况下，弹性容器中子元素的排列顺序，取决于它们在HTML代码中的排列顺序，先出现的排在前面。</p>
+<p>在弹性布局盒模型中，每个子元素有自己独立的 <a href="http://www.waibo.wang/bible/css3/demo/9/order_integer.html" target="_blank">order属性</a>，用来控制子元素的排列顺序，数值小的排在前面。语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>order: &lt;integer&gt;</code></pre>
+<p>order属性的默认值为 0。可以为负值。指定 order 属性后，浏览器将根据 order属性的值，对子元素进行分组，order 值相同的元素属于一组，值小的组排在前面，组内则根据元素在HTML代码中出现的先后顺序，先出现的排在前面。</p>
+<p>现在，为三个子元素定义 order属性，取值分别是 2、1、-1，就相当于把所有子元素分为 3 组，每组 1 个元素。CSS代码如下：</p>
+<pre class="prettyprint linenums">
+<code>.box1 {
+    order: 2;
+    background: #7f3ffd;
+}
+.box2 {  
+    order: 1;
+    background: #ef39d5;
+}
+.box3 {
+    order: -1;     
+    background: #1bb9f1;
+}</code></pre>
+<p>上述代码运行结果如图 9‑18 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/order.png' title='order属性效果' alt='order属性效果'><figcaption>图9-18  order属性效果</figcaption></figure>
+<p>可以看出，box1、box2、box3 的出现顺序与它们在HTML中的定义顺序无关，而是按照 order属性值的大小，数值小的排在前面。</p>
+<h4>flex-grow属性</h4>
+<p><a href="http://www.waibo.wang/bible/css3/demo/9/flex-grow_number.html" target="_blank">flex-grow属性</a>用来定义子元素的拉伸因子，当容器有多余的空间时，浏览器把所有子元素的 flex-grow属性值相加，再根据各自在总值中所占的份额，分配容器的多余空间。语法为：</p>
+<pre class="prettyprint linenums">
+<code>flex-grow: &lt;number&gt;</code></pre>
+<p>flex-grow属性的默认值为 0。支持整数或小数，不允许负值。如果某个子元素没有定义 flex-grow属性，或将 flex-grow属性显式设置为 0，或定义了固定尺寸，则不再为它分配父元素的多余空间。</p>
+<pre class="prettyprint linenums">
+<code>.father {
+    width: 600px;
+    display: flex;
+}
+.father &gt; div {
+    width: 100px;
+}
+.box1 {
+    flex-grow: 2;       
+    background: #7f3ffd;
+}
+.box2 {
+    flex-grow: 1;
+    background: #ef39d5;
+}
+.box3 {
+    background: #1bb9f1;
+}</code></pre>
+<p>上述代码中，父元素的宽度是 600px，每个子元素的宽度为 100px，于是，父元素的剩余宽度就变成 600 &ndash; 3&times;100 = 300px。</p>
+<p>box1 和box2 定义了 flex-grow属性，box3 未定义。故 box1 和 box2 把剩余空间分成 2 + 1 = 3 份，box1 占 2/3，box2 占 1/3。于是，box1、box2 按 3:1 来分配这 300px，box3 不分配。box1 分得 300&times;(2/3) = 200px，box2 分得 300&times;(1/3) = 100px。</p>
+<p>最终的结果是，box1 和 box2 在预分配空间的基础上，又分得了剩余空间，而 box3 仅有原本的 100px 而已。运行结果如图 9‑19 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/flex.png' title='flex-grow属性效果' alt='flex-grow属性效果'><figcaption>图9-19  flex-grow属性效果</figcaption></figure>
+<p>可以看出，box1 的实际宽度为100 + 200 = 300px，box2的实际宽度为100 + 100 = 200px，box3 的实际宽度仍然是 100px。</p>
+<h4>flex-shrink属性</h4>
+<p><a href="http://www.waibo.wang/bible/css3/demo/9/flex-shrink_number.html" target="_blank">flex-shrink属性</a>定义子元素的收缩因子，当容器空间不足时，浏览器把所有子元素的 flex-shrink属性值相加，再根据各自在总值中所占的份额进行收缩。语法为：</p>
+<pre class="prettyprint linenums">
+<code>flex-shrink: &lt;number&gt;</code></pre>
+<p>flex-shrink属性的默认值为 1。不允许负值，0 表示不收缩。如，父元素 father 下有两个子元素 box1、box2。HTML代码如下：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class="father"&gt;
+    &lt;div class="box1"&gt;1&lt;/div&gt;
+    &lt;div class="box2"&gt;2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>CSS代码如下：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<pre class="prettyprint linenums">
+<code> .father {
+    width: 600px;
+    display: flex;
+}
+.box1 {
+    width: 400px;
+    flex-shrink: 3;
+    background: #7f3ffd;
+}
+.box2 {  
+    width: 400px;      
+    background: #ef39d5;
+}</code></pre>
+<p>上述代码中，父元素的宽度是 600px，每个子元素的宽度是 400px，于是，父元素的宽度不足。为了能够容纳所有子元素，子元素需要收缩，待收缩的宽度为 2&times;400 &ndash; 600 = 200px。</p>
+<p>box1 定义了 flex-shrink属性，box2 未定义，box2 的 flex-shrink属性使用默认值 1。box1, box2 把待收缩空间分成 3 + 1 = 4份，box1 占 3/4，box2 占 1/4。于是，box1 和 box2按 3:1 来分配这 200px，box1要收缩 200&times;(3/4) = 150px，box2 要收缩 200&times;(1/4) = 50px。</p>
+<p>最终的结果是，box1 的实际宽度为 400 &ndash; 150 = 250px, box2 的实际宽度为400 &ndash; 50 = 350px。运行结果如图 9‑20 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/flex-shrink.png' title='flex-shrink属性效果' alt='flex-shrink属性效果'><figcaption>图9-20  flex-shrink属性效果</figcaption></figure>
+<h4>flex-basis属性</h4>
+<p><a href="http://www.waibo.wang/bible/css3/demo/9/flex-basis_length.html" target="_blank">flex-basis属性</a>用来定义为子元素预留的主轴尺寸。语法为：flex-basis: &lt;length&gt; | auto，默认值为 auto。</p>
+<p>取值值为 auto 时，实际使用的值是主轴尺寸属性的值，即 width 或 height 属性的值。如果主轴尺寸属性的值也是 auto，则要根据其内容和 flex-grow属性来分配空间。</p>
+<p>取值为长度值时，首先为该元素预留空间，预留后剩余的空间，再分配给所有子元素。这样一来，该元素除了预留空间外，还会分得容器的剩余空间。在父元素的空间有剩余时，该元素分配的空间 = flex-basis + flex-grow；在父元素空间不足时，该元素分配的空间 = flex-basis - flex-shrink。</p>
+<p>如，父元素 father 下有两个子元素 box1、box2。HTML代码如下：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class="father"&gt;
+    &lt;div class="box1"&gt;1&lt;/div&gt;
+    &lt;div class="box2"&gt;2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>CSS代码如下：</p>
+<pre class="prettyprint linenums">
+<code>.father {
+    width: 400px;
+    display: flex;
+}
+.box1 {
+    flex-grow: 1;
+    flex-basis: 200px;
+    background: #7f3ffd;
+}
+.box2 {
+    flex-grow: 1;
+    background: #ef39d5;
+}</code></pre>
+<p>上述代码中，父元素的宽度是 400px。box1 定义了 flex-basis属性，预留了 200px 的空间。而 box2 未定义 flex-basis属性，并未预留空间。这样一来，父元素剩余的空间就变成了 400 &ndash; 200 = 200px。</p>
+<p>由于 box1, box2 的 flex-grow属性的值都是 1，故由 box1, box2 均分父元素的剩余空间，各分得 100px。最终结果是，box1 的实际宽度为 200 + 100 = 300px, box2 的实际宽度为 100px。运行结果如图 9‑21 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/flex-basis.png' title='flex-basis属性效果' alt='flex-basis属性效果'><figcaption>图9-21  flex-basis属性效果</figcaption></figure>
+<h4>flex属性</h4>
+<p>flex属性是 flex-grow、flex-shrink、flex-basis 这 3 个属性的复合属性，用来定义子元素如何分配父元素的空白空间。语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>flex: none | [ &lt;"flex-grow"&gt; &lt;"flex-shrink"&gt;? || &lt;"flex-basis"&gt; ]</code></pre>
+<p>取值为关键字 none 时，相当于 flex-grow 的值为 0、flex-shrink 的值为 0、flex-basis的值为 auto。也就是说，flex: none 就相当于 flex: 0 0 auto。除此之外，flex属性还可以使用以下常用值：</p>
+<p>1） flex: initial，这是 flex属性的初始值，它表示 flex-grow、flex-shrink、flex-basis 这 3 个属性均使用默认值，就相当于flex: 0 1 auto。</p>
+<p>2） flex: auto，相当于 flex: 1 1 auto，表示子元素的实际尺寸为 width 或 height 属性的值，并子元素可以根据弹性容器的空间自由伸缩。</p>
+<p>3） flex: &lt;positive-number&gt;，相当于 flex: &lt;positive-number&gt; 1 0%，表示为子元素预留的主轴尺寸为0，并根据设置的比率分配弹性容器的剩余空间。如果一个伸缩容器里的所有项目都使用此模式，则它们按各自指定的伸缩比率分配弹性容器的剩余空间。</p>
+<h4>align-self属性</h4>
+<p>align-self属性用来定义当容器在侧轴方向上有额外的空白空间时，该子元素如何分配多余的空间，或容器的空间不足时，如何分配溢出的空间。</p>
+<p>align-self属性用来覆写容器上 align-items属性，除了 align-items属性的所有可选值外，align-self属性还可以设置为 auto，表示其计算值是弹性容器的 align-items属性值；如果弹性容器未定义 align-items属性，则为 stretch。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/9/9.3.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/9/9.4.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
