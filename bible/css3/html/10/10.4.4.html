@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>IE的常见bug及解决办法_IE列表底部空行bug_列表li底部空行bug-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 探究CSS3, 列表底部空行bug,列表li底部空行bug" />
+ <meta name="description" content="在IE6及更低版本中，如果在 li 元素中包含 display: block 的元素时，li 元素之间的空格将会转换为一个空行，夹在每个 li 的中间" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("100404");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">10.4.4 列表 li 底部空行Bug</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h1 class="hide-text">解决跨浏览器问题</h1>
+<h2 class="hide-text">渐进增强与优雅降级</h2>
+<h2 class="hide-text">兼容浏览器的方法</h2>
+<h2 class="hide-text">IE的hasLayout</h2>
+<h2 class="hide-text">修复IE的常见BUG</h2>
+<h3 class="hide-text">列表 li 的阶梯Bug</h3>
+<h3 class="hide-text">文本3像素偏移Bug</h3>
+<h3 class="hide-text">浮动元素双倍边距Bug</h3>
+<h3>列表 li 底部空行Bug</h3>
+<p>在IE6及更低版本中，如果在 li 元素中包含 display: block 的元素时，li 元素之间的空格将会转换为一个空行，夹在每个 li 的中间。</p>
+<p>假设使用上一节的HTML结构来制作垂直导航，为了增大链接的点击区域，常常将 a 元素的 display 属性设置为 block，让它成为块级元素。为了方便查看效果，为链接设置背景颜色：</p>
+<pre class="prettyprint linenums">
+<code>li a {
+    display: block;
+    background: #fa7a20;
+}</code></pre>
+<p>在现代浏览器中的运行结果如图 10‑8 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/10/list-margin.png' title='现代浏览器中运行结果' alt='现代浏览器中运行结果'><figcaption>图10-8  现代浏览器中运行结果</figcaption></figure>
+<p>在IE6以更低版本中的运行结果如图 10‑9 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/10/list-margin_ie.png' title='IE6及更低版本中运行结果' alt='IE6及更低版本中运行结果'><figcaption>图10-9  IE6及更低版本中运行结果</figcaption></figure>
+<p>导致这个问题的根本原因，是 li 元素后面的空格或换行符被转换为空行。如果在HTML代码中，将所有的 li 在一行内连续书写，中间没有空格，这个问题就不会出现。</p>
+<p>然而，当存在很多 li 子元素时，在一行内书写会给阅读代码带来困难。事实上，除了在一行内显示外，这个问题还有很多解决方法。</p>
+<p>方法一：为 li 元素设置 display: inline，让它在行内显示。由于内部的 a 元素是块级元素，这种方法不会产生任何负面影响。因此，这应该是最简单的解决方法。</p>
+<pre class="prettyprint linenums">
+<code>li a {
+    display: inline;
+}</code></pre>
+<p>方法二：为 a 元素显式定义一个宽度或高度，使它触发IE的hasLayout。</p>
+<pre class="prettyprint linenums">
+<code>li a {
+    …
+    width: 200px;      
+}</code></pre>
+<p>如果使用高度来触发IE的hasLayout，可以同时定义 line-height 属性，并设置为height 属性相同的值，还可以让链接垂直居中，一举两得。</p>
+<p>方法三：为每个 li 元素设置一个下边框。</p>
+<pre class="prettyprint linenums">
+<code>ul li {
+    border-bottom: 1px solid #fff;
+}</code></pre>
+<p>在解决问题的同时，这个边框还起到分隔 li 元素的作用，此方法可谓一举两得。但是，如果你偏偏不允许分隔 li 元素，这又带来新的问题，就是当边框颜色和背景颜色不一致时，将会影响显示效果。所以，最好将边框的颜色，设置成背景颜色。</p>
+<p>当然，也可以为 li 元素设置一个与边框等宽的负值下外边距，这样，就不必为边框颜色而纠结了。</p>
+<pre class="prettyprint linenums">
+<code>ul li {
+    margin-bottom: -1px;
+    border-bottom: 1px solid #fff;
+}</code></pre>
+<p>方法四：让 a 元素进行浮动，同时清除浮动。</p>
+<pre class="prettyprint linenums">
+<code>li a {
+    …
+    float: left;
+    clear: left;
+}</code></pre>
+<p>由于浮动会导致 a 元素的宽度收缩，又会增加额外的 clear 属性，并不推荐使用这种方法。但总归它是一种解决方法，应该会有合适的应用场景。</p>
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/10/10.4.3.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/10/10.4.5.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="../../../../js/prettify.js"></script>
+ <script src="../../../../js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+    rewardMethod();
+ });
+ </script>
+</body>
+</html>
