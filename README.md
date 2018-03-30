@@ -1,5 +1,5 @@
 # 教程简介
-《探究CSS》是一本开源的CSS教程，系统介绍整个CSS体系，全面涵盖CSS1、CSS2.1、CSS3， 并将整个CSS体系作为一个有机整体进行介绍，内容编排上，由浅入深，从基础讲起，逐步深入。   
+《揭秘CSS》是一本开源的CSS教程，系统介绍整个CSS体系，全面涵盖CSS1、CSS2.1、CSS3， 并将整个CSS体系作为一个有机整体进行介绍，内容编排上，由浅入深，从基础讲起，逐步深入。   
 
 <div align=center><img src="./img/face.png" title="探究CSS" alt="探究CSS"></div>   
 
