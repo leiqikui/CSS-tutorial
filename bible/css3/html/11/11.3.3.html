@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>word中的列表_list-style-type属性_list-style-position属性_list-style-image属性_background-position属性_揭秘CSS世界-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 揭秘CSS, , list-style-type,list-style-position,list-style-image,background-position,list-style-type属性,list-style-position属性,list-style-image属性,background-position属性" />
+ <meta name="description" content="列表还有3个特有的属性list-style-type、list-style-position和list-style-image，分别用来定义列表项目符号的样式、项目符号的位置、项目符号的图片" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+     <li ><a href="http://www.waibo.wang/tools/">工具</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid bible">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="http://localhost/waibo/img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("110303");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>揭秘CSS</strong>(第 1 版)</div><div class="section">11.3.3 列表</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h1 class="hide-text">解决跨浏览器问题</h1>
+<h1 class="hide-text">构建网页版WORD</h1>
+<h2 class="hide-text">布局设计</h2>
+<h2 class="hide-text">目录树设计</h2>
+<h2 class="hide-text">正文设计</h2>
+<h3 class="hide-text">段落</h3>
+<h3 class="hide-text">正文设计</h3>
+<h3>列表</h3>
+<p>在word中，列表也是使用频率非常高的元素。在CSS中，列表和列表项都是块级元素。也就是说，一个列表会形成一个块框，其中的每个列表项也会形成一个独立的块框。所以，盒模型中块框的所有属性，都适用于列表和列表项。</p>
+<p>除此之外，列表还有 3 个特有的属性 list-style-type、list-style-position和list-style-image，分别用来定义列表项目符号的样式、项目符号的位置、项目符号的图片。</p>
+<p>列表可以相互嵌套，并且一种类型的列表，可以与任何类型的列表相互嵌套。列表的表项也可以与任何HTML元素（如段落、图片、链接等）交叉定义。</p>
+<p>在word中，常常可以看到列表与段落、图片、表格等交叉的情况。其实，列表跟其他元素交叉的情形更常见，纯粹的列表反而少见。如：</p>
+<pre class="prettyprint linenums">
+<code>&lt;p&gt;列表的list-style-type、list-style-position…项目符号所使用的图片。&lt;/p&gt;
+&lt;ul&gt;
+   &lt;li&gt;list-style-type属性&lt;/li&gt;
+   &lt;ol&gt;
+      &lt;p&gt;list-style-type属性用来设置列表项目符号，取值有：&lt;/p&gt;
+      &lt;li&gt;disc 默认值，实心圆&lt;/li&gt;
+      &lt;li&gt;decimal       数字1、2、3、4、5&lt;/li&gt;
+      &lt;li&gt;lower-alpha 小写英文字母a、b、c、d、e&lt;/li&gt;
+      &lt;li&gt;lower-roman 小写罗马数字ⅰ、ⅱ、ⅲ、ⅳ、ⅴ&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;li&gt;list-style-position属性&lt;/li&gt;
+    &lt;li&gt;list-style-image属性&lt;/li&gt;
+&lt;ul&gt;</code></pre>
+<p>上述代码中，在 ul 中嵌套了 ol，在 ol 中，段落元素 p 也与列表项 li 元素交叉定义。这只是一个非常简单的实例，通过该实例，来演示如何为列表应用样式。</p>
+<p>由于不同的浏览器下，列表的默认样式可能不同。所以，为了在所有浏览器中表现一致，首先要清除列表的默认样式，如外边距、内边距、列表项目符号等。</p>
+<pre class="prettyprint linenums">
+<code>ul,ol {
+    margin: 0;
+    padding: 0;
+}</code></pre>
+<p>默认情况下，列表的 list-style-position属性值为 outside，项目符号不占据容器的空间。在列表元素的 margin 或 padding 为 0 时，项目符号在容器的外面，项目符号将无法与段落文本对齐。所以，根据需要，可以把list-style-position属性设置为inside。</p>
+<p>另外，中文有一个书写习惯，就是段落首行缩进两个字符。要使列表和段落对齐，列表项同样也要首行缩进两个字符。</p>
+<pre class="prettyprint linenums">
+<code>ul li, ol li {
+   text-indent: 2em;
+   list-style-position: inside;
+}
+</code></pre>
+<p>由于默认的列表项目符号过于简单，并且选择范围很小，根本不能满足大多数用户的需求。对此，CSS提供了图片替换技术，可以选用符合页面风格的图片，来取代默认的列表项符号。</p>
+<p>取代默认的列表项符号时，HTML代码无需任何修改，只需使用 list-style-image属性定义图片的URL即可。这也是CSS优越性的体现。这里，对无序列表，使用 square.png 作为项目符号，而有序列表使用默认的数字项目符号。</p>
+<pre class="prettyprint linenums">
+<code>ul {
+   list-style-image: url(img/square.png);
+}
+ol {
+   list-style-type: decimal;
+}</code></pre>
+<p>上述代码看似没有问题，并在Chrome下运行正常，但在IE的所有版本和Opera下，内层的 ol 依然使用 square.png 作为项目符号。究其原因，是因为 list-style-image属性具有继承性，内层列表继承了外层列表的list-style-image属性所导致。</p>
+<p>所以，如果要用图片取代默认的列表项目符号，在清除列表的默认样式时，还要把 list-style属性设置为 none。</p>
+<pre class="prettyprint linenums">
+<code>ol {
+   list-style-type: decimal;
+   list-style-image: none;
+}</code></pre>
+<p>经过上述处理之后，我们定义的列表，就跟word中的列表相差无几了，并在所有浏览器下表现一致。运行结果如图 11‑13 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/11/list.png' title='列表样式' alt='列表样式'><figcaption>图11-13  列表样式</figcaption></figure>
+<p>虽然使用 list-style-image 很容易达到目的，但是由于列表的格式化，主要由浏览器，而不是由设计人员完成的，所以无法精确控制图片的位置。从上图可以看出，图片和文本很难正确对齐。并且，在不同的浏览器下，图片和文字之间的距离也不尽相同。</p>
+<p>然而，并非只有 list-style-image属性才能实现使用图片替换项目符号的功能。前面介绍过，CSS把页面上的任何元素都看作一个盒子，盒模型的大多数公共属性，其实都适用于列表，包括背景属性。所以，这时候背景就可以派上用场，可以使用背景来替代 list-style-image，再通过 background-position属性，来精确控制项目符号的位置。</p>
+<p>要使用背景作为项目符号，首先要重置 list-style-type属性，把它置为 none。否则，项目符号和背景将会同时出现。</p>
+<pre class="prettyprint linenums">
+<code>ul  {
+   list-style-type: none;
+}</code></pre>
+<p>然后，为列表的 li 元素定义一个背景图像，并设置为不平铺。为了防止 li 中的文本覆盖背景图像，需要为 li 设置适当的左外边距，为图片腾出空间。再通过 background-position属性来精确控制背景图像的位置，保证背景图像和文本正确对齐。</p>
+<pre class="prettyprint linenums">
+<code>ul  li {
+   margin-left: 2em;
+   background-position: 0 6px;
+   background-repeat: no-repeat;
+   background-image: url(img/square.png); 
+}</code></pre>
+<p>通过调整图片的位置，项目符号和文本可以正确对齐，并且在所有浏览器下的表现一致，比直接使用 list-style-image属性的效果明显要好多了（限于篇幅，就不截图了），这就是使用背景图像的好处。</p><div class="author">
+<p class="about">关于作者</p>
+<p><a href="https://weibo.com/leiqikui">歪脖先生</a>，十五年以上软件开发经验，酷爱Web开发，精通 HTML、CSS、JavaScript、jQuery、JSON、Python、Less、Bootstrap等，著有《<a href="http://www.waibo.wang/bible/html5/">HTML宝典</a>》、《<a href="http://www.waibo.wang/bible/css3/">揭秘CSS</a>》、《<a href="http://www.waibo.wang/bible/less/">Less简明教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap2/">Bootstrap2用户指南</a>》、《<a href="http://www.waibo.wang/bible/bootstrap3/">Bootstrap3实用教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap4/">Bootstrap4源码剖析</a>》，并全部在 <a href="https://github.com/leiqikui">GitHub</a> 上开源。</p>
+</div>
+
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+
+<script src="http://localhost/waibo/js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    rewardMethod();
+ });
+ </script>
+ 
+<div class="share">
+ <div class="bdsharebuttonbox"></div>
+ </div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/11/11.3.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/11/11.3.4.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+ <div class="container hidden-phone">
+ <div class="row-fluid">
+ <div class="span2">
+ <dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+      <dt>教程</dt>
+      <dd><a href="http://localhost/waibo/bible/html5/">HTML5宝典</a></dd>
+      <dd><a href="http://localhost/waibo/bible/css3/">探究CSS3</a></dd>
+      <dd><a href="http://localhost/waibo/bible/json/">JSON 教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/es6/">ES6标准入门</a></dd>
+      <dd><a href="http://localhost/waibo/bible/bootstrap2/">Bootstrap教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/xcx/">微信小程序教程</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>工具</dt>
+     <dd><a href="http://www.waibo.wang/tools/htmlformat">HTML格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/cssformat">CSS格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/htmlconvert">HTML多功能转换器</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/xmltojson">XML和JSON转换工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsconfuse">JS混淆工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsonp">JSON在线解析</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/markdown">在线Markdown编辑器</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>关注</dt>
+    </dl>
+    <div class="social">
+      <img src="http://localhost/waibo/img/weixin.png" title="扫描二维码，关注歪脖网微信">
+<a href="https://weibo.com/leiqikui" title="新浪微博" target="_blank"></a>
+<a href="http://t.qq.com/maifang51" title="腾讯微博" target="_blank"></a>
+<a href="https://github.com/leiqikui" title="Github" target="_blank"><svg width="24" height="24" version="1.1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+    </div>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>赞助商</dt>
+     <dd><a rel="nofollow" href="https://cloud.tencent.com/redirect.php?redirect=1005&cps_key=2291d007f3b4d08b96c0fc03c4b54499" target="_blank" title="腾讯云提供安全、稳定的云服务器"><img src="http://localhost/waibo/img/logo-qqyun.png"> 腾讯云</a></dd>
+     <dd><a rel="nofollow" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DJm1BMj9ta3QcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAjPr0N2Hh94K6bMO9Kiim77lHsPu4n7AVmGhnzSVk4DlmWL0QXDWLBr%2BSLtF1Lx83hmIkXBqRClNTcEU%2BDykfuSM%2BhtH71aX6uIOTs4KMj3yjpOyWSRdiSZDEm2YKA6YIrbIzrZDfgWtwGXLU4WXsy8CZuZoOOkzXFxfvOyje0ynomfkDJRs%2BhU%3D" target="_blank" title="阿里云全民云计算"><img src="http://localhost/waibo/img/logo-aliyun.png">&nbsp; 阿里云</a></dd>
+    </dl>
+ </dl>
+ </div>
+ </div>
+ </div>
+ <hr/>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="http://localhost/waibo/js/prettify.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+ });
+ </script>
+</body>
+</html>
