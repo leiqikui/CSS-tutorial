@@ -1,203 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSSUI状态伪类选择器包括:focused,:checked,:enabled,:disabled,:valid,:invalid,:in-range,:out-of-range,:required,:read-only-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS选择器,伪类选择器,UI状态伪类选择器,:focused,:checked,:enabled,:disabled,:valid,:invalid,:in-range,:out-of-range,:required,:read-only" />
- <meta name="description" content="UI状态伪类选择器，用于选择处于某种状态下的UI元素，主要用于HTML表单上，根据表单元素的不同状态，定义不同的样式，来增强用户体验" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("20606");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">2.6.6 UI状态伪类选择器</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h2 class="hide-text">概述</h2>
-<h2 class="hide-text">基本选择器</h2>
-<h2 class="hide-text">关系选择器</h2>
-<h2 class="hide-text">属性选择器</h2>
-<h2 class="hide-text">伪元素选择器</h2>
-<h2 class="hide-text">伪类选择器</h2>
-<h3 class="hide-text">语言伪类选择器</h3>
-<h3 class="hide-text">目标伪类选择器</h3>
-<h3 class="hide-text">否定伪类选择器</h3>
-<h3 class="hide-text">结构伪类选择器</h3>
-<h3 class="hide-text">链接伪类选择器</h3>
-<h3>UI状态伪类选择器</h3>
-<p>UI状态伪类选择器，用于选择处于某种状态下的UI元素，主要用于HTML表单上，根据表单元素的不同状态，定义不同的样式，来增强用户体验。</p><p>表单元素的状态包括获得焦点、失去焦点、选中、未选中、可用、不可用、有效、无效、必填、选填、只读等等。</p><table summary="UI状态伪类选择器" class="attr">	<caption>表 2-10 UI状态伪类选择器</caption>	<thead>		<tr> <th>选择器</th><th>功能描述</th><th>版本</th></tr>	</thead>	<tbody><tr><td>E:focused</td><td>选择表单中获得焦点的元素</td><td>3</td></tr><tr><td>E:checked</td><td>选择表单中被选中的radio或者checkbox元素</td><td>3</td></tr><tr><td>E:enabled</td><td>选择表单中可用的元素</td><td>3</td></tr><tr><td>E:disabled</td><td>选择表单中不可用（即被禁用）的元素</td><td>3</td></tr><tr><td>E:valid</td><td>选择表单中填写的内容符合要求的元素</td><td>3</td></tr><tr><td>E:invalid</td><td>选择表单中填写的内容不符合要求的元素，如非法的URL或E-Mail，或与 pattern 属性给出的模式不匹配</td><td>3</td></tr><tr><td>E:in-range</td><td>选择表单中输入的数字在有效范围内的元素</td><td>3</td></tr><tr><td>E:out-of-range</td><td>选择表单中输入的数字超出有效范围的元素</td><td>3</td></tr><tr><td>E:required</td><td>选择表单中必填的元素</td><td>3</td></tr><tr><td>E:optional</td><td>选择表单中允许使用required属性，且未指定为required的元素</td><td>3</td></tr><tr><td>E:read-only</td><td>选择表单中状态为只读的元素</td><td>3</td></tr><tr><td>E:read-write</td><td>选择表单中状态为非只读的元素</td><td>3</td></tr><tr><td>E:default</td><td>选择表单中默认处于选取状态的单选框或复选框，即使用户将该单选框或复选框控件的选取状态设定为非选取状态，E:default选择器中指定的样式仍然有效</td><td>3</td></tr><tr><td>E:indeterminate</td><td>选择器表单中一组单选框中没有任何一个单选框被选取时整组单选框的样式，如果用户选取了其中任何一个单选框，则该样式被取消指定</td><td>3</td></tr>	</tbody></table><p>在使用UI状态伪类选择器时，可以结合属性选择器，来限定特定元素的类型，甚至将UI状态伪类结合在一起使用，来创造更丰富的样式。如果不限定元素的类型，则对任何元素均有效。</p><h4>E:focused</h4><p>E:focused伪类选择器选择获得的元素。如，以下规则可以为任何获得焦点的 input 元素添加 1px 的橙色边框，而不管它的类型：</p><pre class="prettyprint linenums"><code>input:focus {    border: 1px solid #f60;}</code></pre><p>运行结果如图 2‑23 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/focused.png' title='获得焦点状态' alt='获得焦点状态'><figcaption>图2-23  获得焦点状态</figcaption></figure><h4>E:checked</h4><p>E:checked伪类选择器选择表单中被选中的 radio 或 checkbox 元素。假设在注册用户的页面上，有一个复选框和同意注册的文本：</p><pre class="prettyprint linenums"><code>&lt;input type="checkbox" value="1" /&gt;&lt;label&gt; 我已经阅读并同意网站注册条款&lt;/label&gt;</code></pre><p>以下规则为选中的单选按钮或复选框紧邻的 label 元素添加样式：</p><pre class="prettyprint linenums"><code>input:checked + label {    color: green;}</code></pre><p>当用户选中复选框后，紧邻复选框的 label 元素中的文本将变成绿色。运行结果如图 2‑24 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/checked.png' title='复选框选中状态' alt='复选框选中状态'><figcaption>图2-24  复选框选中状态</figcaption></figure><h4>E:enabled/E:disenabled</h4><p>E:enabled伪类选择器选择处于可用状态的元素，E:disenabled伪类选择器选择处于不可用状态的元素。假设页面上有两个元素，一个可用，一个不可用：</p><pre class="prettyprint linenums"><code>&lt;label&gt; enabled: &lt;/label&gt;&lt;input type="text" /&gt;&lt;label&gt;disabled: &lt;/label&gt;&lt;input type="text" disabled /&gt;</code></pre><p>就可以针对元素的可用、不可用状态，应用不同的样式。如，对不可用的元素，可以禁用鼠标，并设置灰色背景和边框：</p><pre class="prettyprint linenums"><code>input[type="text"] {    width: 200px;    height: 20px;    background: #fff;    border: 1px solid #cbcbcb;}input[type="text"]:disabled {    cursor: not-allowed;    background: #eee;    border-color: #ddd;}</code></pre><p>运行结果如图 2‑25 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/enabled_disablee.png' title='可用、不可用状态' alt='可用、不可用状态'><figcaption>图2-25  可用、不可用状态</figcaption></figure><p>如果一个表单元素经常在可用和不可用状态之间进行切换，通常将这两个选择器结合使用，来改变元素的样式，增加表单的易用性。</p><h4>E:valid/E:invalid</h4><p>E:valid 伪类选择器选择输入数据有效的元素，E:invalid 伪类选择器选择输入数据无效的元素。如，对于获得焦点的 email 输入框，就可以根据用户的输入是否为有效的邮箱地址，来应用不同的样式：</p><pre class="prettyprint linenums"><code>&lt;label&gt;E-Mail: &lt;/label&gt;&lt;input type="email" name="email" /&gt;</code></pre><p>此时，就可以根据用户的输入，来应用不同的样式。如果输入有效的邮箱地址，文本框的边框颜色为绿色，如果输入无效的邮箱地址，文本框的边框颜色为红色：</p><pre class="prettyprint linenums"><code>input[type="email"]:focus:valid {    border: 1px solid green;}input[type="email"]:focus:invalid {    border: 1px solid red;}</code></pre><p>这样的话，在页面初始加载时，由于用户还没有进行输入，邮箱邮箱地址一定是非法值，文本框就会显示红色警示边框。运行结果如图 2‑26 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/invalid.png' title='输入非法的邮箱地址' alt='输入非法的邮箱地址'><figcaption>图2-26  输入非法的邮箱地址</figcaption></figure><p>随着用户不断输入，当邮箱地址合法的时候，文本框就会由红色边框，自动变成安全的绿色边框。运行结果如图 2‑27 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/valid.png' title='输入合法的邮箱地址' alt='输入合法的邮箱地址'><figcaption>图2-27  输入合法的邮箱地址</figcaption></figure><h4>E:in-range/E:out-of-range</h4><p>E:in-range伪类选择器选择输入数据在有效范围的元素，E:out-of-range伪类选择器选择输入数据超出有效范围的元素。如，对于 input 类型为 number 的文本输入框，其输入的值必须在 min 和 max 的范围内。</p><pre class="prettyprint linenums"><code>&lt;label&gt;请输入数字（0~10）: &lt;/label&gt;&lt;input type="number" min=0 max=10 /&gt;</code></pre><p>此时，就可以根据用户的输入，来应用不同的样式。如果输入的数值未超出范围，文本框的边框颜色为绿色，一旦输入的数值超出范围，文本框的边框颜色就变为红色：</p><pre class="prettyprint linenums"><code>input[type="number"]:focus:in-range {    border: 1px solid green;}input[type="number"]:focus:out-of-range {    border: 1px solid red;}</code></pre><p>这样的话，在用户输入数值的过程中，当输入的数值在有效范围内，文本框就是安全的绿色边框。运行结果如图 2‑28 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/valid_num.png' title='输入合法的数值' alt='输入合法的数值'><figcaption>图2-28  输入合法的数值</figcaption></figure><p>随着用户的不断输入，当输入的数值超出有效范围时，文本框就会由安全的绿色边框，自动变成红色警示边框。运行结果如图 2‑29 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/invalid_num.png' title='输入非法的数值' alt='输入非法的数值'><figcaption>图2-29  输入非法的数值</figcaption></figure>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/2/2.6.5.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/3/3.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>

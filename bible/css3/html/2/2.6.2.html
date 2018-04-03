@@ -1,199 +1,0 @@
-﻿<!DOCTYPE html>
-<html lang="zh">
-<head>
- <meta charset="utf-8">
- <title>CSS结构伪类选择器包括 :first-child,:last-child, :nth-child, :nth-of-type, :empty-歪脖网</title>
- <meta name="keywords" content="CSS, CSS3, 探究CSS3, CSS选择器,伪类选择器,结构伪类选择器,:first-child,:last-child,:nth-child,:nth-of-type,:empty" />
- <meta name="description" content="结构伪类选择器，可以根据元素在文档中所处的位置，来动态选择元素，从而减少HTML文档对ID或类的依赖，有助于保持代码干净整洁" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
- <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
- <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
-
- <script src="http://localhost/waibo/js/jquery.js"></script>
- <script src="http://localhost/waibo/js/script.js"></script>
-</head>
-
-<body>
- <div class="topbar">
- <div class="eyebrow hidden-phone">
- <div class="container">
- <ul class="pull-left">
-   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
- </ul>
- <ul class="pull-right">
-  <li><a href="http://www.waibo.wang/user/">登录</a></li>
-  <li class="b">|</li>
-  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
- </div>
- </div>
-
-<div class="topnav">
-<div class="container">
-  <div class="row-fluid mtz">
-  <div class="span3 topnav-logo">
-    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
-  </div>
-  <div class="span6 nav">
-   <ul>
-     <li ><a href="http://www.waibo.wang/">首页</a></li>
-     <li class="active"><a href="http://localhost/waibo/bible/css3/">教程</a></li>
-     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
-     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
-   </ul>
-  </div>
-  <div class="span3 topnav-form">
-  </div>
- </div>
- </div>
- </div>
- </div>
-
-
- <div class="container">
- <div class="row-fluid">
- <aside class="span3">
- <map id="oAll" name="oAll">
- <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
- <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
- </map>
- <header><span>目录</span><img src="../../../../img/map.png" usemap="#oAll"/></header>
- <script src="http://localhost/waibo/js/dtree.js"></script>
- <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
- <script>
-    createTree("20602");
- </script>
- </aside>
-
- <main class="span9">
- <header><div class="name"><strong>探究CSS</strong> (第1版)</div><div class="section">2.6.2 结构伪类选择器</div></header>
- <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
- <article>
-<h1 class="hide-text">概述</h1>
-<h1 class="hide-text">CSS选择器</h1>
-<h2 class="hide-text">概述</h2>
-<h2 class="hide-text">基本选择器</h2>
-<h2 class="hide-text">关系选择器</h2>
-<h2 class="hide-text">属性选择器</h2>
-<h2 class="hide-text">伪元素选择器</h2>
-<h2 class="hide-text">伪类选择器</h2>
-<h3 class="hide-text">链接伪类选择器</h3>
-<h3>结构伪类选择器</h3>
-<p>结构伪类选择器，可以根据元素在文档中所处的位置，来动态选择元素，从而减少HTML文档对ID或类的依赖，有助于保持代码干净整洁。</p><table summary="结构伪类选择器" class="attr">	<caption>表 2-6 结构伪类选择器</caption>	<thead>		<tr> <th>选择器</th><th>功能描述</th><th>版本</th></tr>	</thead>	<tbody><tr><td>E:last-child</td><td>选择父元素的倒数第一个子元素E，相当于E:nth-last-child(1)</td><td>3</td></tr><tr><td>E:nth-child(n)</td><td>选择父元素的第n个子元素，n从1开始计算</td><td>3</td></tr><tr><td>E:nth-last-child(n)</td><td>选择父元素的倒数第n个子元素，n从1开始计算</td><td>3</td></tr><tr><td>E:first-of-type</td><td>选择父元素下同种标签的第一个元素，相当于E:nth-of-type(1)</td><td>3</td></tr><tr><td>E:last-of-type</td><td>选择父元素下同种标签的倒数第一个元素，相当于E:nth-last-of-type(1)</td><td>3</td></tr><tr><td>E:nth-of-type(n)</td><td>与:nth-child(n)作用类似，用作选择使用同种标签的第n个元素</td><td>3</td></tr><tr><td>E:nth-last-of-type</td><td>与:nth-last-child作用类似，用作选择同种标签的倒数第一个元素</td><td>3</td></tr><tr><td>E:only-child</td><td>选择父元素下仅有的一个子元素，相当于E:first-child:last-child或E:nth-child(1):nth-last-child(1)</td><td>3</td></tr><tr><td>E:only-of-type</td><td>选择父元素下使用同种标签的唯一子元素，相当于E:first-of-type:last-of-type或E:nth-of-type(1):nth-last-of-type(1)</td><td>3</td></tr><tr><td>E:empty</td><td>选择空节点，即没有子元素的元素，而且该元素也不包含任何文本节点</td><td>3</td></tr><tr><td>E:root</td><td>选择文档的根元素，对于HTML文档，根元素永远HTML</td><td>3</td></tr>	</tbody></table><p>结构伪类选择器很容易遭到误解，需要特别强调。如，p:first-child表示选择父元素下的第一个子元素 p，而不是选择 p 元素的第一个子元素。</p><p>需要注意的是，结构伪类选择器中，子元素的序号是从 1 开始的，也就是说，第一个子元素的序号是 1，而不是 0。换句话说，当参数 n 的计算结果为 0 时，将不选择任何元素。</p><p>接下来，简单介绍 :first-child、:last-child、:nth-child、:nth-of-type、:empty 这几个选择器，其他选择器的功能在表格中已经描述清楚，不再赘述。</p><h4>E:first-child 和 E:last-child</h4><p>:first-child 和 :last-child分别用于选择元素的子元素中，符合条件的第一个和最后一个子元素。:first-child 伪类在CSS2就已经存在，:last-child 伪类是CSS3新增的伪类。</p><p>如，对于下面的 tab 菜单，希望该 tab 菜单的第一个元素的左上角，和最后一个元素的右上角应用圆角。HTML代码如下：</p><pre class="prettyprint linenums"><code>&lt;ul class = "tabMenu"&gt;&lt;li&gt;&lt;a href="# "&gt;公司介绍&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="# "&gt;产品中心&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="# "&gt;新闻动态&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</code></pre><p>在CSS3之前，直接选取 class 为 tab 元素的第一个或最后一个子元素，是不可能的。现在，通过 :first-child 和 :last-child 伪类，就可以轻松实现。CSS代码如下：</p><pre class="prettyprint linenums"><code>.tabMenu li:first-child {    border-top-left-radius: 5px;}.tabMenu li:last-child {    border-top-right-radius: 5px;}</code></pre><p>上述代码的运行结果如图 2‑19 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/first-child.png' title='first-child和last-child伪类' alt='first-child和last-child伪类'><figcaption>图2-19  first-child和last-child伪类</figcaption></figure><h4>E:nth-child(n)</h4><p>E:nth-child(n) 用于选择某个父元素的一个或多个特定的子元素。n 表示不确定的数字，th 是英语中序数词的后缀。因此，nth-child 就表示第 n 个子元素。该选择器的参数 n 可以是数字、公式或关键字：</p><p>1）数字：可以是任何大于 0 的正整数。如，.tab li:nth-child(2)，表示选择 class 为 .tab 的父元素下，第 2 个 li 子元素。</p><p>2）公式：格式为 (an + b)。其中，a表示周期的长度，n 是计数器（从 0 开始），b 是偏移值。如，:nth-child(n+4) 选取序号大于等于 4 的元素，:nth-child(-n+4) 选取序号小于等于 4 的元素，:nth-child(2n) 选取序号为偶数的元素，:nth-child(2n+1) 选取序号为奇数的元素，:nth-child(3n) 选取序号为3、6、9…的子元素（即“隔二选一”），:nth-child(3n+1) 选取序号为1、4、7、10…的子元素，等等。</p><p>3）关键字：只有odd 和 even 两个关键字。odd表示选取序号为奇数的元素，效果等同于 :nth-child(2n-1) 和 :nth-child(2n+1)；even表示选取序号为偶数的元素，效果等同于 :nth-child(2n)。</p><h4>E:nth-of-type(n)</h4><p>:nth-of-type(n) 与 :nth-child(n) 的作用和使用方法完全相同，唯一不同的是，它用来选择某个父元素下，指定类型的一个或多个特定的子元素。</p><h4>E:empty</h4><p>选择空节点，即不包含任何子元素的元素，也就是内容为空白的元素。因为文本节点本身也被看作子元素，所以，包含文本节点的元素就不是空元素，哪怕是一个空格。如：</p><pre class="prettyprint linenums"><code>&lt;div&gt;	&lt;p&gt;我包含文本节点，我不是空元素&lt;/p&gt;	&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</code></pre><p>对上述HTML代码调用样式如下：</p><pre class="prettyprint linenums"><code>p:empty {	height: 25px; 	background: #eee;	border: 1px solid #f90;}</code></pre><p>上述HTML代码中，由于最后一个 p 元素是空节点，则会被 p:empty 选择器选中。于是，它就会表现为一个高度为 25px，背景色为灰色，带有1px 的橙色边框的矩形框。运行结果如图 2‑20 所示：</p><figure><img src='http://localhost/waibo/bible/css3/img/2/empty.png' title='E:empty运行结果' alt='E:empty运行结果'><figcaption>图2-20  E:empty运行结果</figcaption></figure><section><p class="note">:nth-child 与 :nth-of-type 的区别：</p><p>:nth-child 和 :nth-of-type 都能选择子元素，它们到底有什么区别呢？</p><p>区别其实也很简单，E:nth-child(n) 是把所有子元素作为选择对象，选择其中的第n个子元素，且这个子元素的类型必须是 E，如果不是，则选择失败。而 E:nth-of-type(n) 则先把类型为E的所有子元素选择出来，从1开始编号，然后把这些子元素作为选择对象，选择其中的第n个。假如有以下HTML代码片段：&nbsp;</p><pre class="prettyprint linenums"><code>&lt;div&gt; &lt;ul class="demo"&gt; &lt;p&gt;zero&lt;/p&gt; &lt;li&gt;one&lt;/li&gt; &lt;li&gt;two&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; </code></pre><p>上述代码中，.demo li:nth-child(2)是从 .demo 的所有子元素中找第二个子元素，且第二个子元素的类型必须是 li，选择结果为&lt;li&gt;one&lt;/li&gt;节点；.demo li:nth-of-type(2) 先把 .demo 的所有类型为 li 的子元素找出来，然后选择其中的第 2 个，选择结果为 &lt;li&gt;two&lt;/li&gt; 节点。</p></section>
-<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-<h6>打赏</h6>
-</div>
-<div class="modal-body">
-<div class="tabbable reward-weipay">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="weipay1">
-<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="weipay2">
-<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="weipay5">
-<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="weipay10">
-<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="weipay20">
-<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="weipayrand">
-<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="tabbable reward-alipay hide">
-<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
-<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
-<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
-<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
-<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
-<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane active" id="alipay1">
-<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
-</div>
-<div class="tab-pane" id="alipay2">
-<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
-</div>
-<div class="tab-pane" id="alipay5">
-<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
-</div>
-<div class="tab-pane" id="alipay10">
-<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
-</div>
-<div class="tab-pane" id="alipay20">
-<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
-</div>
-<div class="tab-pane" id="alipayrand">
-<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
-</div>
-</div>
-</div>
-<div class="reward-method">
-<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
-<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
-</div>
-</div>
-</div>
-<div class="reward">
-<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
-<a data-toggle="modal" href="#modalReward">赏</a>
-</div>
- <div class="page">
-   <a id="prev" href="http://localhost/waibo/bible/css3/html/2/2.6.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/2/2.6.3.html" title="&#8594; 键到下一节">下一节 »</a>
- </div>
- </article>
- </main>
- </div>
- </div>
- <div class="floatPanel">
-	 <div class="ctrolPanel">
-		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
-    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
-    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
-    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
-  </div>
-	<div id="phone" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
-		</div>
-	</div>
-	<div id="wechat" class="popPanel">
-		<div class="popPanel-inner">
-			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
-		</div>
-	</div>
-</div>
- <footer>
-   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
-   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
- </footer>
- <script src="../../../../js/prettify.js"></script>
- <script src="../../../../js/bootstrap.min.js"></script>
- <script>
- $(function() {
-    prettyPrint();
-    bible();
-    load();
-    rewardMethod();
- });
- </script>
-</body>
-</html>
