@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>table-layout属性_caption-side属性_border-spacing属性_empty-cells属性_border-collapse属性_揭秘CSS世界-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 揭秘CSS, , table-layout,caption-side,border-spacing,empty-cells,border-collapse" />
+ <meta name="description" content="在CSS2中，为表格定义了 5 个专用的属性，分别为 table-layout、caption-side、border-spacing、empty-cells 和 border-collapse，CSS3中未新增属性" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+     <li ><a href="http://www.waibo.wang/tools/">工具</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid bible">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="http://localhost/waibo/img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("70103");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>揭秘CSS</strong>(第 1 版)</div><div class="section">7.1.3 表格的样式属性</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h2 class="hide-text">表格</h2>
+<h3 class="hide-text">表格的基本布局</h3>
+<h3 class="hide-text">表格特有的元素</h3>
+<h3>表格的样式属性</h3>
+<p>表格中的每个单元格，都是盒模型中一个独立的盒子，并生成一个矩形框。因此，盒模型中几乎所有的属性，如边框、内边距、背景、对齐方式、文本、字体等，都适用于单元格的 td 元素。但有一点除外，外边距属性对 td 元素无效，相邻单元格之间的距离，是通过 border-spacing属性进行调整，而不是外边距属性。</p>
+<p>在CSS2中，为表格定义了 5 个专用的属性，分别为 table-layout属性、caption-side属性、border-spacing属性、empty-cells属性 和 border-collapse属性，CSS3中未新增属性。</p>
+<h4>table-layout</h4>
+<p>table-layout属性来定义表格的布局算法，取值为 auto | fixed，默认值为 auto。auto 表示自动布局，fixed 表示固定布局。</p>
+<p>使用自动布局时，表格的布局是由浏览器根据各单元格的内容自动计算得到，列的宽度是由列单元格中，没有折行的最宽内容设定。由于需要在所有单元格的内容读取计算之后，才能确定最终布局，所以渲染速度较慢。</p>
+<p>使用固定布局时，水平布局仅取决于表格宽度、列的宽度、表格边框宽度、单元格间距，而与单元格的内容无关。浏览器接收到第一行数据后，就可以确定布局，所以渲染速度较快。因此，最好是通过表头 th 元素的 width 属性，来设置列的宽度。</p>
+<p>当然，根据应用的需要，也可以只设置其中某些列的宽度。这样的话，设置了固定宽度的列将采用固定布局，而没有设置固定宽度的列将采用自动布局。无论怎样，只要有一个列设置了固定宽度，表格的 table-layout 属性就必须设置为 fixed。如，有以下表格：</p>
+<pre class="prettyprint linenums">
+<code>&lt;table&gt;
+&lt;caption&gt;2015年销售额&lt;/caption&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;年&lt;/th&gt;
+        &lt;th&gt;季度&lt;/th&gt;
+        &lt;th&gt;销售额（万元）&lt;/th&gt;
+        &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;th&gt;2015&lt;/th&gt;
+        &lt;th&gt;1&lt;/th&gt;
+        &lt;th&gt;1895.26&lt;/th&gt;
+        &lt;th&gt;...&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;2015&lt;/th&gt;
+        &lt;th&gt;2&lt;/th&gt;
+        &lt;th&gt;3456.84&lt;/th&gt;
+        &lt;th&gt;...&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;2015&lt;/th&gt;
+        &lt;th&gt;3&lt;/th&gt;
+        &lt;th&gt;4857.69&lt;/th&gt;
+        &lt;th&gt;...&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;2015&lt;/th&gt;
+        &lt;th&gt;4&lt;/th&gt;
+        &lt;th&gt;8941.82&lt;/th&gt;
+        &lt;th&gt;...&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<p>由于表格的第 1、2、3 列的内容比较明确，其宽度也相对固定。因此，就可以设置这三列的宽度，来采用固定布局，而不设置第 4 列的宽度，让它采用自动布局：</p>
+<pre class="prettyprint linenums">
+<code>table {
+    width: 100%;
+    border-spacing: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+th:nth-child(1),
+th:nth-child(2) {
+    width: 40px;
+}
+th:nth-child(3) {
+    width: 120px;
+}</code></pre>
+<p>上述表格中，由于第 1、2、3 列设置了固定宽度，表格的 table-layout属性就必须设置为 fixed。</p>
+<p>由于表格的宽度设置为百分比，表格就会随着浏览器窗口自动缩放（当然，还需要祖先元素采用流式布局），第 4 列也就会随之缩放。但无论怎么缩放，第 1、2、3 列的宽度始终保持不变。运行结果如图 7‑2 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/table_layout.png' title='表格的布局' alt='表格的布局'><figcaption>图7-2  表格的布局</figcaption></figure>
+<h4>caption-side</h4>
+<p>caption-side属性用来定义caption框的显示位置。默认值情况下，caption 框显示在表格的上方，可以把 caption-side属性设置为 bottom 让它显示在表格的下方。</p>
+<h4>border-spacing</h4>
+<p>border-spacing属性用来定义相邻单元格的边框之间的距离，默认值为0。使用长度值定义，不允许使用负值。该属性需要两个长度值，第一个用于水平间距，第二个用于垂直间距。如果只提供一个长度值，则同时用于水平间距和垂直间距。</p>
+<p>需要注意的是，只有在 border-collapse属性取值为 separate 时，该属性才会有效。并且，该属性是应用于表格本身，而不是单元格。如果为 td 元素声明 border-spacing属性，则会被浏览器忽略。</p>
+<h4>empty-cells</h4>
+<p>empty-cells属性用来定义当表格的单元格无内容时，是否显示该单元格的边框，取值为hide | show，默认值为show。只有在border-collapse属性取值为separate时，该属性才会有效。</p>
+<p>如果该属性设置为show，则会绘制空单元格的边框和背景，就好像该单元格有内容一样。如果值为 hide，则不会绘制该单元格的边框和背景，就好像该单元格被设置为 visibility: hidden 一样。</p>
+<p>如果一个单元格包含有内容，则不能认为是空的。这里的内容除了文本、图像、表格等，还包括不间断空格（&amp;nbsp;）、以及除回车、换行、空格符以外的所有其它空白符。如果一行中的所有单元格都为空，而 empty-cells 的值为 hide，则该行的高度为 0，就好像这个整行被设置为 display: none 一样。</p>
+<h4>border-collapse</h4>
+<p>border-collapse属性用来定义单元格边框的显示方式，取值为 separate | collapse，默认值为 separate。separate 表示各单元格有独立的边框，collapse 表示相邻单元格的边框被合并为一个边框。</p>
+<p>边框独立时，不会忽略 border-spacing属性和 empty-cells属性；边框合并时，则会忽略 border-spacing属性和 empty-cells属性。如：</p>
+<pre class="prettyprint linenums">
+<code>.separate {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+.collapse {
+    border-collapse: collapse;
+}
+caption {
+    margin: 4px;
+    font: bold 14px 黑体;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding:  .3em 1em;
+}</code></pre>
+<p>上述代码的运行结果如图 7‑3 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/7/border-collapse.png' title='border-collapse属性效果' alt='border-collapse属性效果'><figcaption>图7-3  border-collapse属性效果</figcaption></figure>
+<p>上图中，左侧表格采用独立边框，右侧表格采用合并边框。为了清楚可见，为单元格定义1px的灰色边框，即每个单元格各自有1px的边框。独立边框还定义了2px的边框间隙。</p>
+<p>可以看出，左侧表格单元格的边框各自独立，单元格之间的距离为各自边框及边框间距之和，即1px + 2px + 1px = 4px；而右侧表格单元格边框被合并成了一个边框，并忽略了边框间隙，最终边框宽度依然为1px。</p><div class="author">
+<p class="about">关于作者</p>
+<p><a href="https://weibo.com/leiqikui">歪脖先生</a>，十五年以上软件开发经验，酷爱Web开发，精通 HTML、CSS、JavaScript、jQuery、JSON、Python、Less、Bootstrap等，著有《<a href="http://www.waibo.wang/bible/html5/">HTML宝典</a>》、《<a href="http://www.waibo.wang/bible/css3/">揭秘CSS</a>》、《<a href="http://www.waibo.wang/bible/less/">Less简明教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap2/">Bootstrap2用户指南</a>》、《<a href="http://www.waibo.wang/bible/bootstrap3/">Bootstrap3实用教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap4/">Bootstrap4源码剖析</a>》，并全部在 <a href="https://github.com/leiqikui">GitHub</a> 上开源。</p>
+</div>
+
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+
+<script src="http://localhost/waibo/js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    rewardMethod();
+ });
+ </script>
+ 
+<div class="share">
+ <div class="bdsharebuttonbox"></div>
+ </div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/7/7.1.2.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/7/7.2.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+ <div class="container hidden-phone">
+ <div class="row-fluid">
+ <div class="span2">
+ <dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+      <dt>教程</dt>
+      <dd><a href="http://localhost/waibo/bible/html5/">HTML5宝典</a></dd>
+      <dd><a href="http://localhost/waibo/bible/css3/">探究CSS3</a></dd>
+      <dd><a href="http://localhost/waibo/bible/json/">JSON 教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/es6/">ES6标准入门</a></dd>
+      <dd><a href="http://localhost/waibo/bible/bootstrap2/">Bootstrap教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/xcx/">微信小程序教程</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>工具</dt>
+     <dd><a href="http://www.waibo.wang/tools/htmlformat">HTML格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/cssformat">CSS格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/htmlconvert">HTML多功能转换器</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/xmltojson">XML和JSON转换工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsconfuse">JS混淆工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsonp">JSON在线解析</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/markdown">在线Markdown编辑器</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>关注</dt>
+    </dl>
+    <div class="social">
+      <img src="http://localhost/waibo/img/weixin.png" title="扫描二维码，关注歪脖网微信">
+<a href="https://weibo.com/leiqikui" title="新浪微博" target="_blank"></a>
+<a href="http://t.qq.com/maifang51" title="腾讯微博" target="_blank"></a>
+<a href="https://github.com/leiqikui" title="Github" target="_blank"><svg width="24" height="24" version="1.1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+    </div>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>赞助商</dt>
+     <dd><a rel="nofollow" href="https://cloud.tencent.com/redirect.php?redirect=1005&cps_key=2291d007f3b4d08b96c0fc03c4b54499" target="_blank" title="腾讯云提供安全、稳定的云服务器"><img src="http://localhost/waibo/img/logo-qqyun.png"> 腾讯云</a></dd>
+     <dd><a rel="nofollow" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DJm1BMj9ta3QcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAjPr0N2Hh94K6bMO9Kiim77lHsPu4n7AVmGhnzSVk4DlmWL0QXDWLBr%2BSLtF1Lx83hmIkXBqRClNTcEU%2BDykfuSM%2BhtH71aX6uIOTs4KMj3yjpOyWSRdiSZDEm2YKA6YIrbIzrZDfgWtwGXLU4WXsy8CZuZoOOkzXFxfvOyje0ynomfkDJRs%2BhU%3D" target="_blank" title="阿里云全民云计算"><img src="http://localhost/waibo/img/logo-aliyun.png">&nbsp; 阿里云</a></dd>
+    </dl>
+ </dl>
+ </div>
+ </div>
+ </div>
+ <hr/>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="http://localhost/waibo/js/prettify.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+ });
+ </script>
+</body>
+</html>
