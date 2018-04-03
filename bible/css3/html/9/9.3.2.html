@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3 flex布局实例_CSS3弹性布局盒模型使用方法_CSS3弹性布局盒模型实例_揭秘CSS世界-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 揭秘CSS, , flex,inline-flex,flex布局,CSS3 flex布局,CSS3弹性布局盒模型" />
+ <meta name="description" content="CSS3中，提出了弹性布局盒模型（Flex Layout Box Model），它一种全新的布局方式，其目的是提供一种更加高效的方式，来对容器中的子元素进行布局、对齐和分配空间。" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+     <li ><a href="http://www.waibo.wang/tools/">工具</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid bible">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="http://localhost/waibo/img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("90302");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>揭秘CSS</strong>(第 1 版)</div><div class="section">9.3.2 建立弹性盒布局</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h2 class="hide-text">基本布局类型</h2>
+<h2 class="hide-text">多列布局</h2>
+<h2 class="hide-text">弹性布局盒模型</h2>
+<h3 class="hide-text">弹性布局盒模型</h3>
+<h3>建立弹性盒布局</h3>
+<p>弹性盒布局模型中引入了一些新的属性，只要设置好相应属性，盒子就具有弹性，在改变浏览器窗口大小时，盒子大小也会自动发生变化。并且，盒子的大小由浏览器自动计算，使页面布局更加灵活、更加简单，可以很轻松创建自适应浏览器窗口的流式布局。</p>
+<p>如，在class = &quot;father&quot; 的父元素中，包含class = &quot;box1&quot;、class = &quot;box2&quot;、class = &quot;box3&quot;三个子元素。HTML代码如下（除非特殊声明，后文都将使用该实例）：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class = "father"&gt;
+    &lt;div class = "box1"&gt;1&lt;/div&gt;
+    &lt;div class = "box2"&gt;2&lt;/div&gt;
+    &lt;div class = "box3"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>要使用弹性布局盒模型，实现弹性布局的效果，只需要两步：第一步，开启弹性盒模型；第二步，设置子元素的空间分配比例。</p>
+<h4>开启弹性盒模型</h4>
+<p>是否开启弹性盒模型，由父元素（即弹性容器，下同）决定。要开启弹性盒模型，只需把父元素的 display 的属性值为 flex 或 inline-flex 即可。如：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<pre class="prettyprint linenums">
+<code>.father  {
+     width: 600px;
+     display: flex;
+}</code></pre>
+<p>取值为 flex 时，弹性容器被渲染为块级元素，取值为 inline-flex时，弹性容器被渲染为行内元素。如果把一个浮动或绝对定位元素的 display 属性值设置为 inline-flex，则 display 属性的计算值是 flex。</p>
+<h4>设置子元素的空间分配比例</h4>
+<p>开启弹性布局盒模型后，所有弹性子元素共享父元素的空间，并按弹性盒进行布局。然后，通过子元素的 flex-grow 属性设置各自的空间分配比例。设置分配比例后，所有子元素根据各自所占用的份额来分配父元素的空间。如：</p>
+<pre class="prettyprint linenums">
+<code>.box1 {
+    flex-grow: 2;       
+    background: #7f3ffd;
+}
+.box2 {
+    flex-grow: 1;
+    background: #ef39d5;
+}
+.box3 {
+    flex-grow: 1;
+    background: #1bb9f1;
+}</code></pre>
+<p>上述代码中，box1、box2、box3的 flex-grow 属性值分别是2、1、1，它们把父元素的空间分成了2 + 1 + 1 = 4份。其中，box1占2/4，box2占1/4，box3占1/4。父元素的总宽度是600px，box1分得600&times;(2/4) = 300px，box2分得600&times;(1/4) = 150px，box3分得600&times;(1/4) = 150px。运行结果如图 9‑12 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/9/flex.png' title='display:flex效果' alt='display:flex效果'><figcaption>图9-12  display:flex效果</figcaption></figure>
+<p>如果父元素 father 为非固定宽度，则在浏览器窗口大小发生变化时，各个子元素的宽度就会随着按比例发生变化，便体现出弹性布局的优势。</p><div class="author">
+<p class="about">关于作者</p>
+<p><a href="https://weibo.com/leiqikui">歪脖先生</a>，十五年以上软件开发经验，酷爱Web开发，精通 HTML、CSS、JavaScript、jQuery、JSON、Python、Less、Bootstrap等，著有《<a href="http://www.waibo.wang/bible/html5/">HTML宝典</a>》、《<a href="http://www.waibo.wang/bible/css3/">揭秘CSS</a>》、《<a href="http://www.waibo.wang/bible/less/">Less简明教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap2/">Bootstrap2用户指南</a>》、《<a href="http://www.waibo.wang/bible/bootstrap3/">Bootstrap3实用教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap4/">Bootstrap4源码剖析</a>》，并全部在 <a href="https://github.com/leiqikui">GitHub</a> 上开源。</p>
+</div>
+
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+
+<script src="http://localhost/waibo/js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    rewardMethod();
+ });
+ </script>
+ 
+<div class="share">
+ <div class="bdsharebuttonbox"></div>
+ </div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/9/9.3.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/9/9.3.3.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+ <div class="container hidden-phone">
+ <div class="row-fluid">
+ <div class="span2">
+ <dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+      <dt>教程</dt>
+      <dd><a href="http://localhost/waibo/bible/html5/">HTML5宝典</a></dd>
+      <dd><a href="http://localhost/waibo/bible/css3/">探究CSS3</a></dd>
+      <dd><a href="http://localhost/waibo/bible/json/">JSON 教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/es6/">ES6标准入门</a></dd>
+      <dd><a href="http://localhost/waibo/bible/bootstrap2/">Bootstrap教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/xcx/">微信小程序教程</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>工具</dt>
+     <dd><a href="http://www.waibo.wang/tools/htmlformat">HTML格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/cssformat">CSS格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/htmlconvert">HTML多功能转换器</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/xmltojson">XML和JSON转换工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsconfuse">JS混淆工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsonp">JSON在线解析</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/markdown">在线Markdown编辑器</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>关注</dt>
+    </dl>
+    <div class="social">
+      <img src="http://localhost/waibo/img/weixin.png" title="扫描二维码，关注歪脖网微信">
+<a href="https://weibo.com/leiqikui" title="新浪微博" target="_blank"></a>
+<a href="http://t.qq.com/maifang51" title="腾讯微博" target="_blank"></a>
+<a href="https://github.com/leiqikui" title="Github" target="_blank"><svg width="24" height="24" version="1.1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+    </div>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>赞助商</dt>
+     <dd><a rel="nofollow" href="https://cloud.tencent.com/redirect.php?redirect=1005&cps_key=2291d007f3b4d08b96c0fc03c4b54499" target="_blank" title="腾讯云提供安全、稳定的云服务器"><img src="http://localhost/waibo/img/logo-qqyun.png"> 腾讯云</a></dd>
+     <dd><a rel="nofollow" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DJm1BMj9ta3QcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAjPr0N2Hh94K6bMO9Kiim77lHsPu4n7AVmGhnzSVk4DlmWL0QXDWLBr%2BSLtF1Lx83hmIkXBqRClNTcEU%2BDykfuSM%2BhtH71aX6uIOTs4KMj3yjpOyWSRdiSZDEm2YKA6YIrbIzrZDfgWtwGXLU4WXsy8CZuZoOOkzXFxfvOyje0ynomfkDJRs%2BhU%3D" target="_blank" title="阿里云全民云计算"><img src="http://localhost/waibo/img/logo-aliyun.png">&nbsp; 阿里云</a></dd>
+    </dl>
+ </dl>
+ </div>
+ </div>
+ </div>
+ <hr/>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="http://localhost/waibo/js/prettify.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+ });
+ </script>
+</body>
+</html>
