@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS3动画_CSS3 animation属性_CSS3 animation-name属性_CSS3 animation-duration属性_CSS3 animation-timing-function属性_CSS3 animation-iteration-count属性_CSS3 animation-direction属性_CSS3 animation-play-state属性_CSS3 animation-delay属性_CSS3 animation-fill-mode属性_揭秘CSS世界-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 揭秘CSS, , CSS3动画,animation,animation-name,animation-duration,animation-timing-function,animation-iteration-count,animation-direction,animation-play-state,animation-delay,animation-fill-mode" />
+ <meta name="description" content="在CSS3中，使用 animation属性来实现动画与元素的关联，并由 animation 相关的属性来控制动画的整个播放过程。animation是一个复合属性，可分解为animation-name、animation-duration、animation-timing-function、animation-iteration-count、animation-direction、animation" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+     <li ><a href="http://www.waibo.wang/tools/">工具</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid bible">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="http://localhost/waibo/img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("80302");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>揭秘CSS</strong>(第 1 版)</div><div class="section">8.3.2 动画</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h2 class="hide-text">变换</h2>
+<h2 class="hide-text">过渡</h2>
+<h2 class="hide-text">动画</h2>
+<h3 class="hide-text">关键帧</h3>
+<h3>动画</h3>
+<p>@keyframes只是用来声明一个动画，而动画本身并不执行任何操作。因此，如果希望为某个元素应用动画，还需要把动画与该元素关联起来。</p>
+<p>如果一个动画没有与任何元素关联，它就不会被调用，也就不会产生动画效果。动画与元素关联后，在整个动画过程中，元素的样式将完全由 animation属性来控制，关键帧中后面的样式，会覆盖前面的样式。CSS3动画，就是通过样式的不断变化得以实现的。CSS3动画的基本原理如图 8‑17 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/animation2.png' title='CSS动画原理' alt='CSS动画原理'><figcaption>图8-17  CSS动画原理</figcaption></figure>
+<p>在CSS3中，使用 animation属性来实现动画与元素的关联，并由 animation 相关的属性来控制动画的整个播放过程。其语法格式为：</p>
+<pre class="prettyprint linenums">
+<code>animation：[animation-name] || 
+           [animation-duration] || 
+           [animation-timing-function] || 
+           [animation-iteration-count] || 
+           [animation-direction] || 
+           [animation-play-state] || 
+           [animation-delay] || 
+           [animation-fill-mode]
+</code></pre>
+<p>也就是说，animation 是一个复合属性，可分解为 animation-name、animation-duration、animation-timing-function、animation-iteration-count、animation-direction、animation-play-state、animation-delay、animation-fill-mode 这 8 个独立的属性，下面分别进行介绍。</p>
+<h4>animation-name</h4>
+<p>animation-name属性指定所要关联的动画名称，其作用是让元素调用由@keyframes所定义的动画。如果省略该属性，则使用默认值 none，将没有任何动画效果。</p>
+<p>一个元素可以关联一个或多个动画名称，如果关联多个动画，就需要指定多个动画名称，中间以逗号进行分隔。如：</p>
+<pre class="prettyprint linenums">
+<code>.demo {
+    animation-name：wobble；
+}</code></pre>
+<p>上述代码就表示，将@keyframes wobble所定义的动画与 class=&quot;demo&quot; 的元素相关联，该元素将调用名称为 wobble 的动画。</p>
+<h4>animation-duration</h4>
+<p>animation-duration属性规定动画从开始到结束所持续的时间，默认值为 0s。接受秒或毫秒的值。如果省略该属性，则定义的 animation -* 属性均无效，不会产生动画效果。</p>
+<h4>animation-timing-function</h4>
+<p>animation-timing-function属性指定动画期间速度如何变化，与 transition-timing-function 属性的取值相同，请参阅。</p>
+<h4>animation-iteration-count</h4>
+<p>animation-iteration-count属性指定动画的迭代次数，取值为 infinite | &lt;number&gt;，默认值为 1。动画单向遍历一次关键帧的过程，称作一次迭代。</p>
+<p>一般情况下，一个动画会有两个状态：默认状态和迭代状态。页面初始加载完成后，元素进入迭代之前的状态，称作默认状态；而元素进入迭代之后的状态，被称作迭代状态。</p>
+<p>当取值为 0 时，不发生迭代；当取值为 1 时，仅发生一次迭代；当取值大于 1 时，发生多次迭代；当取值为 infinite 时，会发生无穷次迭代。</p>
+<section>
+<p class="warn">注意：</p>
+<p>animation-iteration-count属性取值为 0 与没有动画完全不同。当属性设置为 0 时，动画依然有效，也会被播放，只是元素从默认状态进入到迭代状态后，发现迭代次数为 0，动画会停止在迭代开始时的状态而已。没有动画时，元素始终保持在默认状态，不会进入迭代状态。</p>
+</section>
+<h4>animation-direction</h4>
+<p>animation-direction属性定义在某些迭代或所有迭代中的播放方向。可选值有 normal | reverse | alternate | alternate-reverse，默认值为 normal。当 animation-iteration-count属性设置为 1 时，alternate 和 alternate-reverse 为无效值。</p>
+<p>1） normal 表示正向播放，即每个迭代都正向播放。正向播放从关键帧的 from 开始，到 to 结束。如图 8‑18 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/animation-direction_normal.png' title='animation-direction:normal效果' alt='animation-direction:normal效果'><figcaption>图8-18  animation-direction:normal效果</figcaption></figure>
+<p>2） reverse 表示逆向播放，即每个迭代都逆向播放。逆向播放从关键帧的 to 开始，到 from 结束。如图 8‑19 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/animation-direction_reverse.png' title='animation-direction:reverse效果' alt='animation-direction:reverse效果'><figcaption>图8-19  animation-direction:reverse效果</figcaption></figure>
+<p>3） alternate 表示正向交替播放，即以正向播放开始，首尾相接，循环播放。其结果是第 n 次迭代正向播放，第 n+1 次迭代逆向播放（n 从 1 开始）。如图 8‑20 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/animation-direction_alternate.png' title='animation-direction:alternate效果' alt='animation-direction:alternate效果'><figcaption>图8-20  animation-direction:alternate效果</figcaption></figure>
+<p>4） alternate-reverse 表示逆向交替播放，即以逆向播放开始，首尾相接，循环播放。其结果是第 n 次迭代逆向播放，第 n+1 次迭代正向播放。如图 8‑21 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/8/animation-direction_alternate-reverse.png' title='animation-direction:alternate-reverse效果' alt='animation-direction:alternate-reverse效果'><figcaption>图8-21  animation-direction:alternate-reverse效果</figcaption></figure>
+<h4>animation-play-state</h4>
+<p>animation-play-state属性用来控制动画的播放状态，取值 running 或 paused，默认值为 running。</p>
+<p>可以通过paused将正在播放的动画暂停下来，也可以通过 running 让暂停的动画从暂停的位置重新播放。</p>
+<h4>animation-delay</h4>
+<p>animation-delay属性定义在动画开始之前的等待时间，默认值为 0s，表示不需要等待。接受秒或毫秒的值。如果不需要等待，可以省略该属性。</p>
+<h4>animation-fill-mode</h4>
+<p>animation-fill-mode属性定义动画在处于执行之外的时间期间，即动画播放结束后、或被延迟播放期间，元素所应用的样式。可选值有 none | forwards | backwards | both，默认值为 none。不同取值的含义见表 8‑2：</p>
+<table summary="animation-fill-mode属性取值及含义">
+	<caption>表 8-2 animation-fill-mode属性取值及含义</caption>
+	<thead>
+		<tr>
+			<th>属性值</th><th>含义</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr><td>none</td><td>始终应用默认样式，即页面初始加载完成后，还未进入迭代前的样式</td></tr>
+<tr><td>backwards</td><td>表示后退，即后退到动画第一个迭代开始时的样式。被延迟的动画，延迟期间应用第一个迭代开始时的样式。播放方向为normal或alternate的动画，应用from帧的状态（若未定义from帧，则应用默认样式）；播放方向为reverse或alternate-reverse的动画，应用to帧的样式</td></tr>
+<tr><td>forwards</td><td>表示前进，即前进到动画结束时的样式。被延迟的动画，延迟期间应用默认状态的样式；被播放的动画，播放结束后，应用结束状态的样式。正向播放时，应用from帧的样式（若未定义from帧，则为默认样式）；逆向播放时，应用to帧的样式</td></tr>
+<tr><td>both</td><td>同时遵循forwards和backwards的规则，在两个方向上扩展动画属性。即动画开始之前，应用backwards规则；动画结束之后，应用forwards规则</td></tr>
+	</tbody>
+</table><div class="author">
+<p class="about">关于作者</p>
+<p><a href="https://weibo.com/leiqikui">歪脖先生</a>，十五年以上软件开发经验，酷爱Web开发，精通 HTML、CSS、JavaScript、jQuery、JSON、Python、Less、Bootstrap等，著有《<a href="http://www.waibo.wang/bible/html5/">HTML宝典</a>》、《<a href="http://www.waibo.wang/bible/css3/">揭秘CSS</a>》、《<a href="http://www.waibo.wang/bible/less/">Less简明教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap2/">Bootstrap2用户指南</a>》、《<a href="http://www.waibo.wang/bible/bootstrap3/">Bootstrap3实用教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap4/">Bootstrap4源码剖析</a>》，并全部在 <a href="https://github.com/leiqikui">GitHub</a> 上开源。</p>
+</div>
+
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+
+<script src="http://localhost/waibo/js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    rewardMethod();
+ });
+ </script>
+ 
+<div class="share">
+ <div class="bdsharebuttonbox"></div>
+ </div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/8/8.3.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/9/9.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+ <div class="container hidden-phone">
+ <div class="row-fluid">
+ <div class="span2">
+ <dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+      <dt>教程</dt>
+      <dd><a href="http://localhost/waibo/bible/html5/">HTML5宝典</a></dd>
+      <dd><a href="http://localhost/waibo/bible/css3/">探究CSS3</a></dd>
+      <dd><a href="http://localhost/waibo/bible/json/">JSON 教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/es6/">ES6标准入门</a></dd>
+      <dd><a href="http://localhost/waibo/bible/bootstrap2/">Bootstrap教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/xcx/">微信小程序教程</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>工具</dt>
+     <dd><a href="http://www.waibo.wang/tools/htmlformat">HTML格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/cssformat">CSS格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/htmlconvert">HTML多功能转换器</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/xmltojson">XML和JSON转换工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsconfuse">JS混淆工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsonp">JSON在线解析</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/markdown">在线Markdown编辑器</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>关注</dt>
+    </dl>
+    <div class="social">
+      <img src="http://localhost/waibo/img/weixin.png" title="扫描二维码，关注歪脖网微信">
+<a href="https://weibo.com/leiqikui" title="新浪微博" target="_blank"></a>
+<a href="http://t.qq.com/maifang51" title="腾讯微博" target="_blank"></a>
+<a href="https://github.com/leiqikui" title="Github" target="_blank"><svg width="24" height="24" version="1.1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+    </div>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>赞助商</dt>
+     <dd><a rel="nofollow" href="https://cloud.tencent.com/redirect.php?redirect=1005&cps_key=2291d007f3b4d08b96c0fc03c4b54499" target="_blank" title="腾讯云提供安全、稳定的云服务器"><img src="http://localhost/waibo/img/logo-qqyun.png"> 腾讯云</a></dd>
+     <dd><a rel="nofollow" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DJm1BMj9ta3QcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAjPr0N2Hh94K6bMO9Kiim77lHsPu4n7AVmGhnzSVk4DlmWL0QXDWLBr%2BSLtF1Lx83hmIkXBqRClNTcEU%2BDykfuSM%2BhtH71aX6uIOTs4KMj3yjpOyWSRdiSZDEm2YKA6YIrbIzrZDfgWtwGXLU4WXsy8CZuZoOOkzXFxfvOyje0ynomfkDJRs%2BhU%3D" target="_blank" title="阿里云全民云计算"><img src="http://localhost/waibo/img/logo-aliyun.png">&nbsp; 阿里云</a></dd>
+    </dl>
+ </dl>
+ </div>
+ </div>
+ </div>
+ <hr/>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="http://localhost/waibo/js/prettify.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+ });
+ </script>
+</body>
+</html>
