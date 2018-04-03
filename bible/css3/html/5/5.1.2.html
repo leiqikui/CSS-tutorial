@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>CSS块格式化上下文 BFC(Block Formatting Contexts)_揭秘CSS世界-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 揭秘CSS, , 块格式化上下文,Block Formatting Contexts,BFC" />
+ <meta name="description" content="块级框参与的格式化上下文，称作块格式化上下文（Block Formatting Contexts，简称BFC），它规定了内部的块级框如何排列" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+     <li ><a href="http://www.waibo.wang/tools/">工具</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid bible">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="http://localhost/waibo/img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("50102");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>揭秘CSS</strong>(第 1 版)</div><div class="section">5.1.2 块格式化上下文</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h2 class="hide-text">普通流</h2>
+<h3 class="hide-text">行格式化上下文</h3>
+<h3>块格式化上下文</h3>
+<p>块级框参与的格式化上下文，称作块格式化上下文（Block Formatting Contexts，简称BFC），它规定了内部的块级框如何排列。</p>
+<p>块格式化上下文看似抽象，其实比较简单，它实际上就是页面上的一个块级元素，只是在布局上，该元素内部的元素和外部的元素相互独立，互不影响。</p>
+<p>通俗的讲，就是在创建了块格式化上下文的元素中，其子元素都会按照块格式化上下文的规则排列自己。以下元素都会自动为其内容创建一个块格式化上下文：</p>
+<ul>
+	<li>根元素</li>
+	<li>浮动的元素（float: left | right）</li>
+	<li>固定定位的元素（position: absolute | fixed）</li>
+	<li>overflow 属性值为 hidden | auto | scroll 的元素</li>
+	<li>display 属性值为 table | table-caption | table-cell | flex的元素</li>
+	<li>表格的单元格（td、th）</li>
+	<li>表格的标题（display: table-captions，caption）</li>
+</ul>
+<p>块格式化上下文具有以下特点：</p>
+<p>1）在块格式化上下文中，如果只存在块级框，则所有块级框从包含块的顶部开始，一个接一个地垂直排列，每个框被渲染为完整的一行。</p>
+<p>假设在 body 下，有一个 class = &quot;wrapper&quot; 的 div 子元素，该子元素又包含三个 div 子元素：</p>
+<pre class="prettyprint linenums">
+<code>&lt;html&gt;
+&lt;head&gt;&lt;title&gt;BFC&lt;/title&gt;
+&lt;body&gt;
+&lt;div class = "wrapper"&gt;
+    &lt;div style = "height: 40px;"&gt;&lt;/div&gt;
+    &lt;div style = "width: 100px; height: 40px;"&gt;&lt;/div&gt;
+    &lt;div style = "width: 100px; height: 20px;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>上述代码中，html 元素是根元素，body 元素是根元素唯一的子元素，.wrapper 又是 body 的子元素。</p>
+<p>为了便于观察，为根元素 html 设置了外边距、内边距和红色边框，为 body 元素设置了内边距和黑色边框，为 .wrapper 子元素设置宽度、内边距和蓝色边框，还为其子元素设置上下外边距和灰色边框：</p>
+<pre class="prettyprint linenums">
+<code>html {
+   margin: 10px;
+   padding: 10px;
+   border: 1px solid red;
+}
+body {
+   padding: 20px;
+   border: 1px solid black;
+}
+.wrapper {
+   width: 300px;
+   padding: 10px;
+   border: 1px solid blue;
+}
+.wrapper div {
+   margin: 10px 0;
+   border: 1px dashed gray;
+}</code></pre>
+<p>由创建BFC的条件可知，根元素默认会创建一个BFC，而 body 和 .wrapper 都不符合创建BFC的条件。因此，body、.wrapper 及 .wrapper 的三个子元素，都将参与根元素创建的块格式化上下文。</p>
+<p>前面曾经介绍过，所有元素都是在其包含块中布局。由此可知，body 在初始包含块中布局，.wrapper 在 body 创建的包含块中布局，.wrapper 的三个子元素在 .wrapper 创建的包含块中布局，并从包含块的顶端开始，一个接一个地垂直排列。运行结果如图 5‑8 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc1.png' title='块格式化上下文中元素垂直排列' alt='块格式化上下文中元素垂直排列'><figcaption>图5-8  块格式化上下文中元素垂直排列</figcaption></figure>
+<p>从上图可以看出，虽然 .wrapper 的第二个和第三个子元素的宽度都是 100px，它们也独占一行。由此可知，在BFC中，每个块级框始终独占一行，即便一行的空间足以容纳多个框也是如此。</p>
+<p>2）在同一个块格式化上下文中，相邻两个框之间的垂直距离，由它们的垂直外边距计算得到。当两个垂直外边距相遇时，它们之间的垂直距离，不是第一个框的 margin-bottom 与第二个框的 margin-top 之和，而两者中的较大者。</p>
+<p>在CSS中，把这个现象称作外边距合并，即 margin 的合并，意思是说较小的 margin，被合并到了较大的 margin 之中。如图 5‑9 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc3.png' title='相邻元素的垂直外边距合并' alt='相邻元素的垂直外边距合并'><figcaption>图5-9  相邻元素的垂直外边距合并</figcaption></figure>
+<p>外边距合并时，当两个相邻的外边距都是正数时，合并结果是两者中的较大者；都是负数时，合并结果是两者绝对值较大者；一正一负时，合并结果是两者之和。</p>
+<p>只要是两个垂直外边距相遇，不管这两个元素之间是父子关系还是兄弟关系，都会发生外边距合并。当一个元素包含在另一个元素中时（假如没有内边距或边框把外边距隔开），它们相邻的外边距也会发生合并。如图 5‑10 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc4.png' title='父元素和子元素的外边距合并' alt='父元素和子元素的外边距合并'><figcaption>图5-10  父元素和子元素的外边距合并</figcaption></figure>
+<p>一个元素自身的垂直外边距也可以发生合并，假设有一个空元素，它有上下外边距，但没有边框和内边距。这种情况下，上外边距与下外边距就碰到了一起，它们就会发生合并。如图 5‑11 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc5.png' title='元素自身的垂直外边距合并' alt='元素自身的垂直外边距合并'><figcaption>图5-11  元素自身的垂直外边距合并</figcaption></figure>
+<p>外边距合并看上去似乎有点奇怪，但在页面布局中，它却有存在的现实意义。假设有一组块级框，它们都设置了相同上下外边距。如果没有外边距合并，第一个框和最后一个框之外的所有框之间的垂直外边距，都将是相邻上外边距和下外边距之和，这意味着这些框之间的空间将会加倍。如果发生外边距合并，框之间的上外边距和下外边距就合并，所有框之间的垂直距离就会保持一致。如图 5‑12 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc6.png' title='外边距合并使距离一致' alt='外边距合并使距离一致'><figcaption>图5-12  外边距合并使距离一致</figcaption></figure>
+<p>只有同一个块格式化上下文中，块级元素的垂直外边距会发生合并，而浮动元素或绝对定位元素属于不同的BFC，它们之间的外边距不会合并。</p>
+<p>3）在块格式化上下文中，每个块级框的左外边界，都紧贴包含块的左内边界（对于从右往左的格式化，则为框的右外侧紧贴包含块右侧），即便存在浮动也是如此，除非这个块级框创建了一个新的BFC。</p>
+<p>假设在一个容器中，有一个 div 子元素和一个段落子元素：</p>
+<pre class="prettyprint linenums">
+<code>&lt;div class = "wrapper"&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;p&gt;在BFC中，每个框的左外边界紧贴…除非框创建了一个新的BFC。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<p>为了方便查看容器中内容的对齐情况，为容器设置宽度、内边距和边框，并让div 向左浮动，为两个子元素设置不同的背景颜色：</p>
+<pre class="prettyprint linenums">
+<code>.wrapper {
+   width: 300px;
+   padding: 10px;
+   border: 1px solid #ccc;
+}
+.wrapper div {
+   float: left;
+   width: 60px;
+   height: 60px;
+   background: #f90;
+}
+p {
+   color: #fff;
+   background: #2595e5;
+}</code></pre>
+<p>上述代码的运行结果如图 5‑13 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc7.png' title='内部的框左对齐' alt='内部的框左对齐'><figcaption>图5-13  内部的框左对齐</figcaption></figure>
+<p>从上图可以看出，浮动框和非浮动框的左外边界，都紧贴包含块的左内边界。其实，这也容易理解，因为浮动框已经脱离文档流，它的块级兄弟元素，会无视浮动框的存在，尽量占满一整行，导致被浮动框覆盖。</p>
+<p>正如上图 所示，这里的 p 元素仍然紧贴包含块的左内边界，导致段落被浮动框覆盖，而 p 元素中的文本所形成的行框却向右移动，并水平变窄来给浮动元素腾出空间。随着文本的增加，后面的文本又会紧贴包含块的左内边界，因为它不再受浮动框的影响，便无需再向右移动了。</p>
+<p>有时候，可以利用这个特性来创建文本环绕的效果，但有时候，这种情况并非所愿。如果设置段落的左外边距，使 p 元素为浮动元素腾出空间，就不会被浮动元素覆盖。</p>
+<p>不过，如果让段落创建一个新的BFC，也不会被浮动框覆盖（但是，p 元素所生成的框，会受浮动框影响而变窄）。如：</p>
+<pre class="prettyprint linenums">
+<code>p {
+   color: #fff;
+   overflow: hidden;
+   background: #2595e5;
+}</code></pre>
+<p>运行结果如图 5‑14 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc8.png' title='消除浮动元素的影响' alt='消除浮动元素的影响'><figcaption>图5-14  消除浮动元素的影响</figcaption></figure>
+<p>这里使用 overflow 属性来创建BFC，使 p 元素向右移动并水平变窄，来给浮动元素腾出空间，以便不被浮动元素覆盖。当然，在实际应用中，可以根据实际情况，选择任意合适的属性来创建BFC。</p>
+<p>4）计算块格式化上下文的高度时，浮动元素也参与计算，也就是说，创建了BFC的元素，会根据子元素情况自动适应高度，可以让一个元素包含浮动元素。在 5.3.2 节将详细介绍如何利用这个规则来间接实现清理浮动的效果，这里不再赘述。</p>
+<p>前面已经介绍，只有块级框会参与块格式化上下文，那么，当一个块格式化上下文中既有块级框，又有行内级框时，该如何布局呢？考虑以下HTML代码片段：</p>
+<pre class="prettyprint linenums">
+<code>&lt;body&gt;
+&lt;div class = "wrapper"&gt;
+    some text
+    &lt;div&gt;div&lt;/div&gt;
+    &lt;span&gt;span1&lt;/span&gt;
+    &lt;span&gt;span2&lt;/span&gt;
+&lt;/div&gt;
+&lt;/body&gt;</code></pre>
+<p>为了方便查看每一行的效果，为 div 和 span 设置边框，为 div 设置上下外边距：</p>
+<pre class="prettyprint linenums">
+<code>.wrapper div,
+.wrapper span {
+    border: 1px dashed #ccc;
+}
+.wrapper div {
+    margin: 10px 0
+}</code></pre>
+<p>运行结果如图 5‑15 所示：</p>
+<figure><img src='http://localhost/waibo/bible/css3/img/5/bfc9.png' title='块格式化上下文中包含块级元素和行内元素' alt='块格式化上下文中包含块级元素和行内元素'><figcaption>图5-15  块格式化上下文中包含块级元素和行内元素</figcaption></figure>
+<p>从上图可以看出，块级框中的文本&ldquo;some text&rdquo;生成一个匿名块级框直接参与BFC，div 元素生成一个块级框直接参与BFC，而 span1 和 span2 元素生成的行框（相当于一个匿名块级框）再参与BFC。</p>
+<p>综上所述，普通流中页面布局基本的规则为：首先，为根元素创建一个BFC，所有子元素参与到该BFC中。然后，任何子元素都可以根据需要创建新的BFC，它的所有子元素再参与到该BFC中。这样，通过BFC的层层嵌套，就可以构建出千变万化的布局效果。</p><div class="author">
+<p class="about">关于作者</p>
+<p><a href="https://weibo.com/leiqikui">歪脖先生</a>，十五年以上软件开发经验，酷爱Web开发，精通 HTML、CSS、JavaScript、jQuery、JSON、Python、Less、Bootstrap等，著有《<a href="http://www.waibo.wang/bible/html5/">HTML宝典</a>》、《<a href="http://www.waibo.wang/bible/css3/">揭秘CSS</a>》、《<a href="http://www.waibo.wang/bible/less/">Less简明教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap2/">Bootstrap2用户指南</a>》、《<a href="http://www.waibo.wang/bible/bootstrap3/">Bootstrap3实用教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap4/">Bootstrap4源码剖析</a>》，并全部在 <a href="https://github.com/leiqikui">GitHub</a> 上开源。</p>
+</div>
+
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+
+<script src="http://localhost/waibo/js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    rewardMethod();
+ });
+ </script>
+ 
+<div class="share">
+ <div class="bdsharebuttonbox"></div>
+ </div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/5/5.1.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/5/5.2.1.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+ <div class="container hidden-phone">
+ <div class="row-fluid">
+ <div class="span2">
+ <dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+      <dt>教程</dt>
+      <dd><a href="http://localhost/waibo/bible/html5/">HTML5宝典</a></dd>
+      <dd><a href="http://localhost/waibo/bible/css3/">探究CSS3</a></dd>
+      <dd><a href="http://localhost/waibo/bible/json/">JSON 教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/es6/">ES6标准入门</a></dd>
+      <dd><a href="http://localhost/waibo/bible/bootstrap2/">Bootstrap教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/xcx/">微信小程序教程</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>工具</dt>
+     <dd><a href="http://www.waibo.wang/tools/htmlformat">HTML格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/cssformat">CSS格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/htmlconvert">HTML多功能转换器</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/xmltojson">XML和JSON转换工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsconfuse">JS混淆工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsonp">JSON在线解析</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/markdown">在线Markdown编辑器</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>关注</dt>
+    </dl>
+    <div class="social">
+      <img src="http://localhost/waibo/img/weixin.png" title="扫描二维码，关注歪脖网微信">
+<a href="https://weibo.com/leiqikui" title="新浪微博" target="_blank"></a>
+<a href="http://t.qq.com/maifang51" title="腾讯微博" target="_blank"></a>
+<a href="https://github.com/leiqikui" title="Github" target="_blank"><svg width="24" height="24" version="1.1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+    </div>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>赞助商</dt>
+     <dd><a rel="nofollow" href="https://cloud.tencent.com/redirect.php?redirect=1005&cps_key=2291d007f3b4d08b96c0fc03c4b54499" target="_blank" title="腾讯云提供安全、稳定的云服务器"><img src="http://localhost/waibo/img/logo-qqyun.png"> 腾讯云</a></dd>
+     <dd><a rel="nofollow" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DJm1BMj9ta3QcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAjPr0N2Hh94K6bMO9Kiim77lHsPu4n7AVmGhnzSVk4DlmWL0QXDWLBr%2BSLtF1Lx83hmIkXBqRClNTcEU%2BDykfuSM%2BhtH71aX6uIOTs4KMj3yjpOyWSRdiSZDEm2YKA6YIrbIzrZDfgWtwGXLU4WXsy8CZuZoOOkzXFxfvOyje0ynomfkDJRs%2BhU%3D" target="_blank" title="阿里云全民云计算"><img src="http://localhost/waibo/img/logo-aliyun.png">&nbsp; 阿里云</a></dd>
+    </dl>
+ </dl>
+ </div>
+ </div>
+ </div>
+ <hr/>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="http://localhost/waibo/js/prettify.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+ });
+ </script>
+</body>
+</html>
