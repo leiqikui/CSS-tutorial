@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="utf-8">
+ <title>兼容IE浏览器的方法_CSS Hack_浏览器私有前缀_揭秘CSS世界-歪脖网</title>
+ <meta name="keywords" content="CSS, CSS3, 揭秘CSS, , 兼容IE浏览器,CSS Hack,浏览器私有前缀" />
+ <meta name="description" content="对老版本IE的兼容性，主要通过CSS Hack和客户端脚本来解决；对使用CSS3新特性后产生的兼容性，主要通过浏览器私有前缀来解决" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ <link href="http://localhost/waibo/css/bootstrap.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/bootstrap-responsive.min.css" rel="stylesheet" />
+ <link href="http://localhost/waibo/css/style.css" rel="stylesheet" />
+
+ <script src="http://localhost/waibo/js/jquery.js"></script>
+ <script src="http://localhost/waibo/js/script.js"></script>
+</head>
+
+<body>
+ <div class="topbar">
+ <div class="eyebrow hidden-phone">
+ <div class="container">
+ <ul class="pull-left">
+   <li><a href="http://www.waibo.wang/" target="_blank">歪脖网</a>欢迎您！</li>
+ </ul>
+ <ul class="pull-right">
+  <li><a href="http://www.waibo.wang/user/">登录</a></li>
+  <li class="b">|</li>
+  <li><a href="http://www.waibo.wang/user/register.asp" target="_blank">注册</a></li>
+ </div>
+ </div>
+
+<div class="topnav">
+<div class="container">
+  <div class="row-fluid mtz">
+  <div class="span3 topnav-logo">
+    <a href="http://www.waibo.wang/"><p class="logo-cn">歪脖网</p><p class="logo-en hidden-phone">waibo.wang</p></a>
+  </div>
+  <div class="span6 nav">
+   <ul>
+     <li ><a href="http://www.waibo.wang/">首页</a></li>
+     <li class="active"><a href="http://localhost/waibo/bible/">教程</a></li>
+     <li ><a href="http://www.waibo.wang/wiki/">专栏</a></li>
+     <li ><a href="http://www.waibo.wang/demo/">素材</a></li>
+     <li ><a href="http://www.waibo.wang/tools/">工具</a></li>
+   </ul>
+  </div>
+  <div class="span3 topnav-form">
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+ <div class="container">
+ <div class="row-fluid bible">
+ <aside class="span3">
+ <map id="oAll" name="oAll">
+ <area title="全部展开" shape="rect" coords="0,0,22,20"  href="javascript:tree.openAll();" onfocus="blur(this);">
+ <area title="全部收起" shape="rect" coords="22,0,44,20" href="javascript:tree.closeAll();" onfocus="blur(this);">
+ </map>
+ <header><span>目录</span><img src="http://localhost/waibo/img/map.png" usemap="#oAll"/></header>
+ <script src="http://localhost/waibo/js/dtree.js"></script>
+ <script src="http://localhost/waibo/bible/css3/js/tree.js"></script>
+ <script>
+    createTree("100201");
+ </script>
+ </aside>
+
+ <main class="span9">
+ <header><div class="name"><strong>揭秘CSS</strong>(第 1 版)</div><div class="section">10.2.1 CSS Hack</div></header>
+ <div><label id="treeview"><input id="show" type="checkbox" checked /> 文档结构视图</label><span class="hit">阅读（ <span id="hit"></span> ）</div>
+ <article>
+<h1 class="hide-text">概述</h1>
+<h1 class="hide-text">CSS选择器</h1>
+<h1 class="hide-text">字体和文本</h1>
+<h1 class="hide-text">盒模型</h1>
+<h1 class="hide-text">元素的定位</h1>
+<h1 class="hide-text">链接和导航</h1>
+<h1 class="hide-text">表格和表单</h1>
+<h1 class="hide-text">变换、过渡和动画</h1>
+<h1 class="hide-text">布局</h1>
+<h1 class="hide-text">解决跨浏览器问题</h1>
+<h2 class="hide-text">渐进增强与优雅降级</h2>
+<h2>兼容浏览器的方法</h2>
+<p>开发人员基本都知道，CSS的开发本身并不难，但是，当在不同的浏览器下测试代码时，困难就出现了。浏览器的 bug 和不一致的显示方式，是大多数CSS开发人员面临的主要难题，你的设计在一种浏览器上看起来很好，而在另一种浏览器上可能会支离破碎。</p>
+<p>实践证明，CSS的兼容性主要有两种情况：一种是对老版本IE的兼容性，一种是使用CSS3新特性后产生的兼容性。</p>
+<p>对老版本IE的兼容性，主要通过CSS Hack和客户端脚本来解决；对使用CSS3新特性后产生的兼容性，主要通过浏览器私有前缀来解决。</p>
+<h3>CSS Hack</h3>
+<p>由于不同厂商的浏览器（如IE、Chrome、Firefox、Safari），或同一浏览器的不同版本（如IE6~IE11），对CSS的解析不完全一样，导致同一页面在不同浏览器中的效果可能不一致。</p>
+<p>为了得到统一的效果，就需要针对不同浏览器，或同一浏览器的不同版本，编写不同的CSS，把这个过程就被称作CSS Hack。</p>
+<p>实践证明，CSS Hack主要用来解决IE的兼容性问题。虽然它是强有力的工具，但应该谨慎使用，它一般作为修复问题的最后一道屏障，在不得已的时候才会使用。因为更重要的是跟踪、隔离和识别问题，而不是修复问题。只有真正了解问题背后的原理，才能找到最好的解决方案。</p>
+<p>CSS Hack 有 3 种表现形式：</p>
+<p>1）属性前缀或后缀法</p>
+<p>即在定义样式规则时，为样式属性添加只有特定浏览器，或某浏览器特定版本才能识别的前缀或后缀。</p>
+<table summary="常见的前缀后缀说明及应用示例">
+	<caption>表 10-1 常见的前缀后缀说明及应用示例</caption>
+	<thead>
+		<tr>
+			<th>前缀/后缀</th><th>适用版本</th><th>应用示例</th>
+		</tr>
+	</thead>
+	<tbody>
+<tr><td>_</td><td>IE6</td><td>p { _color: blue; }</td></tr>
+<tr><td>-</td><td>IE6</td><td>p { -color: blue; }</td></tr>
+<tr><td>+</td><td>IE7</td><td>p { +color: blue; }</td></tr>
+<tr><td>*</td><td>IE6/IE7</td><td>p { *color: blue; }</td></tr>
+<tr><td>#</td><td>IE6/IE7/IE8</td><td>p { #color: blue; }</td></tr>
+<tr><td>!important</td><td>IE7/IE8/IE9/IE10/IE11</td><td>p { color: blue !important; }</td></tr>
+<tr><td>\9</td><td>IE6/IE7/IE8/IE9/IE10/IE11</td><td>p { color: blue\9; }</td></tr>
+<tr><td>\0</td><td>IE8/IE9/IE10/IE11</td><td>p { color: blue\0; }</td></tr>
+<tr><td>\9\0</td><td>IE9/IE10/IE11</td><td>p { color: blue\9\0; }</td></tr>
+	</tbody>
+</table>
+<p>在使用属性前缀或后缀法时，一般是将适用范围广、被识别能力强的写法写在前面，把特殊写法写在后面。如：</p>
+<pre class="prettyprint linenums">
+<code>div {  
+    background: blue;
+    background: green\9; 
+    *background: black; 
+    _background: orange; 
+}  </code></pre>
+<p>由于所有浏览器都识别标准写法，而IE6/IE7/IE8/IE9/IE10/IE11可识别\9，IE6/IE7可识别*，IE6仅能识别_。根据CSS的叠加原理，后定义的属性会覆盖先定义的同名属性，就实现了为IE各版本和现代浏览器应用不同样式的目的。</p>
+<p>2）选择器前缀法</p>
+<p>即在CSS选择器前，添加只有特定浏览器或某浏览器特定版本才能识别的前缀，选择器和前缀之间用空格分隔。</p>
+<p>常用的前缀有 *html 和 *+html，*html 是IE6特有的前缀，而 *+html 是IE7特有的前缀。如：</p>
+<pre class="prettyprint linenums">
+<code>*html p { color: blue; }   /* IE6 */
+*+html p { color: blue; }  /* IE7 */</code></pre>
+<p>3）条件注释法</p>
+<p>条件注释是IE浏览器专有的，也是微软官方推荐的Hack方式。它是使用IE条件注释，针对不同IE版本，编写不同的CSS，来为不同版本的IE应用不同的样式。</p>
+<p>一种方法是直接在条件注释中定义样式。如：</p>
+<pre class="prettyprint linenums">
+<code>&lt;style&gt;
+&lt;!--[if IE 6]&gt;
+div {
+   display: inline; 
+}
+&lt;![endif]--&gt;
+&lt;/style&gt;
+</code></pre>
+<p>虽然这种方法可以解决一些现实的问题，但这些注释需要放在HTML文件，而不是CSS文件中，样式定义散落在多个地方，不便于维护，也容易出错。也违背了内容与表现相分离的原则，故不推荐使用。</p>
+<p>另一种方法是，编写不同的CSS文件，再使用IE条件注释，通过 &lt;link&gt; 标签，有针对性的加载外部样式表。如：</p>
+<pre class="prettyprint linenums">
+<code>&lt;!--[if IE 6]&gt;
+&lt;link rel="stylesheet" href="css/ie6.css" /&gt;
+&lt;![endif]--&gt;</code></pre>
+<p>这种方法却会增加IE用户的HTTP请求次数，影响访问速度。所以，在使用这种方法前，要仔细斟酌，判断是否真的有必要在自己的网站上使用它。</p>
+<p>一个好消息是，从IE10版本开始，不再支持条件注释。这标志着IE从此走向成熟、走向标准，Web设计师再也不必为IE的兼容性问题所困扰了。</p>
+<p>愿望是美好的，现实却是残酷的。很多WEB设计师仍然发现，相同的CSS，在IE9/10/11上的渲染效果，和其它现代浏览器还是不一样。</p>
+<p>也就是说，我们仍然需要条件注释。那么，在不支持条件注释的IE10/11上，能够实现条件注释的效果呢？</p>
+<p>答案是肯定的。并且，有多种方法可以实现条件注释的替代效果。并且，它们有各自的应用场景，可以根据需要选择使用。</p>
+<p>方法一：使用IE = EmulateIE9属性，指示浏览器采用IE9渲染模式：</p>
+<pre class="prettyprint linenums">
+<code>&lt;meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"&gt;</code></pre>
+<p>因为IE9是支持条件注释的，在页面的头部加入以上的元数据后，IE10/11就使用IE9的渲染模式，自然就能识别条件注释了。</p>
+<p>很显然，这样做的弊端是，浏览器使用的是IE9的渲染模式，而不是最新的IE10/11的渲染模式。</p>
+<p>方法二：使用媒体查询语句的 +-ms-high-contrast 属性，为不同浏览器应用不同的样式。</p>
+<p>CSS 的媒体查询语句是一种高级的CSS条件语句，它能根据一些属性和属性值的计算结果，来判断CSS是否可以生效。</p>
+<p>由于只有IE10/11实现了 -ms-high-contrast 属性，取值为active或none。因此，就可以使用以下媒体查询语句：</p>
+<pre class="prettyprint linenums">
+<code>@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+}</code></pre>
+<p>Firefox浏览器、Chrome浏览器不能识别这个属性，这个语句中的CSS就不会生效，便间接实现了条件注释的效果。</p>
+<p>方法三：使用Javascript判断浏览器的类型，来为不同浏览器定义不同的样式。</p>
+<p>先用Javascript 判断浏览器的类型，如果是IE浏览器，就在页面的 &lt;html&gt; 标签上添加一个 ie 的类名：</p>
+<pre class="prettyprint linenums">
+<code>&lt;script&gt;
+var ms_ie = false;
+var ua = window.navigator.userAgent;
+var old_ie = ua.indexOf("MSIE");
+var new_ie = ua.indexOf("Trident/");
+
+if ((old_ie &gt; -1) || (new_ie &gt; -1)) {
+    ms_ie = true;
+}
+
+if ( ms_ie ) {
+    document.documentElement.className += "ie ";
+}
+&lt;/script&gt;</code></pre>
+<p>有了这个标志性 class 后，就可以在CSS中，区分不同的浏览器，并专门针对IE编写不同的CSS代码。如：</p>
+<pre class="prettyprint linenums">
+<code>.testClass{
+    /* 这里写通用的css */
+}
+
+.ie .testClass{
+    /* 这里写专门针对IE的css */
+}</code></pre>
+<p>事实上，这个方法还能区分老IE和新IE。因此，也可以区分老IE和新IE，并有针对性的编写不同的CSS代码。</p>
+<p>方法四：使用IE10/11私有的条件编译特性，来区分IE6-9 和IE10/11。</p>
+<pre class="prettyprint linenums">
+<code>&lt;!--[if !IE]&gt;
+&lt;script&gt;
+if (/*@cc_on!@*/false)  {
+    document.documentElement.className += "ie10  ";
+}
+&lt;/script&gt;
+&lt;!--&lt;![endif]--&gt;</code></pre>
+<p>上述脚本中，先使用条件注释 !IE来排除IE，以确保IE6-9不承认它。然后，再执行@ cc_on功能检测。</p><div class="author">
+<p class="about">关于作者</p>
+<p><a href="https://weibo.com/leiqikui">歪脖先生</a>，十五年以上软件开发经验，酷爱Web开发，精通 HTML、CSS、JavaScript、jQuery、JSON、Python、Less、Bootstrap等，著有《<a href="http://www.waibo.wang/bible/html5/">HTML宝典</a>》、《<a href="http://www.waibo.wang/bible/css3/">揭秘CSS</a>》、《<a href="http://www.waibo.wang/bible/less/">Less简明教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap2/">Bootstrap2用户指南</a>》、《<a href="http://www.waibo.wang/bible/bootstrap3/">Bootstrap3实用教程</a>》、《<a href="http://www.waibo.wang/bible/bootstrap4/">Bootstrap4源码剖析</a>》，并全部在 <a href="https://github.com/leiqikui">GitHub</a> 上开源。</p>
+</div>
+
+<div id="modalReward" class="modal hide fade modal-reward" tabindex="-1">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h6>打赏</h6>
+</div>
+<div class="modal-body">
+<div class="tabbable reward-weipay">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#weipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#weipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#weipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#weipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#weipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#weipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="weipay1">
+<img src="http://localhost/waibo/img/weipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="weipay2">
+<img src="http://localhost/waibo/img/weipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="weipay5">
+<img src="http://localhost/waibo/img/weipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="weipay10">
+<img src="http://localhost/waibo/img/weipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="weipay20">
+<img src="http://localhost/waibo/img/weipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="weipayrand">
+<img src="http://localhost/waibo/img/weipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="tabbable reward-alipay hide">
+<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#alipay1">￥1</a></li>
+<li><a data-toggle="tab" href="#alipay2">￥2</a></li>
+<li><a data-toggle="tab" href="#alipay5">￥5</a></li>
+<li><a data-toggle="tab" href="#alipay10">￥10</a></li>
+<li><a data-toggle="tab" href="#alipay20">￥20</a></li>
+<li><a data-toggle="tab" href="#alipayrand">其他金额</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="alipay1">
+<img src="http://localhost/waibo/img/alipay1.png" alt="￥1"><span>￥1</span>
+</div>
+<div class="tab-pane" id="alipay2">
+<img src="http://localhost/waibo/img/alipay2.png" alt="￥2"><span>￥2</span>
+</div>
+<div class="tab-pane" id="alipay5">
+<img src="http://localhost/waibo/img/alipay5.png" alt="￥5"><span>￥5</span>
+</div>
+<div class="tab-pane" id="alipay10">
+<img src="http://localhost/waibo/img/alipay10.png" alt="￥10"><span>￥10</span>
+</div>
+<div class="tab-pane" id="alipay20">
+<img src="http://localhost/waibo/img/alipay20.png" alt="￥20"><span>￥20</span>
+</div>
+<div class="tab-pane" id="alipayrand">
+<img src="http://localhost/waibo/img/alipayrand.png" alt="￥随意"><span>￥随意</span>
+</div>
+</div>
+</div>
+<div class="reward-method">
+<label><input type="radio" name="method" value="weipay" checked><img src="http://localhost/waibo/img/weipay.png" alt="微信支付"></label>
+<label><input type="radio" name="method" value="alipay"><img src="http://localhost/waibo/img/alipay.png" alt="支付宝"></label>
+</div>
+</div>
+</div>
+<div class="reward">
+<p>如果本教程对您帮助很大，请随意打赏。您的支持，将鼓励我写出更好的教程！</p>
+<a data-toggle="modal" href="#modalReward">赏</a>
+</div>
+
+<script src="http://localhost/waibo/js/bootstrap.min.js"></script>
+ <script>
+ $(function() {
+    rewardMethod();
+ });
+ </script>
+ 
+<div class="share">
+ <div class="bdsharebuttonbox"></div>
+ </div>
+ <div class="page">
+   <a id="prev" href="http://localhost/waibo/bible/css3/html/10/10.1.html" title="&#8592; 键到上一节">« 上一节</a>&#8592; 键盘方向键翻页 &#8594;<a id="next" href="http://localhost/waibo/bible/css3/html/10/10.2.2.html" title="&#8594; 键到下一节">下一节 »</a>
+ </div>
+ </article>
+ </main>
+ </div>
+ </div>
+ <div class="floatPanel">
+	 <div class="ctrolPanel">
+		 <a href="javascript:;" class="arrow top" onClick="goTop()"><span>返回顶部</span></a>
+    <a href="#" class="phone"  data-target="#phone"><span>手机访问</span></a>
+    <a href="#" class="wechat" data-target="#wechat"><span>关注微信</span></a>
+    <a href="javascript:;" class="arrow bottom" onClick="goBottom()"><span>返回底部</span></a>
+  </div>
+	<div id="phone" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/site.png" /><p class="slogan">扫码访问歪脖网</p><p>随时随地，想看就看</p>
+		</div>
+	</div>
+	<div id="wechat" class="popPanel">
+		<div class="popPanel-inner">
+			<img src="http://localhost/waibo/img/weixin.png" /><p class="slogan">关注歪脖网微信</p><p>分享 web 知识、交流 web 经验</p>
+		</div>
+	</div>
+</div>
+ <footer>
+ <div class="container hidden-phone">
+ <div class="row-fluid">
+ <div class="span2">
+ <dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+      <dt>教程</dt>
+      <dd><a href="http://localhost/waibo/bible/html5/">HTML5宝典</a></dd>
+      <dd><a href="http://localhost/waibo/bible/css3/">探究CSS3</a></dd>
+      <dd><a href="http://localhost/waibo/bible/json/">JSON 教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/es6/">ES6标准入门</a></dd>
+      <dd><a href="http://localhost/waibo/bible/bootstrap2/">Bootstrap教程</a></dd>
+      <dd><a href="http://localhost/waibo/bible/xcx/">微信小程序教程</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>工具</dt>
+     <dd><a href="http://www.waibo.wang/tools/htmlformat">HTML格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/cssformat">CSS格式化</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/htmlconvert">HTML多功能转换器</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/xmltojson">XML和JSON转换工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsconfuse">JS混淆工具</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/jsonp">JSON在线解析</a></dd>
+     <dd><a href="http://www.waibo.wang/tools/markdown">在线Markdown编辑器</a></dd>
+    </dl>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>关注</dt>
+    </dl>
+    <div class="social">
+      <img src="http://localhost/waibo/img/weixin.png" title="扫描二维码，关注歪脖网微信">
+<a href="https://weibo.com/leiqikui" title="新浪微博" target="_blank"></a>
+<a href="http://t.qq.com/maifang51" title="腾讯微博" target="_blank"></a>
+<a href="https://github.com/leiqikui" title="Github" target="_blank"><svg width="24" height="24" version="1.1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+    </div>
+ </dl>
+ </div>
+ <div class="span2">
+ <dl>
+    <dl>
+     <dt>赞助商</dt>
+     <dd><a rel="nofollow" href="https://cloud.tencent.com/redirect.php?redirect=1005&cps_key=2291d007f3b4d08b96c0fc03c4b54499" target="_blank" title="腾讯云提供安全、稳定的云服务器"><img src="http://localhost/waibo/img/logo-qqyun.png"> 腾讯云</a></dd>
+     <dd><a rel="nofollow" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DJm1BMj9ta3QcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAjPr0N2Hh94K6bMO9Kiim77lHsPu4n7AVmGhnzSVk4DlmWL0QXDWLBr%2BSLtF1Lx83hmIkXBqRClNTcEU%2BDykfuSM%2BhtH71aX6uIOTs4KMj3yjpOyWSRdiSZDEm2YKA6YIrbIzrZDfgWtwGXLU4WXsy8CZuZoOOkzXFxfvOyje0ynomfkDJRs%2BhU%3D" target="_blank" title="阿里云全民云计算"><img src="http://localhost/waibo/img/logo-aliyun.png">&nbsp; 阿里云</a></dd>
+    </dl>
+ </dl>
+ </div>
+ </div>
+ </div>
+ <hr/>
+   <p>Copyright&copy;2017&nbsp;&nbsp;www.waibo.wang All Rights Reserved</p>
+   <p>陕ICP备17020676号-1&nbsp;&nbsp;&nbsp;&nbsp;客服QQ：376601179&nbsp;&nbsp;&nbsp;&nbsp;邮箱：376601179#qq.com
+ </footer>
+ <script src="http://localhost/waibo/js/prettify.js"></script>
+ <script>
+ $(function() {
+    prettyPrint();
+    bible();
+    load();
+ });
+ </script>
+</body>
+</html>
